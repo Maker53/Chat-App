@@ -40,12 +40,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Private Methods
-    private func printLog(inMethod method: String = #function, appGoesStateFrom from: State, to: State) {
-        if showLog {
+    private func printLog(method: String = #function, appGoesStateFrom from: State, to: State) {
+        guard showLog else { return }
+        
+        if from == to {
+            print(
+                """
+                Application stays in \(from.rawValue) state:
+                function - \(method)
+                
+                """
+            )
+        } else {
             print(
                 """
                 Application moved from \(from.rawValue) state to \(to.rawValue) state:
                 function - \(method)
+                
                 """
             )
         }
