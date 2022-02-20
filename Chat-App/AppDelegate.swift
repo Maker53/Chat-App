@@ -47,6 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         printLog(appGoesStateFrom: .inactive, to: .active)
     }
     
+    func applicationWillResignActive(_ application: UIApplication) {
+        printLog(appGoesStateFrom: .active, to: .inactive)
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        printLog(appGoesStateFrom: .inactive, to: .background)
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        printLog(appGoesStateFrom: .background, to: .suspended)
+    }
+    
     // MARK: - Private Methods
     private func printLog(method: String = #function, appGoesStateFrom from: State, to: State) {
         guard showLog else { return }
