@@ -39,6 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        printLog(appGoesStateFrom: .background, to: .inactive)
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        printLog(appGoesStateFrom: .inactive, to: .active)
+    }
+    
     // MARK: - Private Methods
     private func printLog(method: String = #function, appGoesStateFrom from: State, to: State) {
         guard showLog else { return }
@@ -47,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(
                 """
                 Application stays in \(from.rawValue) state:
-                function - \(method)
+                \(method)
                 
                 """
             )
@@ -55,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(
                 """
                 Application moved from \(from.rawValue) state to \(to.rawValue) state:
-                function - \(method)
+                \(method)
                 
                 """
             )
