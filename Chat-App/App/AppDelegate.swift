@@ -5,7 +5,12 @@
 //  Created by Станислав on 19.02.2022.
 //
 
+
 import UIKit
+
+// To enable / disable the display of the log in the console,
+// refer to the public variable in the Constants file
+// and assign it the appropriate value (true or false)
 
 // MARK: - States
 private enum State: String {
