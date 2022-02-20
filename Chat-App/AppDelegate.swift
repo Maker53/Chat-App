@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - States
 private enum State: String {
     case notRunning = "Not Running"
     case inactive = "Inactive"
@@ -18,21 +19,35 @@ private enum State: String {
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // MARK: - Public Properties
     var window: UIWindow?
+    
+    // MARK: - Private Properties
+    // Show log output to console?
+    private var showLog = true
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    // MARK: - Lifecycle Methods
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        printLog(appGoesStateFrom: .notRunning, to: .inactive)
+        
         return true
     }
     
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        print(
-            """
-            Application moved from \(State.notRunning.rawValue) state to \(State.inactive.rawValue) state:
-            function - \(#function)
-            """
-        )
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        printLog(appGoesStateFrom: .inactive, to: .inactive)
         
         return true
+    }
+    
+    // MARK: - Private Methods
+    private func printLog(inMethod method: String = #function, appGoesStateFrom from: State, to: State) {
+        if showLog {
+            print(
+                """
+                Application moved from \(from.rawValue) state to \(to.rawValue) state:
+                function - \(method)
+                """
+            )
+        }
     }
 }
