@@ -18,7 +18,6 @@ private enum State: String {
     case inactive = "Inactive"
     case active = "Active"
     case background = "Background"
-    case suspended = "Suspended"
 }
 
 @main
@@ -57,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        printLog(appGoesStateFrom: .background, to: .suspended)
+        printLog(appGoesStateFrom: .background, to: .notRunning)
     }
     
     // MARK: - Private Methods
