@@ -21,10 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Public Properties
     var window: UIWindow?
-    
-    // MARK: - Private Properties
-    // Show log output to console?
-    private var showLog = true
 
     // MARK: - Lifecycle Methods
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
