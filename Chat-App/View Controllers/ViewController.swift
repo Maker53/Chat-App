@@ -57,7 +57,7 @@ class ViewController: UIViewController {
     
     // MARK: - Private Methods
     private func printLog(method: String = #function) {
-        guard showLog else { return }
+        guard Constants.showLog else { return }
         
         print("Method: \(method)\n")
     }

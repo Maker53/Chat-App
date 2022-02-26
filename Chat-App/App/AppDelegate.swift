@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Private Methods
     private func printLog(method: String = #function, appGoesStateFrom from: State, to: State) {
-        guard showLog else { return }
+        guard Constants.showLog else { return }
         
         if from == to {
             print(

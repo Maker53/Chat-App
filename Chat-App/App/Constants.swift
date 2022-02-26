@@ -6,4 +6,6 @@
 //
 
 // Show log output to console?
-var showLog = true
+enum Constants {
+    static let showLog = true
+}
