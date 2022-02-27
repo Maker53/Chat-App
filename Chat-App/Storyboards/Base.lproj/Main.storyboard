@@ -29,6 +29,9 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editImageButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="hnS-1O-eGu"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Junior iOS Developer        Moscow, Russia" translatesAutoresizingMaskIntoConstraints="NO" id="EUf-R1-H5H">
                                 <rect key="frame" x="77.5" y="426" width="220" height="158"/>

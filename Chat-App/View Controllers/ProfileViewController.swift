@@ -22,4 +22,8 @@ class ProfileViewController: UIViewController {
         
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
     }
+    
+    @IBAction func editImageButtonPressed() {
+        presentChooseImageAlertController()
+    }
 }

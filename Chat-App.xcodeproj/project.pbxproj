@@ -13,6 +13,7 @@
 		857847D727C12068005E176B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857847D627C12068005E176B /* Assets.xcassets */; };
 		857847DA27C12068005E176B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857847D827C12068005E176B /* LaunchScreen.storyboard */; };
 		857847E427C13E41005E176B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 857847E327C13E41005E176B /* .gitignore */; };
+		85882B4327CB87E90081463E /* ProfileViewController+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4227CB87E80081463E /* ProfileViewController+AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		857847D927C12068005E176B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		857847DB27C12068005E176B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		857847E327C13E41005E176B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		85882B4227CB87E80081463E /* ProfileViewController+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+AlertController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +59,21 @@
 		857847CC27C12065005E176B /* Chat-App */ = {
 			isa = PBXGroup;
 			children = (
-				85F9D82127C2679400466578 /* App */,
-				85F9D82227C2679B00466578 /* View Controllers */,
+				85882B4127CB879D0081463E /* Extensions */,
 				85F9D82327C267AB00466578 /* Storyboards */,
+				85F9D82227C2679B00466578 /* View Controllers */,
+				85F9D82127C2679400466578 /* App */,
 				85F9D82427C267B700466578 /* Resources */,
 			);
 			path = "Chat-App";
+			sourceTree = "<group>";
+		};
+		85882B4127CB879D0081463E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				85882B4227CB87E80081463E /* ProfileViewController+AlertController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		85F9D82127C2679400466578 /* App */ = {
@@ -172,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				857847D227C12065005E176B /* ProfileViewController.swift in Sources */,
+				85882B4327CB87E90081463E /* ProfileViewController+AlertController.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
