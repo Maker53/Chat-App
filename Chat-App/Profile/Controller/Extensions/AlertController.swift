@@ -1,5 +1,5 @@
 //
-//  ProfileViewController+AlertController.swift
+//  AlertController.swift
 //  Chat-App
 //
 //  Created by Станислав on 27.02.2022.
@@ -8,6 +8,7 @@
 import UIKit
 
 extension ProfileViewController {
+    
     func presentChooseImageAlertController() {
         let alertController = UIAlertController(
             title: nil,
@@ -16,11 +17,15 @@ extension ProfileViewController {
         )
         
         let photo = UIAlertAction(title: "Photo", style: .default) { _ in
-            // add photo
+            if #available(iOS 14, *) {
+                // add iOS 14 method
+            } else {
+                self.chooseImagePicker(source: .photoLibrary)
+            }
         }
         
         let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-            // add camera
+                self.chooseImagePicker(source: .camera)
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
