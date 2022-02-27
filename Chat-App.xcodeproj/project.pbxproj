@@ -13,7 +13,8 @@
 		857847D727C12068005E176B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857847D627C12068005E176B /* Assets.xcassets */; };
 		857847DA27C12068005E176B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857847D827C12068005E176B /* LaunchScreen.storyboard */; };
 		857847E427C13E41005E176B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 857847E327C13E41005E176B /* .gitignore */; };
-		85882B4327CB87E90081463E /* ProfileViewController+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4227CB87E80081463E /* ProfileViewController+AlertController.swift */; };
+		85882B4327CB87E90081463E /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4227CB87E80081463E /* AlertController.swift */; };
+		85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +26,8 @@
 		857847D927C12068005E176B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		857847DB27C12068005E176B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		857847E327C13E41005E176B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		85882B4227CB87E80081463E /* ProfileViewController+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+AlertController.swift"; sourceTree = "<group>"; };
+		85882B4227CB87E80081463E /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,8 +44,8 @@
 		857847C127C12065005E176B = {
 			isa = PBXGroup;
 			children = (
-				857847E327C13E41005E176B /* .gitignore */,
 				857847CC27C12065005E176B /* Chat-App */,
+				857847E327C13E41005E176B /* .gitignore */,
 				857847CB27C12065005E176B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,7 +71,8 @@
 		85882B4127CB879D0081463E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				85882B4227CB87E80081463E /* ProfileViewController+AlertController.swift */,
+				85882B4227CB87E80081463E /* AlertController.swift */,
+				85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -206,8 +209,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */,
 				857847D227C12065005E176B /* ProfileViewController.swift in Sources */,
-				85882B4327CB87E90081463E /* ProfileViewController+AlertController.swift in Sources */,
+				85882B4327CB87E90081463E /* AlertController.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
