@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let initialVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
         
         window?.rootViewController = initialVC
