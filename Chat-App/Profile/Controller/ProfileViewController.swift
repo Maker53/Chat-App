@@ -13,14 +13,19 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        view.endEditing(true)
     }
     
     @IBAction func editImageButtonPressed() {

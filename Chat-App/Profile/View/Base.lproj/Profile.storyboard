@@ -38,7 +38,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="yes"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQG-Ez-8EM">
                                 <rect key="frame" x="77.5" y="614" width="220" height="33"/>
@@ -60,7 +60,7 @@
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="name"/>
                             </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -77,7 +77,7 @@
                             <constraint firstItem="EUf-R1-H5H" firstAttribute="leading" secondItem="d8Y-Ug-ONE" secondAttribute="leading" id="fG4-6U-Gll"/>
                             <constraint firstItem="d8Y-Ug-ONE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="fca-kZ-fvq"/>
                             <constraint firstItem="2qa-S8-uXn" firstAttribute="leading" secondItem="d8Y-Ug-ONE" secondAttribute="leading" id="l7F-qA-s5j"/>
-                            <constraint firstItem="xQG-Ez-8EM" firstAttribute="top" secondItem="EUf-R1-H5H" secondAttribute="bottom" constant="30" id="l7j-7r-rI9"/>
+                            <constraint firstItem="xQG-Ez-8EM" firstAttribute="top" secondItem="EUf-R1-H5H" secondAttribute="bottom" constant="30" id="nQe-fT-PYw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xQG-Ez-8EM" secondAttribute="bottom" constant="20" id="oYg-fO-MdH"/>
                             <constraint firstItem="EUf-R1-H5H" firstAttribute="trailing" secondItem="d8Y-Ug-ONE" secondAttribute="trailing" id="tz0-0J-C7R"/>
                             <constraint firstItem="oms-fF-ylB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d8Y-Ug-ONE" secondAttribute="leading" id="zMo-gV-MHl"/>
