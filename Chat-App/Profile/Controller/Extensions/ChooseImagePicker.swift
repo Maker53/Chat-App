@@ -7,15 +7,25 @@
 
 import UIKit
 
-extension ProfileViewController {
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
             
+            imagePicker.delegate = self
             imagePicker.sourceType = source
             
             present(imagePicker, animated: true)
         }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        profileImage.image = info[.editedImage] as? UIImage
+        
+        profileImage.contentMode = .scaleAspectFill
+        profileImage.clipsToBounds = true
+        
+        dismiss(animated: true)
     }
 }
