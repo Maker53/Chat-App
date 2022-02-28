@@ -10,6 +10,10 @@ import UIKit
 extension ProfileViewController {
     
     func presentChooseImageAlertController() {
+        
+        let photoLibraryIcon = UIImage(systemName: "photo")
+        let cameraIcon = UIImage(systemName: "camera")
+        
         let alertController = UIAlertController(
             title: nil,
             message: nil,
@@ -24,9 +28,15 @@ extension ProfileViewController {
             }
         }
         
+        photo.setValue(photoLibraryIcon, forKey: "image")
+        photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+        
         let camera = UIAlertAction(title: "Camera", style: .default) { _ in
                 self.chooseImagePicker(source: .camera)
         }
+        
+        camera.setValue(cameraIcon, forKey: "image")
+        camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         
