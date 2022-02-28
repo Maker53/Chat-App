@@ -21,10 +21,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        profileImage.image = info[.editedImage] as? UIImage
-        
-        profileImage.contentMode = .scaleAspectFill
-        profileImage.clipsToBounds = true
+        profileImage.image = info[.originalImage] as? UIImage
         
         dismiss(animated: true)
     }
