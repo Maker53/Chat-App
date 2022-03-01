@@ -22,7 +22,7 @@ extension ProfileViewController {
         
         let photo = UIAlertAction(title: "Photo", style: .default) { _ in
             if #available(iOS 14, *) {
-                // add iOS 14 method
+                self.choosePHPicker()
             } else {
                 self.chooseImagePicker(source: .photoLibrary)
             }
