@@ -86,6 +86,7 @@
                     <navigationItem key="navigationItem" title="My Profile" id="bJ0-LD-a9C"/>
                     <connections>
                         <outlet property="profileImage" destination="d8Y-Ug-ONE" id="FYU-5i-jhH"/>
+                        <outlet property="saveButton" destination="xQG-Ez-8EM" id="s3g-Ca-7fg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -95,18 +96,19 @@
         <!--Navigation Controller-->
         <scene sceneID="fRy-uL-uut">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FxP-Z9-SCa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ProfileVC" automaticallyAdjustsScrollViewInsets="NO" id="kgu-eX-dqe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="gk3-PK-mwp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lbv-lx-xtG"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FxP-Z9-SCa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="128.98550724637681" y="83.967391304347828"/>
         </scene>
