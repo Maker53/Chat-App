@@ -32,6 +32,10 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         self.profileImage.image = image
+                        
+                        if !self.initialsFullNameLabel.isHidden {
+                            self.initialsFullNameLabel.isHidden.toggle()
+                        }
                     }
                 }
             }

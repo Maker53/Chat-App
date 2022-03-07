@@ -24,6 +24,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         profileImage.image = info[.originalImage] as? UIImage
         
+        if !initialsFullNameLabel.isHidden {
+            initialsFullNameLabel.isHidden.toggle()
+        }
+        
         dismiss(animated: true)
     }
 }

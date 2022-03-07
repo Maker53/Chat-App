@@ -40,7 +40,7 @@ extension ProfileViewController {
         button.setTitle("Close", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         
-        button.frame = CGRect(x: view.frame.width - 63, y: view.center.y - 16.5, width: 46, height: 33)
+        button.frame = CGRect(x: view.frame.width - 65, y: view.center.y - 18, width: 50, height: 36)
         
         button.addTarget(self, action: #selector(closeBarButtonPressed), for: .touchUpInside)
         view.addSubview(button)
