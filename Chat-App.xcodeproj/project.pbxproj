@@ -20,6 +20,7 @@
 		85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */; };
 		85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99827D6566700E57461 /* ConversationListViewController.swift */; };
 		85FDC99E27D65B4400E57461 /* SetupUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99D27D65B4400E57461 /* SetupUI.swift */; };
+		85FDC9A227D661F600E57461 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9A127D661F600E57461 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		85FDC99827D6566700E57461 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		85FDC99D27D65B4400E57461 /* SetupUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUI.swift; sourceTree = "<group>"; };
+		85FDC9A127D661F600E57461 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +156,9 @@
 		85FDC99A27D65ACC00E57461 /* ConversationList */ = {
 			isa = PBXGroup;
 			children = (
+				85FDC99F27D6615500E57461 /* Model */,
+				85FDC9A027D6616600E57461 /* View */,
 				85FDC99B27D65ADD00E57461 /* Controller */,
-				85FDC99C27D65B0300E57461 /* Extensions */,
 			);
 			path = ConversationList;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 		85FDC99B27D65ADD00E57461 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				85FDC99C27D65B0300E57461 /* Extensions */,
 				85FDC99827D6566700E57461 /* ConversationListViewController.swift */,
 			);
 			path = Controller;
@@ -174,6 +178,21 @@
 				85FDC99D27D65B4400E57461 /* SetupUI.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		85FDC99F27D6615500E57461 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85FDC9A127D661F600E57461 /* Message.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		85FDC9A027D6616600E57461 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +274,7 @@
 				85882B4327CB87E90081463E /* AlertController.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 				85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */,
+				85FDC9A227D661F600E57461 /* Message.swift in Sources */,
 				85882B5127CDD4790081463E /* PHPicker.swift in Sources */,
 				85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */,
 			);
