@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
         
-        window?.rootViewController = UINavigationController(rootViewController: profileViewController)
+        window?.rootViewController = UINavigationController(rootViewController: ConversationListViewController())
         window?.makeKeyAndVisible()
         
         return true
