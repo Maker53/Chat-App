@@ -1,5 +1,5 @@
 //
-//  SetupUI.swift
+//  SetupConversationTableView.swift
 //  Chat-App
 //
 //  Created by Станислав on 07.03.2022.
@@ -8,11 +8,15 @@
 import UIKit
 
 extension ConversationListViewController {
+    
     // MARK: - Setup Conversation List Table View
     func setupConversationListTableView() {
         view.addSubview(conversationListTableView)
         
         title = "Tinkoff Chat"
+        
+        conversationListTableView.rowHeight = UITableView.automaticDimension
+        conversationListTableView.estimatedRowHeight = 56
         
         NSLayoutConstraint.activate([
             conversationListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -24,4 +28,3 @@ extension ConversationListViewController {
         conversationListTableView.translatesAutoresizingMaskIntoConstraints = false
     }
 }
-
