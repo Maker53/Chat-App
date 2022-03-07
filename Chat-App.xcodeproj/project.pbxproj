@@ -16,6 +16,8 @@
 		85882B4327CB87E90081463E /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4227CB87E80081463E /* AlertController.swift */; };
 		85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */; };
 		85882B5127CDD4790081463E /* PHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B5027CDD4770081463E /* PHPicker.swift */; };
+		85FDC99527D5302D00E57461 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99427D5302D00E57461 /* TextViewDelegate.swift */; };
+		85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		85882B4227CB87E80081463E /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseImagePicker.swift; sourceTree = "<group>"; };
 		85882B5027CDD4770081463E /* PHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPicker.swift; sourceTree = "<group>"; };
+		85FDC99427D5302D00E57461 /* TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewDelegate.swift; sourceTree = "<group>"; };
+		85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +77,11 @@
 		85882B4127CB879D0081463E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				85FDC99427D5302D00E57461 /* TextViewDelegate.swift */,
 				85882B4227CB87E80081463E /* AlertController.swift */,
 				85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */,
 				85882B5027CDD4770081463E /* PHPicker.swift */,
+				85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,11 +218,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85FDC99527D5302D00E57461 /* TextViewDelegate.swift in Sources */,
 				85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */,
 				857847D227C12065005E176B /* ProfileViewController.swift in Sources */,
 				85882B4327CB87E90081463E /* AlertController.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 				85882B5127CDD4790081463E /* PHPicker.swift in Sources */,
+				85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

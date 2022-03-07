@@ -12,7 +12,9 @@ class ProfileViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
-
+    @IBOutlet weak var initialsFullNameLabel: UILabel!
+    @IBOutlet weak var fullNameTextView: UITextView!
+    
     // В данном методе происходит инициализация объекта класса UIViewController
     // view и IBOutlets еще не загружены и поэтому не могут быть отображены их свойства
 //
@@ -24,14 +26,19 @@ class ProfileViewController: UIViewController {
     // saveButton.frame == (77.5, 614.0, 220.0, 33.0)
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fullNameTextView.delegate = self
+        
+        createCustomNavigationBar()
+        navigationController?.navigationBar.addSubview(createCustomTitleView())
 
         print(saveButton.frame)
     }
     
     // saveButton.frame == (77.5, 614.0, 220.0, 33.0)
     // saveButton.frame == (97.0, 683.0, 220.0, 33.0)
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
         
@@ -42,7 +49,7 @@ class ProfileViewController: UIViewController {
     // Метод viewWillLayoutSubviews() вызывается 2 раза:
     // 1 раз - с констрейнтами, указанными в сторибоарде
     // 2 раз - с пересчитанными констрейнтами под конкретный экран на запускаемом устройстве
-    // так как экраны разные, то и констрейнты могут бытьт увеличены или уменьшены.
+    // так как экраны разные, то и констрейнты могут быть увеличены или уменьшены.
     // В данном методе констрейнты уже расставлены, поэтому мы видим пересчитанные размеры.
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -52,12 +59,17 @@ class ProfileViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        
+
         view.endEditing(true)
     }
     
     // MARK: - IB Actions
     @IBAction func editImageButtonPressed() {
         presentChooseImageAlertController()
+    }
+    
+    // MARK: - Methods
+    @objc func closeBarButtonPressed() {
+//        dismiss(animated: true, completion: nil)
     }
 }

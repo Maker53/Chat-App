@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kgu-eX-dqe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,20 +12,21 @@
         <!--My Profile-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="Chat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" modalPresentationStyle="pageSheet" id="BYZ-38-t0r" customClass="ProfileViewController" customModule="Chat_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PersonImage" translatesAutoresizingMaskIntoConstraints="NO" id="d8Y-Ug-ONE">
-                                <rect key="frame" x="77.5" y="116" width="220" height="220"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d8Y-Ug-ONE">
+                                <rect key="frame" x="77.5" y="20" width="220" height="220"/>
+                                <color key="backgroundColor" red="0.89361387489999999" green="0.91036337609999995" blue="0.16760972139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="d8Y-Ug-ONE" secondAttribute="height" multiplier="1:1" id="REl-Ve-Sg2"/>
                                     <constraint firstAttribute="width" constant="220" id="UIX-gW-kHX"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oms-fF-ylB">
-                                <rect key="frame" x="266.5" y="336" width="31" height="33"/>
+                                <rect key="frame" x="266.5" y="240" width="31" height="33"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Edit"/>
@@ -34,15 +35,18 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Junior iOS Developer        Moscow, Russia" translatesAutoresizingMaskIntoConstraints="NO" id="EUf-R1-H5H">
-                                <rect key="frame" x="77.5" y="426" width="220" height="158"/>
+                                <rect key="frame" x="77.5" y="330" width="220" height="247"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="yes"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQG-Ez-8EM">
-                                <rect key="frame" x="77.5" y="614" width="220" height="33"/>
+                                <rect key="frame" x="77.5" y="607" width="220" height="40"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2i4-4k-3qr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Save"/>
@@ -53,7 +57,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Stanislav Shalgin" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2qa-S8-uXn">
-                                <rect key="frame" x="77.5" y="369" width="220" height="37"/>
+                                <rect key="frame" x="77.5" y="273" width="220" height="37"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="wBj-Uh-lsu"/>
@@ -62,10 +66,17 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="name"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SH" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHy-KZ-e0E">
+                                <rect key="frame" x="110" y="58.5" width="155.5" height="143.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="120"/>
+                                <color key="textColor" red="0.21188408140000001" green="0.21567946669999999" blue="0.2197828889" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="aHy-KZ-e0E" firstAttribute="centerY" secondItem="d8Y-Ug-ONE" secondAttribute="centerY" id="816-Ax-dGJ"/>
                             <constraint firstItem="xQG-Ez-8EM" firstAttribute="leading" secondItem="d8Y-Ug-ONE" secondAttribute="leading" id="9Qi-KF-wOc"/>
                             <constraint firstItem="oms-fF-ylB" firstAttribute="trailing" secondItem="d8Y-Ug-ONE" secondAttribute="trailing" id="J0x-0S-bCD"/>
                             <constraint firstItem="2qa-S8-uXn" firstAttribute="top" secondItem="oms-fF-ylB" secondAttribute="bottom" id="MW4-qW-vUd"/>
@@ -81,40 +92,23 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xQG-Ez-8EM" secondAttribute="bottom" constant="20" id="oYg-fO-MdH"/>
                             <constraint firstItem="EUf-R1-H5H" firstAttribute="trailing" secondItem="d8Y-Ug-ONE" secondAttribute="trailing" id="tz0-0J-C7R"/>
                             <constraint firstItem="oms-fF-ylB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d8Y-Ug-ONE" secondAttribute="leading" id="zMo-gV-MHl"/>
+                            <constraint firstItem="aHy-KZ-e0E" firstAttribute="centerX" secondItem="d8Y-Ug-ONE" secondAttribute="centerX" id="zOI-kO-Nyv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Profile" id="bJ0-LD-a9C"/>
                     <connections>
+                        <outlet property="fullNameTextView" destination="2qa-S8-uXn" id="fC9-3e-oAt"/>
+                        <outlet property="initialsFullNameLabel" destination="aHy-KZ-e0E" id="4Ke-Ow-2yJ"/>
                         <outlet property="profileImage" destination="d8Y-Ug-ONE" id="FYU-5i-jhH"/>
                         <outlet property="saveButton" destination="xQG-Ez-8EM" id="s3g-Ca-7fg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856.79999999999995" y="83.208395802098963"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fRy-uL-uut">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FxP-Z9-SCa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController storyboardIdentifier="ProfileVC" automaticallyAdjustsScrollViewInsets="NO" id="kgu-eX-dqe" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="gk3-PK-mwp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lbv-lx-xtG"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="128.98550724637681" y="83.967391304347828"/>
+            <point key="canvasLocation" x="1796" y="83.208395802098963"/>
         </scene>
     </scenes>
     <resources>
-        <image name="PersonImage" width="280" height="252"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

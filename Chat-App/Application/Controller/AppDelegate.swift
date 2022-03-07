@@ -12,16 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Public Properties
-    var window: UIWindow?
+    lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        window = UIWindow()
-        
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        let initialVC = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
+        let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
         
-        window?.rootViewController = initialVC
+        window?.rootViewController = UINavigationController(rootViewController: profileViewController)
         window?.makeKeyAndVisible()
         
         return true
