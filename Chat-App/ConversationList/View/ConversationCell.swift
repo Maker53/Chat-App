@@ -25,11 +25,18 @@ class ConversationCell: UITableViewCell {
     // MARK: - Public Properties
     static let identifier = String(describing: ConversationCell.self)
     
-    func configure(with message: Message, and status: Status) {
-        name = message.fullName
+    func configure(with user: User) {
+        name = user.fullname
+        online = user.isOnline
+        
+        guard let message = user.messages.last else {
+            message = "No messages yet"
+            messageTextLabel?.font = .italicSystemFont(ofSize: 13)
+            return
+        }
+        
         self.message = message.message
         date = message.date
-        online = status.online
         hasUnreadMessages = message.hasUnreadMessages
     }
 }
