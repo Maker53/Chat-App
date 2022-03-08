@@ -19,8 +19,13 @@ class ConversationViewController: UIViewController {
         setupConversationViewController()
         
         messagesListTableView.register(
+            UINib(nibName: "SentMessageCell", bundle: nil),
+            forCellReuseIdentifier: MessageCell.identifierForSentCell
+        )
+        
+        messagesListTableView.register(
             UINib(nibName: "IncomingMessageCell", bundle: nil),
-            forCellReuseIdentifier: MessageCell.identifierForIncomingCell
+            forCellReuseIdentifier: MessageCell.identifierForSentCell
         )
         
         messagesListTableView.dataSource = self
