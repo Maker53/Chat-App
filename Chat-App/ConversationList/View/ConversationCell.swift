@@ -90,8 +90,6 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
         
         if hasUnreadMessages {
             messageTextLabel?.font = .systemFont(ofSize: 13, weight: .black)
-        } else {
-            messageTextLabel?.font = .systemFont(ofSize: 13, weight: .regular)
         }
     }
 }

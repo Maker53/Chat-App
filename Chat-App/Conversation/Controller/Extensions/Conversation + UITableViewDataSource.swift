@@ -8,19 +8,34 @@
 import UIKit
 
 extension ConversationViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
+        let sentCell = tableView.dequeueReusableCell(
+            withIdentifier: MessageCell.identifierForSentCell,
+            for: indexPath
+        )
+        
+        let incomingCell = tableView.dequeueReusableCell(
             withIdentifier: MessageCell.identifierForIncomingCell,
             for: indexPath
         )
         
-        guard let messageCell = cell as? MessageCell else { return cell }
-        messageCell.configureWithMock()
-        return messageCell
+        if indexPath.section == 0 {
+            guard let messageCell = incomingCell as? MessageCell else { return incomingCell }
+            messageCell.configureWithMock(withIncomingMessage: incomingTextMessage)
+            return messageCell
+        } else {
+            guard let messageCell = sentCell as? MessageCell else { return sentCell }
+            messageCell.configureWithMock(withIncomingMessage: incomingTextMessage)
+            return messageCell
+        }
     }
 }
 

@@ -21,11 +21,16 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     @IBOutlet weak var sentMessageTextLabel: UILabel!
     
     // MARK: - Public Properties
-    static let identifierForSentCell = String(describing: MessageCell.self)
-    static let identifierForIncomingCell = String(describing: MessageCell.self)
+    static let identifierForSentCell = "sentCell"
+    static let identifierForIncomingCell = "incomingCell"
     var messageText: String?
     
-    func configureWithMock() {
-        
+    func configureWithMock(withIncomingMessage message: String?) {
+        sentMessageTextLabel?.text = "Some sent message"
+        guard let message = message, !message.isEmpty else {
+            incomingMessageTextLabel?.text = "User joined to chat"
+            return
+        }
+        incomingMessageTextLabel?.text = message
     }
 }

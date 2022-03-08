@@ -12,6 +12,9 @@ class ConversationViewController: UIViewController {
     // MARK: - UI
     lazy var messagesListTableView = UITableView(frame: .zero, style: .plain)
     
+    // MARK: - Public Properties
+    var incomingTextMessage: String?
+    
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +28,7 @@ class ConversationViewController: UIViewController {
         
         messagesListTableView.register(
             UINib(nibName: "IncomingMessageCell", bundle: nil),
-            forCellReuseIdentifier: MessageCell.identifierForSentCell
+            forCellReuseIdentifier: MessageCell.identifierForIncomingCell
         )
         
         messagesListTableView.dataSource = self

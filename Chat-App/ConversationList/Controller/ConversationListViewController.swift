@@ -27,5 +27,6 @@ class ConversationListViewController: UIViewController {
         )
         
         conversationListTableView.dataSource = self
+        conversationListTableView.delegate = self
     }
 }
