@@ -7,7 +7,12 @@
 
 import UIKit
 
-class MessageCell: UITableViewCell {
+protocol MessageCellConfiguration {
+    var messageText: String? { get set }    // Свойство text недоступно,
+                                            // так как используется в UITableViewCell
+}
+
+class MessageCell: UITableViewCell, MessageCellConfiguration {
     
     // MARK: - IB Outlets
     @IBOutlet weak var incomingMessageBackground: UIView!
@@ -18,6 +23,7 @@ class MessageCell: UITableViewCell {
     // MARK: - Public Properties
     static let identifierForSentCell = String(describing: MessageCell.self)
     static let identifierForIncomingCell = String(describing: MessageCell.self)
+    var messageText: String?
     
     func configureWithMock() {
         
