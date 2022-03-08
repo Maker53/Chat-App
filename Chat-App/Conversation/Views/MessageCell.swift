@@ -1,5 +1,5 @@
 //
-//  IncomingMessageCell.swift
+//  MessageCell.swift
 //  Chat-App
 //
 //  Created by Станислав on 08.03.2022.
@@ -15,4 +15,8 @@ class MessageCell: UITableViewCell {
     
     // MARK: - Public Properties
     static let identifierForIncomingCell = String(describing: MessageCell.self)
+    
+    func configureWithMock() {
+        
+    }
 }
