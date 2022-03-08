@@ -14,7 +14,7 @@ class ConversationListViewController: UIViewController {
     lazy var conversationCell = ConversationCell()
     
     // MARK: - Private Properties
-    private let messages = Status.mock
+    private let users = User.mock
     
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class ConversationListViewController: UIViewController {
 extension ConversationListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        messages.count
+        2
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -42,7 +42,11 @@ extension ConversationListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messages[section].message.count
+        let onlineUsersCount = users.filter { $0.isOnline }
+        let offlineUsersCount = users.filter { !$0.isOnline }
+        
+        guard section == 0 else { return offlineUsersCount.count }
+        return onlineUsersCount.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,11 +57,13 @@ extension ConversationListViewController: UITableViewDataSource {
         
         guard let conversationCell = cell as? ConversationCell else { return cell }
         
-        let status = messages[indexPath.section]
-        let messages = status.message
-        let message = messages[indexPath.row]
-        
-        conversationCell.configure(with: message, and: status)
+        if indexPath.section == 0 {
+            let user = users.filter { $0.isOnline }[indexPath.row]
+            conversationCell.configure(with: user)
+        } else {
+            let user = users.filter { !$0.isOnline }[indexPath.row]
+            conversationCell.configure(with: user)
+        }
         
         return conversationCell
     }
