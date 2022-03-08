@@ -18,6 +18,7 @@ protocol ConversationCellConfiguration {
 class ConversationCell: UITableViewCell {
     
     // MARK: - IB Outlets
+    @IBOutlet weak var view: UIView!
     @IBOutlet weak var fullNameLabel: UILabel?
     @IBOutlet weak var messageTextLabel: UILabel?
     @IBOutlet weak var messageDateLabel: UILabel?
@@ -32,15 +33,9 @@ class ConversationCell: UITableViewCell {
         name = user.fullname
         online = user.isOnline
         
-        guard let message = user.messages.last else {
-            self.message = nil
-            date = nil
-            return
-        }
-        
-        self.message = message.message
-        date = message.date
-        hasUnreadMessages = message.hasUnreadMessages
+        message = user.messages.last?.message
+        date = user.messages.last?.date
+        hasUnreadMessages = user.messages.last?.hasUnreadMessages ?? false
     }
 }
 
@@ -97,7 +92,11 @@ extension ConversationCell: ConversationCellConfiguration {
             true
         }
         set {
-            
+            if newValue {
+                view.backgroundColor = #colorLiteral(red: 1, green: 0.986296446, blue: 0.7520558787, alpha: 1)
+            } else {
+                view.backgroundColor = .systemBackground
+            }
         }
     }
     
@@ -106,7 +105,9 @@ extension ConversationCell: ConversationCellConfiguration {
             true
         }
         set {
-            
+            if newValue {
+                messageTextLabel?.font = .systemFont(ofSize: 13, weight: .black)
+            }
         }
     }
 }
