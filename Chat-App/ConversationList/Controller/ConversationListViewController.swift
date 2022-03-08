@@ -11,7 +11,6 @@ class ConversationListViewController: UIViewController {
     
     // MARK: - UI
     lazy var conversationListTableView = UITableView(frame: .zero, style: .insetGrouped)
-    lazy var conversationCell = ConversationCell()
     
     // MARK: - Private Properties
     private let users = User.mock
