@@ -25,6 +25,7 @@
 		85FDC9A927D6790400E57461 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FDC9A827D6790400E57461 /* ConversationCell.xib */; };
 		85FDC9AD27D7A0C600E57461 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */; };
 		85FDC9B027D7A21200E57461 /* IncomingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FDC9AF27D7A21200E57461 /* IncomingMessageCell.xib */; };
+		85FDC9B227D7A57500E57461 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9B127D7A57500E57461 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		85FDC9A827D6790400E57461 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		85FDC9AF27D7A21200E57461 /* IncomingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomingMessageCell.xib; sourceTree = "<group>"; };
+		85FDC9B127D7A57500E57461 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				85FDC9AF27D7A21200E57461 /* IncomingMessageCell.xib */,
+				85FDC9B127D7A57500E57461 /* MessageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				85882B4327CB87E90081463E /* AlertController.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 				85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */,
+				85FDC9B227D7A57500E57461 /* MessageCell.swift in Sources */,
 				85FDC9A227D661F600E57461 /* User.swift in Sources */,
 				85882B5127CDD4790081463E /* PHPicker.swift in Sources */,
 				85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */,
