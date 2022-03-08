@@ -15,7 +15,7 @@ protocol ConversationCellConfiguration {
     var hasUnreadMessages: Bool { get set }
 }
 
-class ConversationCell: UITableViewCell {
+class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     
     // MARK: - IB Outlets
     @IBOutlet weak var view: UIView!
@@ -24,73 +24,52 @@ class ConversationCell: UITableViewCell {
     @IBOutlet weak var messageDateLabel: UILabel?
     
     // MARK: - Public Properties
+    var name: String?
+    var message: String?
+    var date: Date?
+    var online: Bool = false
+    var hasUnreadMessages: Bool = false
     static let identifier = String(describing: ConversationCell.self)
     
     // MARK: - Private Properties
     private let dateFormatter: DateFormatter = {
-       let dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter()
         
         dateFormatter.locale = Locale(identifier: "en_RU")
         
         return dateFormatter
     }()
     
+    // MARK: - Public Methods
     func configure(with user: User) {
         name = user.fullname
         online = user.isOnline
+        message = user.messages?.last?.message
+        date = user.messages?.last?.date
+        hasUnreadMessages = user.messages?.last?.hasUnreadMessages ?? false
         
-        guard let notEmptyMessage = user.messages?.last, !notEmptyMessage.message.isEmpty else {
-            message = nil
+        setupDataToCell()
+    }
+    
+    // MARK: - Private Methods
+    private func setupDataToCell() {
+        if let name = name {
+            fullNameLabel?.text = name
+        }
+        
+        if let message = message, !message.isEmpty {
+            messageTextLabel?.text = message
+        } else {
             date = nil
             hasUnreadMessages = false
-            
-            return
+            messageTextLabel?.text = "No messages yet"
+            messageTextLabel?.font = .italicSystemFont(ofSize: 13)
         }
         
-        message = notEmptyMessage.message
-        date = notEmptyMessage.date
-        hasUnreadMessages = notEmptyMessage.hasUnreadMessages
-    }
-}
-
-extension ConversationCell: ConversationCellConfiguration {
-    var name: String? {
-        get {
-            ""
-        }
-        set {
-            fullNameLabel?.text = newValue
-        }
-    }
-    
-    var message: String? {
-        get {
-            ""
-        }
-        set {
-            guard let message = newValue else {
-                messageTextLabel?.text = "No messages yet"
-                messageTextLabel?.font = .italicSystemFont(ofSize: 13)
-                return
-            }
-            messageTextLabel?.text = message
-        }
-    }
-    
-    var date: Date? {
-        get {
-            Date()
-        }
-        set {
-            guard let date = newValue else {
-                messageDateLabel?.text = ""
-                return
-            }
-            
+        if let date = date {
             let startOfDay = Calendar.current.startOfDay(for: Date())
             
             // Сhecking whether the message arrived today or in previous days
-            
             if 0..<86400 ~= startOfDay.distance(to: date) {
                 dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
             } else {
@@ -98,30 +77,21 @@ extension ConversationCell: ConversationCellConfiguration {
             }
             
             messageDateLabel?.text = dateFormatter.string(from: date)
+            
+        } else {
+            messageDateLabel?.text = ""
         }
-    }
-    
-    var online: Bool {
-        get {
-            true
+        
+        if online {
+            view.backgroundColor = #colorLiteral(red: 1, green: 0.986296446, blue: 0.7520558787, alpha: 1)
+        } else {
+            view.backgroundColor = .systemBackground
         }
-        set {
-            if newValue {
-                view.backgroundColor = #colorLiteral(red: 1, green: 0.986296446, blue: 0.7520558787, alpha: 1)
-            } else {
-                view.backgroundColor = .systemBackground
-            }
-        }
-    }
-    
-    var hasUnreadMessages: Bool {
-        get {
-            true
-        }
-        set {
-            if newValue {
-                messageTextLabel?.font = .systemFont(ofSize: 13, weight: .black)
-            }
+        
+        if hasUnreadMessages {
+            messageTextLabel?.font = .systemFont(ofSize: 13, weight: .black)
+        } else {
+            messageTextLabel?.font = .systemFont(ofSize: 13, weight: .regular)
         }
     }
 }
