@@ -27,15 +27,29 @@ class ConversationCell: UITableViewCell {
     static let identifier = String(describing: ConversationCell.self)
     
     // MARK: - Private Properties
-    private let dateFormatter = DateFormatter()
+    private let dateFormatter: DateFormatter = {
+       let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_RU")
+        
+        return dateFormatter
+    }()
     
     func configure(with user: User) {
         name = user.fullname
         online = user.isOnline
         
-        message = user.messages.last?.message
-        date = user.messages.last?.date
-        hasUnreadMessages = user.messages.last?.hasUnreadMessages ?? false
+        guard let notEmptyMessage = user.messages?.last, !notEmptyMessage.message.isEmpty else {
+            message = nil
+            date = nil
+            hasUnreadMessages = false
+            
+            return
+        }
+        
+        message = notEmptyMessage.message
+        date = notEmptyMessage.date
+        hasUnreadMessages = notEmptyMessage.hasUnreadMessages
     }
 }
 
