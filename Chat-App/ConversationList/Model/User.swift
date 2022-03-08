@@ -18,7 +18,7 @@ struct User {
             fullname: "Maks Petrov",
             isOnline: true,
             messages: [
-                Message(message: "Hello!!!", date: Date(), hasUnreadMessages: true)
+                Message(message: "Hello!!!", date: Date(timeInterval: -70_000, since: Date()), hasUnreadMessages: true)
             ]
         ),
         User(
@@ -32,7 +32,7 @@ struct User {
             fullname: "Ivan Petrov",
             isOnline: false,
             messages: [
-                Message(message: "How are u?", date: Date(), hasUnreadMessages: true)
+                Message(message: "How are u?", date: Date(timeInterval: 70_000, since: Date()), hasUnreadMessages: true)
             ]
         ),
         User(

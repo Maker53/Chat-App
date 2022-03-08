@@ -25,13 +25,16 @@ class ConversationCell: UITableViewCell {
     // MARK: - Public Properties
     static let identifier = String(describing: ConversationCell.self)
     
+    // MARK: - Private Properties
+    private let dateFormatter = DateFormatter()
+    
     func configure(with user: User) {
         name = user.fullname
         online = user.isOnline
         
         guard let message = user.messages.last else {
-            message = "No messages yet"
-            messageTextLabel?.font = .italicSystemFont(ofSize: 13)
+            self.message = nil
+            date = nil
             return
         }
         
@@ -56,7 +59,12 @@ extension ConversationCell: ConversationCellConfiguration {
             ""
         }
         set {
-            messageTextLabel?.text = newValue
+            guard let message = newValue else {
+                messageTextLabel?.text = "No messages yet"
+                messageTextLabel?.font = .italicSystemFont(ofSize: 13)
+                return
+            }
+            messageTextLabel?.text = message
         }
     }
     
@@ -65,7 +73,22 @@ extension ConversationCell: ConversationCellConfiguration {
             Date()
         }
         set {
-            messageDateLabel?.text = newValue?.description
+            guard let date = newValue else {
+                messageDateLabel?.text = ""
+                return
+            }
+            
+            let startOfDay = Calendar.current.startOfDay(for: Date())
+            
+            // Сhecking whether the message arrived today or in previous days
+            
+            if 0..<86400 ~= startOfDay.distance(to: date) {
+                dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
+            } else {
+                dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
+            }
+            
+            messageDateLabel?.text = dateFormatter.string(from: date)
         }
     }
     
