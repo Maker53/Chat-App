@@ -24,6 +24,7 @@
 		85FDC9A427D6648300E57461 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9A327D6648300E57461 /* ConversationCell.swift */; };
 		85FDC9A927D6790400E57461 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FDC9A827D6790400E57461 /* ConversationCell.xib */; };
 		85FDC9AD27D7A0C600E57461 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */; };
+		85FDC9B027D7A21200E57461 /* IncomingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FDC9AF27D7A21200E57461 /* IncomingMessageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		85FDC9A327D6648300E57461 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		85FDC9A827D6790400E57461 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		85FDC9AF27D7A21200E57461 /* IncomingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomingMessageCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 		85FDC9AA27D7A09B00E57461 /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
+				85FDC9AE27D7A1A200E57461 /* Views */,
 				85FDC9AB27D7A0B500E57461 /* Controller */,
 			);
 			path = Conversation;
@@ -218,6 +221,14 @@
 				85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		85FDC9AE27D7A1A200E57461 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				85FDC9AF27D7A21200E57461 /* IncomingMessageCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				857847E427C13E41005E176B /* .gitignore in Resources */,
+				85FDC9B027D7A21200E57461 /* IncomingMessageCell.xib in Resources */,
 				857847DA27C12068005E176B /* LaunchScreen.storyboard in Resources */,
 				857847D727C12068005E176B /* Assets.xcassets in Resources */,
 				857847D527C12065005E176B /* Profile.storyboard in Resources */,
