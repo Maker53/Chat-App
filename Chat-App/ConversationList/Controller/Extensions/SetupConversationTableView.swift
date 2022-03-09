@@ -15,13 +15,7 @@ extension ConversationListViewController {
         
         title = "Tinkoff Chat"
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemGray
-        let image = UIImage(systemName: "person.fill")
-        imageView.image = image
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imageView)
+        navigationItem.rightBarButtonItem = setupCustomBarButtonItem()
         
         conversationListTableView.rowHeight = UITableView.automaticDimension
         conversationListTableView.estimatedRowHeight = 56
@@ -34,5 +28,26 @@ extension ConversationListViewController {
         ])
         
         conversationListTableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    // MARK: - Setup Custom BarButtonItem
+    private func setupCustomBarButtonItem() -> UIBarButtonItem {
+        let button = UIButton(type: .system)
+        let image = UIImage(systemName: "person.fill")
+        
+        button.setImage(image, for: .normal)
+        button.tintColor = .systemGray
+        
+        button.addTarget(self, action: #selector(openProfileButtonPressed), for: .touchUpInside)
+        
+        let barItem = UIBarButtonItem(customView: button)
+        return barItem
+    }
+    
+    @objc private func openProfileButtonPressed() {
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
+        let navigationController = UINavigationController(rootViewController: profileViewController)
+        present(navigationController, animated: true)
     }
 }
