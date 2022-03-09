@@ -15,6 +15,14 @@ extension ConversationListViewController {
         
         title = "Tinkoff Chat"
         
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .systemGray
+        let image = UIImage(systemName: "person.fill")
+        imageView.image = image
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: imageView)
+        
         conversationListTableView.rowHeight = UITableView.automaticDimension
         conversationListTableView.estimatedRowHeight = 56
         
