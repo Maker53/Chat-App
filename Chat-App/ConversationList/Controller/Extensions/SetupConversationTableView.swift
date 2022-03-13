@@ -15,7 +15,8 @@ extension ConversationListViewController {
         
         title = "Tinkoff Chat"
         
-        navigationItem.rightBarButtonItem = setupCustomBarButtonItem()
+        navigationItem.rightBarButtonItem = setupProfileBarButton()
+        navigationItem.leftBarButtonItem = setupSettingsBarButton()
         
         conversationListTableView.rowHeight = UITableView.automaticDimension
         conversationListTableView.estimatedRowHeight = 56
@@ -30,24 +31,41 @@ extension ConversationListViewController {
         conversationListTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    // MARK: - Setup Custom BarButtonItem
-    private func setupCustomBarButtonItem() -> UIBarButtonItem {
+    // MARK: - Setup Custom BarButtonItems
+    private func setupProfileBarButton() -> UIBarButtonItem {
         let button = UIButton(type: .system)
         let image = UIImage(systemName: "person.fill")
         
         button.setImage(image, for: .normal)
         button.tintColor = .systemGray
         
-        button.addTarget(self, action: #selector(openProfileButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(profileButtonPressed), for: .touchUpInside)
         
         let barItem = UIBarButtonItem(customView: button)
         return barItem
     }
     
-    @objc private func openProfileButtonPressed() {
+    private func setupSettingsBarButton() -> UIBarButtonItem {
+        let button = UIButton(type: .system)
+        let image = UIImage(systemName: "gear")
+        
+        button.setImage(image, for: .normal)
+        button.tintColor = .systemGray
+        
+        button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
+        
+        let barItem = UIBarButtonItem(customView: button)
+        return barItem
+    }
+    
+    @objc private func profileButtonPressed() {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
         let navigationController = UINavigationController(rootViewController: profileViewController)
         present(navigationController, animated: true)
+    }
+    
+    @objc private func settingsButtonPressed() {
+        navigationController?.pushViewController(ThemesViewController(), animated: true)
     }
 }
