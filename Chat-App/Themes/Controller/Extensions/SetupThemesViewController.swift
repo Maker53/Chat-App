@@ -14,6 +14,12 @@ extension ThemesViewController {
         view.backgroundColor = .systemGray5
         title = "Settings"
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(cancelBarButtonPressed)
+        )
+        
         let colorForClassicIncomingMessage = #colorLiteral(red: 0.8352822661, green: 0.9767181277, blue: 0.753190279, alpha: 1)
         let classicThemeButton = setupThemeButton(
             with: "Classic",
@@ -145,6 +151,11 @@ extension ThemesViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
+    }
+    
+    // MARK: - Private Methods
+    @objc private func cancelBarButtonPressed() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
