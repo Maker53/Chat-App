@@ -134,9 +134,13 @@ extension ThemesViewController {
         
         let stackView = UIStackView(arrangedSubviews: [button, buttonLabel])
         
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+        ])
+        
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.alignment = .fill
+        stackView.alignment = .center
         stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
