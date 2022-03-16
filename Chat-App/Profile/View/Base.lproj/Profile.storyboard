@@ -18,8 +18,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d8Y-Ug-ONE">
-                                <rect key="frame" x="77.5" y="21.5" width="220" height="217"/>
-                                <color key="backgroundColor" red="0.89361387489999999" green="0.91036337609999995" blue="0.16760972139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="77.5" y="20" width="220" height="220"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.16760972139999991" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="d8Y-Ug-ONE" secondAttribute="height" multiplier="1:1" id="REl-Ve-Sg2"/>
                                     <constraint firstAttribute="width" constant="220" id="UIX-gW-kHX"/>

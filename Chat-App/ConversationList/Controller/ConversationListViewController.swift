@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol ThemesPickerDelegate: AnyObject {
+    
+    func setTheme(from viewController: ThemesViewController, and button: UIButton)
+}
+
 class ConversationListViewController: UIViewController {
     
     // MARK: - UI
@@ -14,6 +19,23 @@ class ConversationListViewController: UIViewController {
     
     // MARK: - Public Properties
     let users = User.mock
+    let buttonAction: ((ThemesViewController, UIButton) -> Void) = { viewController , button in
+        viewController.classicThemeButton.setSelectedState(isSelected: false)
+        viewController.dayThemeButton.setSelectedState(isSelected: false)
+        viewController.nightThemeButton.setSelectedState(isSelected: false)
+        
+        UserDefaults.standard.set(button.tag, forKey: "currentTheme")
+        button.setSelectedState(isSelected: true)
+        
+        switch button.tag {
+        case 0:
+            viewController.view.backgroundColor = .systemBackground
+        case 1:
+            viewController.view.backgroundColor = .systemTeal
+        default:
+            viewController.view.backgroundColor = .systemGray
+        }
+    }
     
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -28,5 +50,26 @@ class ConversationListViewController: UIViewController {
         
         conversationListTableView.dataSource = self
         conversationListTableView.delegate = self
+    }
+}
+
+extension ConversationListViewController: ThemesPickerDelegate {
+
+    func setTheme(from viewController: ThemesViewController, and button: UIButton) {
+        viewController.classicThemeButton.setSelectedState(isSelected: false)
+        viewController.dayThemeButton.setSelectedState(isSelected: false)
+        viewController.nightThemeButton.setSelectedState(isSelected: false)
+        
+        UserDefaults.standard.set(button.tag, forKey: "currentTheme")
+        button.setSelectedState(isSelected: true)
+        
+        switch button.tag {
+        case 0:
+            viewController.view.backgroundColor = .systemBackground
+        case 1:
+            viewController.view.backgroundColor = .systemTeal
+        default:
+            viewController.view.backgroundColor = .systemGray
+        }
     }
 }

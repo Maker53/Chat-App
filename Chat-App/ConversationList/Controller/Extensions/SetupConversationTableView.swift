@@ -66,6 +66,9 @@ extension ConversationListViewController {
     }
     
     @objc private func settingsButtonPressed() {
-        navigationController?.pushViewController(ThemesViewController(), animated: true)
+        let themesViewController = ThemesViewController()
+        navigationController?.pushViewController(themesViewController, animated: true)
+        themesViewController.delegate = self
+        themesViewController.conversationListViewController = self
     }
 }

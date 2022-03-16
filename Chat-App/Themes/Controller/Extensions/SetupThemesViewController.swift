@@ -11,7 +11,7 @@ extension ThemesViewController {
     
     // MARK: - Setup Theme View Controller
     func setupThemeViewController() {
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = .systemBackground
         title = "Settings"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -21,28 +21,38 @@ extension ThemesViewController {
         )
         
         let colorForClassicIncomingMessage = #colorLiteral(red: 0.8352822661, green: 0.9767181277, blue: 0.753190279, alpha: 1)
-        let classicThemeButton = setupThemeButton(
-            with: "Classic",
+        classicThemeButton = createThemeButton(
             outgoingMessageColor: colorForClassicIncomingMessage,
             incomingMessageColor: .systemGray4,
             backgroundColor: .systemBackground
         )
-        
-        let dayThemeButton = setupThemeButton(
-            with: "Day",
+        classicThemeButton.tag = 0
+
+        dayThemeButton = createThemeButton(
             outgoingMessageColor: .systemBlue,
             incomingMessageColor: .systemGray5,
             backgroundColor: .systemBackground
         )
-        
-        let nightThemeButton = setupThemeButton(
-            with: "Night",
+        dayThemeButton.tag = 1
+
+        nightThemeButton = createThemeButton(
             outgoingMessageColor: .systemGray,
             incomingMessageColor: .darkGray,
             backgroundColor: .black
         )
+        nightThemeButton.tag = 2
+
+        let classicButtonLabel = createLabel(with: "Classic")
+        let dayButtonLabel = createLabel(with: "Day")
+        let nightButtonLabel = createLabel(with: "Night")
         
-        let stackView = UIStackView(arrangedSubviews: [classicThemeButton, dayThemeButton, nightThemeButton])
+        let classicStackView = createStackView(with: classicThemeButton, and: classicButtonLabel)
+        let dayStackView = createStackView(with: dayThemeButton, and: dayButtonLabel)
+        let nightStackView = createStackView(with: nightThemeButton, and: nightButtonLabel)
+        
+        let stackView = UIStackView(arrangedSubviews: [
+            classicStackView, dayStackView, nightStackView
+        ])
         
         view.addSubview(stackView)
         
@@ -60,15 +70,17 @@ extension ThemesViewController {
         ])
     }
     
-    // MARK: - Setup theme button with label
-    private func setupThemeButton(with label: String, outgoingMessageColor: UIColor, incomingMessageColor: UIColor, backgroundColor: UIColor) -> UIStackView {
+    // MARK: - Create theme button
+    private func createThemeButton(outgoingMessageColor: UIColor, incomingMessageColor: UIColor, backgroundColor: UIColor) -> UIButton {
         
         let button: UIButton = {
-            let button = UIButton(frame: .zero)
+            let button = UIButton()
             button.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 0.75)
             button.layer.cornerRadius = 15
             button.layer.borderWidth = 1
             
+            button.addTarget(self, action: #selector(changeThemeButtonPressed), for: .touchUpInside)
+                        
             return button
         }()
         
@@ -76,6 +88,7 @@ extension ThemesViewController {
             let view = UIView()
             view.backgroundColor = backgroundColor
             view.layer.cornerRadius = 15
+            view.isUserInteractionEnabled = false
             
             return view
         }()
@@ -94,16 +107,6 @@ extension ThemesViewController {
             view.layer.cornerRadius = 10
             
             return view
-        }()
-        
-        let buttonLabel: UILabel = {
-            let buttonLabel = UILabel()
-            buttonLabel.text = label
-            buttonLabel.textAlignment = .center
-            let huggingPriority = buttonLabel.contentHuggingPriority(for: .vertical) + 1
-            buttonLabel.setContentHuggingPriority(huggingPriority, for: .vertical)
-            
-            return buttonLabel
         }()
         
         view.addSubview(incomingMessageView)
@@ -138,7 +141,27 @@ extension ThemesViewController {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        let stackView = UIStackView(arrangedSubviews: [button, buttonLabel])
+        return button
+    }
+    
+    // MARK: - Create label
+    private func createLabel(with title: String) -> UILabel {
+        let label = UILabel()
+        label.text = title
+        label.textAlignment = .center
+        label.isUserInteractionEnabled = true
+        let huggingPriority = label.contentHuggingPriority(for: .vertical) + 1
+        label.setContentHuggingPriority(huggingPriority, for: .vertical)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(changeThemeButtonPressed))
+        label.addGestureRecognizer(tap)
+        
+        return label
+    }
+    
+    // MARK: - Create button with label stack view
+    func createStackView(with button: UIButton, and label: UILabel) -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: [button, label])
         
         NSLayoutConstraint.activate([
             button.widthAnchor.constraint(equalTo: stackView.widthAnchor)
@@ -152,10 +175,4 @@ extension ThemesViewController {
         
         return stackView
     }
-    
-    // MARK: - Private Methods
-    @objc private func cancelBarButtonPressed() {
-        navigationController?.popViewController(animated: true)
-    }
 }
-
