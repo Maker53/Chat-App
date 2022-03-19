@@ -7,18 +7,13 @@
 
 import UIKit
 
-protocol ThemesPickerDelegate: AnyObject {
-    
-    func setTheme(forChooseButton tag: Int)
-}
-
 class ThemesViewController: UIViewController {
     
     // MARK: - Public Properties
     lazy var classicThemeButton = UIButton()
     lazy var dayThemeButton = UIButton()
     lazy var nightThemeButton = UIButton()
-    var updateThemeAction: (() -> Void)?
+    weak var delegate: ThemesPickerDelegate?
     
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -26,7 +21,7 @@ class ThemesViewController: UIViewController {
         
         setupThemeViewController()
         
-        ThemeChanger.shared.delegate = self
+        delegate = ThemeChanger.shared.self
         
 //        if let buttonTag = UserDefaults.standard.value(forKey: "currentTheme") as? Int {
 //            switch buttonTag {
@@ -70,7 +65,7 @@ class ThemesViewController: UIViewController {
             themeButton.setSelectedState(isSelected: true)
         }
 
-        ThemeChanger.shared.delegate?.setTheme(forChooseButton: buttonTag)
+        delegate?.setTheme(forChooseButton: buttonTag, in: self)
     }
     
     @objc func cancelBarButtonPressed() {
