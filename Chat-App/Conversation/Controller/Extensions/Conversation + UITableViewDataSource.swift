@@ -8,8 +8,13 @@
 import UIKit
 
 extension ConversationViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        dateFormatter.string(from: messages[section].date)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -17,25 +22,26 @@ extension ConversationViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sentCell = tableView.dequeueReusableCell(
-            withIdentifier: MessageCell.identifierForSentCell,
-            for: indexPath
-        )
-        
-        let incomingCell = tableView.dequeueReusableCell(
-            withIdentifier: MessageCell.identifierForIncomingCell,
-            for: indexPath
-        )
-        
-        if indexPath.section == 0 {
+        if messages[indexPath.section].isIncomingMessage {
+            let incomingCell = tableView.dequeueReusableCell(
+                withIdentifier: MessageCell.identifierForIncomingCell,
+                for: indexPath
+            )
+            
             guard let messageCell = incomingCell as? MessageCell else { return incomingCell }
-            messageCell.configureWithMock(withIncomingMessage: incomingTextMessage)
+            messageCell.configure(withIncomingMessage: messages[indexPath.section])
+            
             return messageCell
         } else {
+            let sentCell = tableView.dequeueReusableCell(
+                withIdentifier: MessageCell.identifierForSentCell,
+                for: indexPath
+            )
+            
             guard let messageCell = sentCell as? MessageCell else { return sentCell }
-            messageCell.configureWithMock(withIncomingMessage: incomingTextMessage)
+            messageCell.configure(withIncomingMessage: messages[indexPath.section])
+            
             return messageCell
         }
     }
 }
-

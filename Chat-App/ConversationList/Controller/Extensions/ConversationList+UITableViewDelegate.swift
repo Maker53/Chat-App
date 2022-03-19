@@ -10,6 +10,8 @@ import UIKit
 extension ConversationListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let conversationVC = ConversationViewController()
         var user: User
         
@@ -20,10 +22,8 @@ extension ConversationListViewController: UITableViewDelegate {
         }
         
         conversationVC.title = user.fullname
-        conversationVC.incomingTextMessage = user.messages?.last?.message
+        conversationVC.messages = user.messages
         
         navigationController?.pushViewController(conversationVC, animated: true)
-        
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -31,64 +31,26 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     var hasUnreadMessages: Bool = false
     static let identifier = String(describing: ConversationCell.self)
     
-    // MARK: - Private Properties
-    private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.locale = Locale(identifier: "en_RU")
-        
-        return dateFormatter
-    }()
-    
     // MARK: - Public Methods
     func configure(with user: User) {
-        name = user.fullname
-        online = user.isOnline
-        message = user.messages?.last?.message
-        date = user.messages?.last?.date
-        hasUnreadMessages = user.messages?.last?.hasUnreadMessages ?? false
+        let displayData = ConversationListDisplayDataParser.shared.getDisplayData(from: user)
         
-        setupDataToCell()
-    }
-    
-    // MARK: - Private Methods
-    private func setupDataToCell() {
-        if let name = name {
-            fullNameLabel?.text = name
-        }
+        fullNameLabel?.text = displayData.name
+        messageTextLabel?.text = displayData.message
         
-        if let message = message, !message.isEmpty {
-            messageTextLabel?.text = message
-        } else {
-            date = nil
-            hasUnreadMessages = false
-            messageTextLabel?.text = "No messages yet"
+        if displayData.message == "No messages yet" {
             messageTextLabel?.font = .italicSystemFont(ofSize: 13)
         }
         
-        if let date = date {
-            let startOfDay = Calendar.current.startOfDay(for: Date())
-            
-            // Сhecking whether the message arrived today or in previous days
-            if 0..<86400 ~= startOfDay.distance(to: date) {
-                dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            } else {
-                dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
-            }
-            
-            messageDateLabel?.text = dateFormatter.string(from: date)
-            
-        } else {
-            messageDateLabel?.text = ""
-        }
+        messageDateLabel?.text = displayData.date
         
-        if online {
+        if displayData.online {
             view.backgroundColor = #colorLiteral(red: 1, green: 0.986296446, blue: 0.7520558787, alpha: 1)
         } else {
             view.backgroundColor = .systemBackground
         }
         
-        if hasUnreadMessages {
+        if displayData.hasUnreadMessages {
             messageTextLabel?.font = .systemFont(ofSize: 13, weight: .black)
         }
     }

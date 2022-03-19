@@ -11,7 +11,7 @@ struct User {
     
     let fullname: String
     let isOnline: Bool
-    let messages: [Message]?
+    let messages: [Message]
     
     static let mock = mockObject
 }
@@ -21,6 +21,7 @@ struct Message {
     let message: String
     let date: Date
     let hasUnreadMessages: Bool
+    let isIncomingMessage: Bool
 }
 
 // MARK: - Mock
@@ -34,8 +35,27 @@ private let mockObject = [
                         Hi there, this is Verona from SparksServices.
                         I saw you signed up for a free trial on our website.
                         """,
-                date: Date(timeInterval: -20_000, since: Date()),
-                hasUnreadMessages: true
+                date: Date(timeInterval: -200_500, since: Date()),
+                hasUnreadMessages: true,
+                isIncomingMessage: true
+            ),
+            Message(
+                message: "Test outgoing message1",
+                date: Date(timeInterval: -200_000, since: Date()),
+                hasUnreadMessages: false,
+                isIncomingMessage: false
+            ),
+            Message(
+                message: "Test incoming message1",
+                date: Date(timeInterval: -10_500, since: Date()),
+                hasUnreadMessages: false,
+                isIncomingMessage: true
+            ),
+            Message(
+                message: "Test outgoing message2",
+                date: Date(timeInterval: -10_000, since: Date()),
+                hasUnreadMessages: false,
+                isIncomingMessage: false
             )
         ]
     ),
@@ -46,7 +66,8 @@ private let mockObject = [
             Message(
                 message: "I saw you signed up for a free trial on our website.",
                 date: Date(timeInterval: -30_500, since: Date()),
-                hasUnreadMessages: false
+                hasUnreadMessages: false,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -57,12 +78,14 @@ private let mockObject = [
             Message(
                 message: "Can we set up a time for a phone call?",
                 date: Date(timeInterval: -95_000, since: Date()),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             ),
             Message(
                 message: "Have a nice day",
                 date: Date(timeInterval: -90_000, since: Date()),
-                hasUnreadMessages: false
+                hasUnreadMessages: false,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -73,36 +96,26 @@ private let mockObject = [
             Message(
                 message: "Have a nice day",
                 date: Date(timeInterval: -192_000, since: Date()),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             ),
             Message(
                 message: "Can we set up a time for a phone call?",
                 date: Date(timeInterval: -190_000, since: Date()),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             )
         ]
     ),
     User(
         fullname: "Paula Weber",
         isOnline: true,
-        messages: [
-            Message(
-                message: "",
-                date: Date(timeInterval: -74_000, since: Date()),
-                hasUnreadMessages: true
-            )
-        ]
+        messages: []
     ),
     User(
         fullname: "David Frank",
         isOnline: false,
-        messages: [
-            Message(
-                message: "",
-                date: Date(timeInterval: -70_000, since: Date()),
-                hasUnreadMessages: false
-            )
-        ]
+        messages: []
     ),
     User(
         fullname: "Rylan Kozey",
@@ -111,7 +124,8 @@ private let mockObject = [
             Message(
                 message: "thank you for taking the time for a call today",
                 date: Date(),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -122,14 +136,15 @@ private let mockObject = [
             Message(
                 message: "Thank you for taking the time for a call today!!!",
                 date: Date(),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             )
         ]
     ),
     User(
         fullname: "Dorian Jacobi",
         isOnline: true,
-        messages: nil
+        messages: []
     ),
     User(
         fullname: "Amir Hessel",
@@ -143,7 +158,8 @@ private let mockObject = [
             Message(
                 message: "We have an update on your custom car order!",
                 date: Date(timeInterval: -70_000_000, since: Date()),
-                hasUnreadMessages: false
+                hasUnreadMessages: false,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -154,7 +170,8 @@ private let mockObject = [
             Message(
                 message: "Next up is the new paint",
                 date: Date(timeInterval: -7_000_000_000, since: Date()),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -165,7 +182,8 @@ private let mockObject = [
             Message(
                 message: "You can view them here: http://toriskitchen.com/",
                 date: Date(timeInterval: -80_000, since: Date()),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -176,7 +194,8 @@ private let mockObject = [
             Message(
                 message: "Congrats on your latest loan deal!",
                 date: Date(timeInterval: -17_000, since: Date()),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -187,7 +206,8 @@ private let mockObject = [
             Message(
                 message: "You’re almost done buying",
                 date: Date(timeInterval: -10_000, since: Date()),
-                hasUnreadMessages: false
+                hasUnreadMessages: false,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -198,31 +218,20 @@ private let mockObject = [
             Message(
                 message: "Happy Monday!",
                 date: Date(timeInterval: -11_000, since: Date()),
-                hasUnreadMessages: false
+                hasUnreadMessages: false,
+                isIncomingMessage: true
             )
         ]
     ),
     User(
         fullname: "Elaina O'Reilly",
         isOnline: true,
-        messages: [
-            Message(
-                message: "",
-                date: Date(timeInterval: -140_000, since: Date()),
-                hasUnreadMessages: true
-            )
-        ]
+        messages: []
     ),
     User(
         fullname: "Raven Berge",
         isOnline: false,
-        messages: [
-            Message(
-                message: "",
-                date: Date(timeInterval: -7_000, since: Date()),
-                hasUnreadMessages: true
-            )
-        ]
+        messages: []
     ),
     User(
         fullname: "Very-very looooooooooooooooooooong name",
@@ -231,7 +240,8 @@ private let mockObject = [
             Message(
                 message: "Hi!",
                 date: Date(timeInterval: -110_110, since: Date()),
-                hasUnreadMessages: false
+                hasUnreadMessages: false,
+                isIncomingMessage: true
             )
         ]
     ),
@@ -240,9 +250,10 @@ private let mockObject = [
         isOnline: false,
         messages: [
             Message(
-                message: "",
+                message: "Hello!",
                 date: Date(timeInterval: -32_000, since: Date()),
-                hasUnreadMessages: true
+                hasUnreadMessages: true,
+                isIncomingMessage: true
             )
         ]
     )

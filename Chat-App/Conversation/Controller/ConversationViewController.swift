@@ -13,7 +13,15 @@ class ConversationViewController: UIViewController {
     lazy var messagesListTableView = UITableView(frame: .zero, style: .plain)
     
     // MARK: - Public Properties
-    var incomingTextMessage: String?
+    var messages: [Message] = []
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.locale = Locale(identifier: "en_RU")
+        dateFormatter.setLocalizedDateFormatFromTemplate("dd_MM HH_mm")
+        
+        return dateFormatter
+    }()
     
     // MARK: - Override Methods
     override func viewDidLoad() {

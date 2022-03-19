@@ -25,6 +25,7 @@ extension ConversationViewController {
         
         messagesListTableView.translatesAutoresizingMaskIntoConstraints = false
         messagesListTableView.separatorStyle = .none
+        messagesListTableView.allowsSelection = false
     }
 }
 

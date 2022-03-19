@@ -25,12 +25,11 @@ class MessageCell: UITableViewCell, MessageCellConfiguration {
     static let identifierForIncomingCell = "incomingCell"
     var messageText: String?
     
-    func configureWithMock(withIncomingMessage message: String?) {
-        sentMessageTextLabel?.text = "Some sent message"
-        guard let message = message, !message.isEmpty else {
-            incomingMessageTextLabel?.text = "User joined to chat"
-            return
+    func configure(withIncomingMessage message: Message) {
+        if message.isIncomingMessage {
+            incomingMessageTextLabel?.text = message.message
+        } else {
+            sentMessageTextLabel.text = message.message
         }
-        incomingMessageTextLabel?.text = message
     }
 }
