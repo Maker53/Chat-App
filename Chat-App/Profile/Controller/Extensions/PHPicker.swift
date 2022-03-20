@@ -35,6 +35,9 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                         
                         if !self.initialsFullNameLabel.isHidden {
                             self.initialsFullNameLabel.isHidden.toggle()
+                            
+                            self.toggleButtonStateWhenEditingStartsAndEnds()
+                            self.toggleTextFieldStateWhenEditingStartsAndEnds()
                         }
                     }
                 }

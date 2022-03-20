@@ -29,6 +29,9 @@ class ProfileViewController: UIViewController {
         fullNameTextField.delegate = self
         userDescriptionTextField.delegate = self
         
+        fullNameTextField.isEnabled = false
+        userDescriptionTextField.isEnabled = false
+        
         cancelButton.layer.cornerRadius = 10
         cancelButton.isHidden = true
         
@@ -43,6 +46,10 @@ class ProfileViewController: UIViewController {
         [fullNameTextField, userDescriptionTextField].forEach {
             $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         }
+        
+        profileImage.isUserInteractionEnabled = true
+        let tapToProfileImage = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
+        profileImage.addGestureRecognizer(tapToProfileImage)
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,17 +66,25 @@ class ProfileViewController: UIViewController {
     
     // MARK: - IB Actions
     @IBAction func editImageButtonPressed() {
-        fullNameTextField.isEnabled = true
-        userDescriptionTextField.isEnabled = true
-        
+        toggleTextFieldStateWhenEditingStartsAndEnds()
         fullNameTextField.becomeFirstResponder()
+        toggleButtonStateWhenEditingStartsAndEnds()
+    }
+    
+    @IBAction func cancelButtonPressed() {
+        fullNameTextField.text = ""
+        userDescriptionTextField.text = ""
+        profileImage.image = nil
+        // Когда будут сохраняться данные пользователя не забыть здесь возвращать
+        // последние сохраненные данные
+        initialsFullNameLabel.text = ""
+    
+        if initialsFullNameLabel.isHidden {
+            initialsFullNameLabel.isHidden.toggle()
+        }
         
-        editButton.isHidden.toggle()
-        cancelButton.isHidden.toggle()
-        saveGCDButton.isHidden.toggle()
-        saveOperationsButton.isHidden.toggle()
-
-//        presentChooseImageAlertController()
+        toggleTextFieldStateWhenEditingStartsAndEnds()
+        toggleButtonStateWhenEditingStartsAndEnds()
     }
     
     // MARK: - Public Methods
@@ -92,5 +107,21 @@ class ProfileViewController: UIViewController {
         
         saveGCDButton.isEnabled = true
         saveOperationsButton.isEnabled = true
+    }
+    
+    @objc private func chooseImage() {
+        presentChooseImageAlertController()
+    }
+    
+    func toggleButtonStateWhenEditingStartsAndEnds() {
+        editButton.isHidden.toggle()
+        cancelButton.isHidden.toggle()
+        saveGCDButton.isHidden.toggle()
+        saveOperationsButton.isHidden.toggle()
+    }
+    
+    func toggleTextFieldStateWhenEditingStartsAndEnds() {
+        fullNameTextField.isEnabled.toggle()
+        userDescriptionTextField.isEnabled.toggle()
     }
 }

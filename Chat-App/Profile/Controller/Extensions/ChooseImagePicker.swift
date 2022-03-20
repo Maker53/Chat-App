@@ -28,6 +28,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             initialsFullNameLabel.isHidden.toggle()
         }
         
+        toggleButtonStateWhenEditingStartsAndEnds()
+        toggleTextFieldStateWhenEditingStartsAndEnds()
         dismiss(animated: true)
     }
 }
