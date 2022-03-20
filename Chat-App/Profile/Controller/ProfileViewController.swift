@@ -23,18 +23,26 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createCustomNavigationBar()
+        navigationController?.navigationBar.addSubview(createCustomTitleView())
+        
         fullNameTextField.delegate = self
         userDescriptionTextField.delegate = self
         
         cancelButton.layer.cornerRadius = 10
         cancelButton.isHidden = true
+        
         saveGCDButton.layer.cornerRadius = 10
         saveGCDButton.isHidden = true
+        saveGCDButton.isEnabled = false
+        
         saveOperationsButton.layer.cornerRadius = 10
         saveOperationsButton.isHidden = true
+        saveOperationsButton.isEnabled = false
         
-        createCustomNavigationBar()
-        navigationController?.navigationBar.addSubview(createCustomTitleView())
+        [fullNameTextField, userDescriptionTextField].forEach {
+            $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,8 +72,25 @@ class ProfileViewController: UIViewController {
 //        presentChooseImageAlertController()
     }
     
-    // MARK: - Methods
+    // MARK: - Public Methods
     @objc func closeBarButtonPressed() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Private Methods
+    @objc private func editingChanged(_ sender: UITextField) {
+        guard
+            let fullNameText = fullNameTextField.text,
+            let descriptionText = userDescriptionTextField.text
+        else { return }
+        
+        if fullNameText.isEmpty, descriptionText.isEmpty {
+            saveGCDButton.isEnabled = false
+            saveOperationsButton.isEnabled = false
+            return
+        }
+        
+        saveGCDButton.isEnabled = true
+        saveOperationsButton.isEnabled = true
     }
 }
