@@ -22,7 +22,6 @@
 		85B7FF5527E60CC4000D33F6 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7FF5427E60CC3000D33F6 /* ThemeChanger.swift */; };
 		85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */; };
 		85CC045927DDBB6600B9F8F0 /* SetupThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045827DDBB6600B9F8F0 /* SetupThemesViewController.swift */; };
-		85CC045B27DE0CD100B9F8F0 /* ButtonsActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045A27DE0CD100B9F8F0 /* ButtonsActions.swift */; };
 		85FDC99527D5302D00E57461 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99427D5302D00E57461 /* TextViewDelegate.swift */; };
 		85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */; };
 		85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99827D6566700E57461 /* ConversationListViewController.swift */; };
@@ -56,7 +55,6 @@
 		85B7FF5427E60CC3000D33F6 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		85CC045827DDBB6600B9F8F0 /* SetupThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupThemesViewController.swift; sourceTree = "<group>"; };
-		85CC045A27DE0CD100B9F8F0 /* ButtonsActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsActions.swift; sourceTree = "<group>"; };
 		85FDC99427D5302D00E57461 /* TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewDelegate.swift; sourceTree = "<group>"; };
 		85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		85FDC99827D6566700E57461 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 		85CC045727DDBB3900B9F8F0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				85CC045A27DE0CD100B9F8F0 /* ButtonsActions.swift */,
 				85CC045827DDBB6600B9F8F0 /* SetupThemesViewController.swift */,
 			);
 			path = Extensions;
@@ -390,7 +387,6 @@
 				85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */,
 				857847D227C12065005E176B /* ProfileViewController.swift in Sources */,
 				85882B4327CB87E90081463E /* AlertController.swift in Sources */,
-				85CC045B27DE0CD100B9F8F0 /* ButtonsActions.swift in Sources */,
 				85B7FF5527E60CC4000D33F6 /* ThemeChanger.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 				85FDC9B427D7AFE200E57461 /* ConversationList + UITableViewDataSource.swift in Sources */,

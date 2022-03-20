@@ -13,31 +13,30 @@ class ThemesViewController: UIViewController {
     lazy var classicThemeButton = UIButton()
     lazy var dayThemeButton = UIButton()
     lazy var nightThemeButton = UIButton()
+    
+    /*
+     delegate должен быть со слабой ссылкой, так как при инициализации delegate
+     мы создаем объект ThemesPickerDelegate, через который в дальнейшем будем
+     обращаться к методу протокола, реализованном в класса ThemesPicker,
+     соответственно создается ссылка на ThemesPicker (сделали ее слабой).
+     При обращении к методу протокола через delegate мы передаем в параметр функции
+     наш ThemesViewController, инициализируя self'ом, следовательно в ThemesPicker
+     появляется сильная ссылка на наш ThemesViewController и если бы мы не проставили
+     слабую ссылку delegate, то случился бы retain cycle
+     */
     weak var delegate: ThemesPickerDelegate?
+    var updateThemeAction: ((ThemesViewController, Int) -> Void)?
     
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupThemeViewController()
-        
         delegate = ThemeChanger.shared.self
-        
-//        if let buttonTag = UserDefaults.standard.value(forKey: "currentTheme") as? Int {
-//            switch buttonTag {
-//            case 0:
-//                delegate?.setTheme(from: self, and: classicThemeButton)
-//                conversationListViewController?.buttonAction(self, classicThemeButton)
-//            case 1:
-//                delegate?.setTheme(from: self, and: dayThemeButton)
-//                conversationListViewController?.buttonAction(self, dayThemeButton)
-//            default:
-//                delegate?.setTheme(from: self, and: nightThemeButton)
-//                conversationListViewController?.buttonAction(self, nightThemeButton)
-//            }
-//        }
+        setCurrentThemeFromUserDefault()
     }
     
+    // MARK: - Buttons Actions
     @objc func changeThemeButtonPressed(_ sender: Any) {
         classicThemeButton.setSelectedState(isSelected: false)
         dayThemeButton.setSelectedState(isSelected: false)
@@ -64,12 +63,31 @@ class ThemesViewController: UIViewController {
             buttonTag = themeButton.tag
             themeButton.setSelectedState(isSelected: true)
         }
+        
+        UserDefaults.standard.set(buttonTag, forKey: "currentTheme")
 
-        delegate?.setTheme(forChooseButton: buttonTag, in: self)
+//        delegate?.setTheme(forChooseButton: buttonTag, in: self)
+        ThemeChanger.shared.changeTheme(with: self)
+        updateThemeAction?(self, buttonTag)
     }
     
     @objc func cancelBarButtonPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Private Methods
+    private func setCurrentThemeFromUserDefault() {
+        if let buttonTag = UserDefaults.standard.value(forKey: "currentTheme") as? Int {
+            switch buttonTag {
+            case 1: dayThemeButton.setSelectedState(isSelected: true)
+            case 2: nightThemeButton.setSelectedState(isSelected: true)
+            default: classicThemeButton.setSelectedState(isSelected: true)
+            }
+            
+//            delegate?.setTheme(forChooseButton: buttonTag, in: self)
+            ThemeChanger.shared.changeTheme(with: self)
+            updateThemeAction?(self, buttonTag)
+        }
     }
 }
 
