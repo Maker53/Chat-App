@@ -23,33 +23,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createCustomNavigationBar()
-        navigationController?.navigationBar.addSubview(createCustomTitleView())
-        
-        fullNameTextField.delegate = self
-        userDescriptionTextField.delegate = self
-        
-        fullNameTextField.isEnabled = false
-        userDescriptionTextField.isEnabled = false
-        
-        cancelButton.layer.cornerRadius = 10
-        cancelButton.isHidden = true
-        
-        saveGCDButton.layer.cornerRadius = 10
-        saveGCDButton.isHidden = true
-        saveGCDButton.isEnabled = false
-        
-        saveOperationsButton.layer.cornerRadius = 10
-        saveOperationsButton.isHidden = true
-        saveOperationsButton.isEnabled = false
-        
-        [fullNameTextField, userDescriptionTextField].forEach {
-            $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        }
-        
-        profileImage.isUserInteractionEnabled = true
-        let tapToProfileImage = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
-        profileImage.addGestureRecognizer(tapToProfileImage)
+        setInitialSettings()
     }
     
     override func viewDidLayoutSubviews() {
@@ -92,6 +66,18 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func toggleTextFieldStateWhenEditingStartsAndEnds() {
+        fullNameTextField.isEnabled.toggle()
+        userDescriptionTextField.isEnabled.toggle()
+    }
+    
+    func toggleButtonStateWhenEditingStartsAndEnds() {
+        editButton.isHidden.toggle()
+        cancelButton.isHidden.toggle()
+        saveGCDButton.isHidden.toggle()
+        saveOperationsButton.isHidden.toggle()
+    }
+    
     // MARK: - Private Methods
     @objc private func editingChanged(_ sender: UITextField) {
         guard
@@ -113,15 +99,33 @@ class ProfileViewController: UIViewController {
         presentChooseImageAlertController()
     }
     
-    func toggleButtonStateWhenEditingStartsAndEnds() {
-        editButton.isHidden.toggle()
-        cancelButton.isHidden.toggle()
-        saveGCDButton.isHidden.toggle()
-        saveOperationsButton.isHidden.toggle()
-    }
-    
-    func toggleTextFieldStateWhenEditingStartsAndEnds() {
-        fullNameTextField.isEnabled.toggle()
-        userDescriptionTextField.isEnabled.toggle()
+    private func setInitialSettings() {
+        createCustomNavigationBar()
+        navigationController?.navigationBar.addSubview(createCustomTitleView())
+        
+        fullNameTextField.delegate = self
+        userDescriptionTextField.delegate = self
+        
+        fullNameTextField.isEnabled = false
+        userDescriptionTextField.isEnabled = false
+        
+        cancelButton.layer.cornerRadius = 10
+        cancelButton.isHidden = true
+        
+        saveGCDButton.layer.cornerRadius = 10
+        saveGCDButton.isHidden = true
+        saveGCDButton.isEnabled = false
+        
+        saveOperationsButton.layer.cornerRadius = 10
+        saveOperationsButton.isHidden = true
+        saveOperationsButton.isEnabled = false
+        
+        [fullNameTextField, userDescriptionTextField].forEach {
+            $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        }
+        
+        profileImage.isUserInteractionEnabled = true
+        let tapToProfileImage = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
+        profileImage.addGestureRecognizer(tapToProfileImage)
     }
 }
