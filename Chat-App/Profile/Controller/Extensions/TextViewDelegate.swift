@@ -7,16 +7,26 @@
 
 import UIKit
 
-extension ProfileViewController: UITextViewDelegate {
+extension ProfileViewController: UITextFieldDelegate {
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        let stringInput = fullNameTextView.text.components(separatedBy: " ")
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let stringInput = fullNameTextField.text?.components(separatedBy: " ") ?? []
         var fullNameInitials = ""
         
         for string in stringInput {
-            fullNameInitials += String(string.first ?? Character(""))
+            fullNameInitials += String(string.first ?? " ")
         }
         
         initialsFullNameLabel.text = fullNameInitials
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == fullNameTextField {
+            userDescriptionTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
 }

@@ -11,15 +11,27 @@ class ProfileViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var saveGCDButton: UIButton!
+    @IBOutlet weak var saveOperationsButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var initialsFullNameLabel: UILabel!
-    @IBOutlet weak var fullNameTextView: UITextView!
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var userDescriptionTextField: UITextField!
      
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fullNameTextView.delegate = self
+        fullNameTextField.delegate = self
+        userDescriptionTextField.delegate = self
+        
+        cancelButton.layer.cornerRadius = 10
+        cancelButton.isHidden = true
+        saveGCDButton.layer.cornerRadius = 10
+        saveGCDButton.isHidden = true
+        saveOperationsButton.layer.cornerRadius = 10
+        saveOperationsButton.isHidden = true
         
         createCustomNavigationBar()
         navigationController?.navigationBar.addSubview(createCustomTitleView())
@@ -39,7 +51,17 @@ class ProfileViewController: UIViewController {
     
     // MARK: - IB Actions
     @IBAction func editImageButtonPressed() {
-        presentChooseImageAlertController()
+        fullNameTextField.isEnabled = true
+        userDescriptionTextField.isEnabled = true
+        
+        fullNameTextField.becomeFirstResponder()
+        
+        editButton.isHidden.toggle()
+        cancelButton.isHidden.toggle()
+        saveGCDButton.isHidden.toggle()
+        saveOperationsButton.isHidden.toggle()
+
+//        presentChooseImageAlertController()
     }
     
     // MARK: - Methods
