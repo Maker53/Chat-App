@@ -109,6 +109,8 @@ class ProfileViewController: UIViewController {
         fullNameTextField.isEnabled = false
         userDescriptionTextField.isEnabled = false
         
+        editButton.layer.cornerRadius = 10
+        
         cancelButton.layer.cornerRadius = 10
         cancelButton.isHidden = true
         
