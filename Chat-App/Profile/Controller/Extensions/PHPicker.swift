@@ -30,6 +30,8 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
                 if let image = object as? UIImage {
+                    self.userProfileInfo.imageData = image.pngData()
+                    
                     DispatchQueue.main.async {
                         self.profileImage.image = image
                         

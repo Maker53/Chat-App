@@ -22,7 +22,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     // iOS 13.0
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        profileImage.image = info[.originalImage] as? UIImage
+        // убрать с main потока
+        guard let image = info[.originalImage] as? UIImage else { return }
+        userProfileInfo.imageData = image.pngData()
+        
+        profileImage.image = image
         
         if !initialsFullNameLabel.isHidden {
             initialsFullNameLabel.isHidden.toggle()
