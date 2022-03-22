@@ -23,6 +23,7 @@
 		85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */; };
 		85CC045927DDBB6600B9F8F0 /* SetupThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045827DDBB6600B9F8F0 /* SetupThemesViewController.swift */; };
 		85E18B7027E9872400D6FE83 /* UserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E18B6F27E9872400D6FE83 /* UserProfileInfo.swift */; };
+		85E18B7327EA2AEE00D6FE83 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E18B7227EA2AEE00D6FE83 /* StorageManager.swift */; };
 		85FDC99527D5302D00E57461 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99427D5302D00E57461 /* TextFieldDelegate.swift */; };
 		85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */; };
 		85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99827D6566700E57461 /* ConversationListViewController.swift */; };
@@ -57,6 +58,7 @@
 		85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		85CC045827DDBB6600B9F8F0 /* SetupThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupThemesViewController.swift; sourceTree = "<group>"; };
 		85E18B6F27E9872400D6FE83 /* UserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfo.swift; sourceTree = "<group>"; };
+		85E18B7227EA2AEE00D6FE83 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		85FDC99427D5302D00E57461 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		85FDC99827D6566700E57461 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				85E18B6E27E9870700D6FE83 /* Model */,
 				85882B4A27CB99380081463E /* View */,
 				85882B4927CB99310081463E /* Controller */,
+				85E18B7127EA2ACB00D6FE83 /* Services */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -217,6 +220,14 @@
 				85E18B6F27E9872400D6FE83 /* UserProfileInfo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		85E18B7127EA2ACB00D6FE83 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				85E18B7227EA2AEE00D6FE83 /* StorageManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		85F9D82427C267B700466578 /* Supporting files */ = {
@@ -392,6 +403,7 @@
 				85FDC9BA27D7B1C200E57461 /* Conversation + UITableViewDataSource.swift in Sources */,
 				8521B80A27D91B3A00D03E4A /* ConversationList+UITableViewDelegate.swift in Sources */,
 				85E18B7027E9872400D6FE83 /* UserProfileInfo.swift in Sources */,
+				85E18B7327EA2AEE00D6FE83 /* StorageManager.swift in Sources */,
 				85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */,
 				85FDC99527D5302D00E57461 /* TextFieldDelegate.swift in Sources */,
 				85FDC9AD27D7A0C600E57461 /* ConversationViewController.swift in Sources */,
