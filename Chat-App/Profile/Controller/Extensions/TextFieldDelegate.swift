@@ -15,11 +15,8 @@ extension ProfileViewController: UITextFieldDelegate {
             let descriptionText = userDescriptionTextField.text
         else { return }
         
-        userProfileInfo?.name = fullNameText
-        userProfileInfo?.description = descriptionText
-        
-        print(fullNameText)
-        print(descriptionText)
+        userProfileInfo.name = fullNameText
+        userProfileInfo.description = descriptionText
         
         let stringInput = fullNameText.components(separatedBy: " ")
         var fullNameInitials = ""
