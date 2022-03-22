@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userDescriptionTextField: UITextField!
     
     // MARK: - Public Properties
-    var userProfileInfo: UserProfileInfo?
+    var userProfileInfo = UserProfileInfo()
      
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -62,6 +62,19 @@ class ProfileViewController: UIViewController {
         
         toggleTextFieldStateWhenEditingStartsAndEnds()
         toggleButtonStateWhenEditingStartsAndEnds()
+    }
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        if sender.tag == 0 {
+            StorageManager.shared.save(userProfileInfo, with: "UserProfileInfo.json")
+        } else {
+            guard let userProfile = StorageManager.shared.fetchObject(from: "UserProfileInfo.json") else { return }
+            userProfileInfo = userProfile
+            if let imageData = userProfileInfo.imageData {
+                profileImage.image = UIImage(data: imageData)
+            }
+            fullNameTextField.text = userProfileInfo.name
+            userDescriptionTextField.text = userProfileInfo.description
+        }
     }
     
     // MARK: - Public Methods
@@ -118,10 +131,12 @@ class ProfileViewController: UIViewController {
         cancelButton.isHidden = true
         
         saveGCDButton.layer.cornerRadius = 10
+        saveGCDButton.tag = 0
         saveGCDButton.isHidden = true
         saveGCDButton.isEnabled = false
         
         saveOperationsButton.layer.cornerRadius = 10
+        saveOperationsButton.tag = 1
         saveOperationsButton.isHidden = true
         saveOperationsButton.isEnabled = false
         
