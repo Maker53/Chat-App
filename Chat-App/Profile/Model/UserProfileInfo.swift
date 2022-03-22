@@ -7,9 +7,9 @@
 
 import Foundation
 
-class UserProfileInfo: Codable {
+struct UserProfileInfo: Codable {
     
-    let name: String?
-    let description: String?
-    let imageURL: URL?
+    var name: String?
+    var description: String?
+    var imageURL: URL?
 }
