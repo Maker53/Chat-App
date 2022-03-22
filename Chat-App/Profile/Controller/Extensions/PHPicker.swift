@@ -38,8 +38,10 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                         if !self.initialsFullNameLabel.isHidden {
                             self.initialsFullNameLabel.isHidden.toggle()
                             
-                            self.toggleButtonStateWhenEditingStartsAndEnds()
-                            self.toggleTextFieldStateWhenEditingStartsAndEnds()
+                        self.saveGCDButton.isEnabled = true
+                        self.saveOperationsButton.isEnabled = true
+                        self.toggleButtonStateWhenEditingStartsAndEnds()
+                        self.toggleTextFieldStateWhenEditingStartsAndEnds()
                         }
                     }
                 }

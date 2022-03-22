@@ -32,8 +32,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             initialsFullNameLabel.isHidden.toggle()
         }
         
+        saveGCDButton.isEnabled = true
+        saveOperationsButton.isEnabled = true
         toggleButtonStateWhenEditingStartsAndEnds()
         toggleTextFieldStateWhenEditingStartsAndEnds()
+        
         dismiss(animated: true)
     }
 }
