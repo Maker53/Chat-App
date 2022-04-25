@@ -30,11 +30,18 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
                 if let image = object as? UIImage {
+                    self.userProfileInfo.imageData = image.pngData()
+                    
                     DispatchQueue.main.async {
                         self.profileImage.image = image
                         
                         if !self.initialsFullNameLabel.isHidden {
                             self.initialsFullNameLabel.isHidden.toggle()
+                            
+                        self.saveGCDButton.isEnabled = true
+                        self.saveOperationsButton.isEnabled = true
+                        self.toggleButtonStateWhenEditingStartsAndEnds()
+                        self.toggleTextFieldStateWhenEditingStartsAndEnds()
                         }
                     }
                 }
