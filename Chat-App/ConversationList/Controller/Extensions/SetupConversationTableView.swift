@@ -19,7 +19,7 @@ extension ConversationListViewController {
         navigationItem.leftBarButtonItem = setupSettingsBarButton()
         
         conversationListTableView.rowHeight = UITableView.automaticDimension
-        conversationListTableView.estimatedRowHeight = 56
+        conversationListTableView.estimatedRowHeight = 52
         
         NSLayoutConstraint.activate([
             conversationListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
