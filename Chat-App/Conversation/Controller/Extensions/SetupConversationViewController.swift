@@ -9,12 +9,11 @@ import UIKit
 
 // MARK: - Setup Conversation View Controller
 extension ConversationViewController {
-    
     func setupConversationViewController() {
         view.addSubview(messagesListTableView)
         
         messagesListTableView.rowHeight = UITableView.automaticDimension
-        messagesListTableView.estimatedRowHeight = 56
+        messagesListTableView.estimatedRowHeight = 62
         
         NSLayoutConstraint.activate([
             messagesListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

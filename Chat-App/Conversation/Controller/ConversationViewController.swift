@@ -8,7 +8,6 @@
 import UIKit
 
 class ConversationViewController: UIViewController {
-    
     // MARK: - UI
     lazy var messagesListTableView = UITableView(frame: .zero, style: .plain)
     
