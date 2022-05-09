@@ -7,15 +7,7 @@
 
 import UIKit
 
-protocol ConversationCellConfiguration {
-    var name: String? { get set }
-    var message: String? { get set }
-    var date: Date? { get set }
-    var online: Bool { get set }
-    var hasUnreadMessages: Bool { get set }
-}
-
-class ConversationCell: UITableViewCell, ConversationCellConfiguration {
+class ConversationCell: UITableViewCell {
     
     // MARK: - IB Outlets
     @IBOutlet weak var view: UIView!
@@ -24,17 +16,10 @@ class ConversationCell: UITableViewCell, ConversationCellConfiguration {
     @IBOutlet weak var messageDateLabel: UILabel?
     
     // MARK: - Public Properties
-    var name: String?
-    var message: String?
-    var date: Date?
-    var online: Bool = false
-    var hasUnreadMessages: Bool = false
     static let identifier = String(describing: ConversationCell.self)
     
     // MARK: - Public Methods
-    func configure(with user: User) {
-        let displayData = ConversationListDisplayDataParser.shared.getDisplayData(from: user)
-        
+    func configure(with displayData: DisplayData) {
         fullNameLabel?.text = displayData.name
         messageTextLabel?.text = displayData.message
         

@@ -14,6 +14,7 @@ class ConversationListViewController: UIViewController {
     
     // MARK: - Public Properties
     let users = User.mock
+    let displayData = ConversationListDisplayDataParser()
     let buttonAction: ((ThemesViewController, UIButton) -> Void) = { viewController , button in
         viewController.classicThemeButton.setSelectedState(isSelected: false)
         viewController.dayThemeButton.setSelectedState(isSelected: false)
