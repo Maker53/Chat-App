@@ -7,41 +7,38 @@
 
 import UIKit
 
-protocol ThemesPickerDelegate: AnyObject {
+@propertyWrapper
+struct Persist<T> {
+    let key: String
+    let defaultValue: T
     
-    func setTheme(forChooseButton tag: Int, in themesViewController: ThemesViewController)
-}
-
-class ThemeChanger {
-    
-    static let shared = ThemeChanger()
-    
-    private init() {}
-    
-    /*
-     Здесь функция changeTheme создается в классе ThemeChanger, соответственно ThemeChanger
-     держит сильную ссылку на changeTheme. В блоке замыкания мы, через self обращаемся к
-     нашему классу ThemeChanger и следовательно держим ссылку на класс уже changeTheme.
-     Для избежания retain cycle делаем слабую ссылку в листе захвата на self.
-     */
-    func changeTheme(with themesViewController: ThemesViewController) {
-        themesViewController.updateThemeAction = { [weak self] viewController, buttonTag in
-            self!.setTheme(from: buttonTag, and: viewController)
-        }
+    var wrappedValue: T {
+        get { UserDefaults.standard.object(forKey: key) as? T ?? defaultValue }
+        set { UserDefaults.standard.set(newValue, forKey: key) }
     }
     
-    private func setTheme(from buttonTag: Int, and viewController: ThemesViewController) {
-        switch buttonTag {
-        case 1: viewController.view.backgroundColor = .systemGray
-        case 2: viewController.view.backgroundColor = .systemTeal
-        default: viewController.view.backgroundColor = .systemBackground
-        }
+    init(key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
     }
 }
 
-extension ThemeChanger: ThemesPickerDelegate {
+enum Theme: Int {
+    case classic = 0
+    case day
+    case night
+}
+
+
+extension Theme {
+    @Persist(key: "appTheme", defaultValue: Theme.classic.rawValue)
+    private static var appTheme: Int
     
-    func setTheme(forChooseButton tag: Int, in themesViewController: ThemesViewController) {
-        setTheme(from: tag, and: themesViewController)
+    static var current: Theme {
+        Theme(rawValue: appTheme) ?? .classic
+    }
+    
+    func save() {
+        Theme.appTheme = self.rawValue
     }
 }
