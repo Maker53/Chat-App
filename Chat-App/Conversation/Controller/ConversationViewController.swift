@@ -27,6 +27,7 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         
         setupConversationViewController()
+        //TODO: Установить тему 
         
         messagesListTableView.register(
             UINib(nibName: "SentMessageCell", bundle: nil),
