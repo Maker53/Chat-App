@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userDescriptionTextField: UITextField!
     
     // MARK: - Public Properties
-    var userProfileInfo: UserProfileInfo?
+    var userProfileInfo: UserProfileInfo!
      
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -62,6 +62,12 @@ class ProfileViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         // GCD
         // Operations
+        userProfileInfo = UserProfileInfo(
+            name: fullNameTextField.text,
+            description: userDescriptionTextField.text,
+            imageData: profileImage.image?.pngData())
+        
+        StorageManager.shared.save(userProfileInfo, with: "user_Data")
     }
     
     // MARK: - Public Methods
