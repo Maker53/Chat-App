@@ -5,20 +5,16 @@
 //  Created by Станислав on 22.03.2022.
 //
 
-import Foundation
 import UIKit
 
 class StorageManager {
-    
+    // MARK: - Singleton
     static let shared = StorageManager()
     
+    // MARK: - Private empty init
     private init() {}
     
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
+    // MARK: - Save object
     func save(_ object: UserProfileInfo, with fileName: String) {
         let url = getDocumentsDirectory().appendingPathComponent(fileName)
         
@@ -31,10 +27,12 @@ class StorageManager {
             
             FileManager.default.createFile(atPath: url.path, contents: data)
         } catch {
+            // TODO: Либо убрать, либо сообщить пользователю о неудаче
             print(error.localizedDescription)
         }
     }
     
+    // MARK: - Fetch object
     func fetchObject(from fileName: String) -> UserProfileInfo? {
         let url = getDocumentsDirectory().appendingPathComponent(fileName)
         
@@ -43,11 +41,19 @@ class StorageManager {
                 let model = try JSONDecoder().decode(UserProfileInfo.self, from: data)
                 return model
             } catch {
+                // TODO: Либо убрать, либо сообщить пользователю о неудаче
                 print(error.localizedDescription)
             }
         } else {
+            // TODO: Либо убрать, либо сообщить пользователю о неудаче
             print("No data at path \(url.path)")
         }
         return nil
+    }
+    
+    // MARK: - Get Documents Directory
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }
