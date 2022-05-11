@@ -8,7 +8,6 @@
 import UIKit
 
 extension ProfileViewController {
-    
     func createCustomNavigationBar() {
         navigationController?.navigationBar.backgroundColor = .systemGray6
         navigationController?.navigationBar.prefersLargeTitles = true

@@ -8,9 +8,7 @@
 import UIKit
 
 extension ProfileViewController {
-    
     func presentChooseImageAlertController() {
-        
         let photoLibraryIcon = UIImage(systemName: "photo")
         let cameraIcon = UIImage(systemName: "camera")
         
@@ -32,7 +30,7 @@ extension ProfileViewController {
         photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
         let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-                self.chooseImagePicker(source: .camera)
+            self.chooseImagePicker(source: .camera)
         }
         
         camera.setValue(cameraIcon, forKey: "image")
