@@ -10,5 +10,5 @@ import Foundation
 struct UserProfileInfo: Codable {
     var name: String?
     var description: String?
-    var imageData: Data? = nil
+    var imageData: Data?
 }
