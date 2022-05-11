@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userDescriptionTextField: UITextField!
     
     // MARK: - Public Properties
-    var userProfileInfo = UserProfileInfo()
+    var userProfileInfo: UserProfileInfo?
      
     // MARK: - Override Methods
     override func viewDidLoad() {

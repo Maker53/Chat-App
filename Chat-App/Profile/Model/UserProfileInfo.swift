@@ -8,7 +8,7 @@
 import Foundation
 
 struct UserProfileInfo: Codable {
-    var name = ""
-    var description = ""
+    var name: String?
+    var description: String?
     var imageData: Data? = nil
 }

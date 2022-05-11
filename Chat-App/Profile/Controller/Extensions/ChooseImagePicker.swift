@@ -23,7 +23,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // TODO: убрать с main потока
         if let image = info[.originalImage] as? UIImage {
-            userProfileInfo.imageData = image.pngData()
             
             DispatchQueue.main.async {
                 self.profileImage.image = image
