@@ -8,7 +8,6 @@
 import PhotosUI
 
 extension ProfileViewController: PHPickerViewControllerDelegate {
-    
     @available(iOS 14.0, *)
     func choosePHPicker() {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
@@ -35,14 +34,8 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                     DispatchQueue.main.async {
                         self.profileImage.image = image
                         
-                        if !self.initialsFullNameLabel.isHidden {
-                            self.initialsFullNameLabel.isHidden.toggle()
-                            
-                        self.saveGCDButton.isEnabled = true
-                        self.saveOperationsButton.isEnabled = true
-                        self.toggleButtonStateWhenEditingStartsAndEnds()
-                        self.toggleTextFieldStateWhenEditingStartsAndEnds()
-                        }
+                        self.setUIWithEditState(state: .willEditing)
+                        self.setUIWithEditState(state: .hasChange)
                     }
                 }
             }
