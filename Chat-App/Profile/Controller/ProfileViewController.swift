@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var initialsFullNameLabel: UILabel!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var userDescriptionTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Public Properties
     var userProfileInfo: UserProfileInfo!
@@ -59,15 +60,33 @@ class ProfileViewController: UIViewController {
     @IBAction func cancelButtonPressed() {
         setUIWithEditState(state: .didEditing)
     }
+    
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        // GCD
-        // Operations
         userProfileInfo = UserProfileInfo(
             name: fullNameTextField.text,
             description: userDescriptionTextField.text,
             imageData: profileImage.image?.pngData())
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         
-        StorageManager.shared.save(userProfileInfo, with: "user_Data")
+        if sender.tag == 0 {
+            // GCD
+            let privateSerialQueue = DispatchQueue(label: "storageManagerQueue", qos: .background)
+            let workItem = DispatchWorkItem { [weak self] in
+                guard let self = self else { return }
+                StorageManager.shared.save(self.userProfileInfo, with: "user_Data")
+            }
+            
+            privateSerialQueue.async(execute: workItem)
+            
+            workItem.notify(queue: .main) { [weak self] in
+                guard let self = self else { return }
+                self.activityIndicator.stopAnimating()
+                print("done!")
+            }
+        } else {
+            // Operations
+        }
     }
     
     // MARK: - Public Methods

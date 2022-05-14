@@ -53,7 +53,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="About me" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pc6-mG-Z37">
-                                <rect key="frame" x="77.5" y="341" width="220" height="179"/>
+                                <rect key="frame" x="77.5" y="341" width="220" height="122"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -70,7 +70,7 @@
                                             <action selector="saveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m0O-XC-E3D"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="XLT-GQ-E8X">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="XLT-GQ-E8X">
                                         <rect key="frame" x="155" y="0.0" width="140" height="40"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -98,6 +98,9 @@
                                     <action selector="editButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="hnS-1O-eGu"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="9ms-cI-Iiz">
+                                <rect key="frame" x="169" y="483" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -107,12 +110,13 @@
                             <constraint firstItem="oms-fF-ylB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="53T-gg-ZCo"/>
                             <constraint firstItem="aHy-KZ-e0E" firstAttribute="centerY" secondItem="d8Y-Ug-ONE" secondAttribute="centerY" id="816-Ax-dGJ"/>
                             <constraint firstItem="N1N-3S-Mfs" firstAttribute="top" secondItem="d8Y-Ug-ONE" secondAttribute="bottom" constant="32" id="BdJ-PS-hvj"/>
+                            <constraint firstItem="9ms-cI-Iiz" firstAttribute="top" secondItem="Pc6-mG-Z37" secondAttribute="bottom" constant="20" id="CAT-99-qxw"/>
                             <constraint firstItem="Pc6-mG-Z37" firstAttribute="leading" secondItem="d8Y-Ug-ONE" secondAttribute="leading" id="Gcd-lP-w9n"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oms-fF-ylB" secondAttribute="trailing" constant="40" id="TJ8-97-fFP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Okm-WY-gdF" secondAttribute="trailing" constant="40" id="TJx-eY-yiB"/>
                             <constraint firstItem="d8Y-Ug-ONE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Uzq-Kw-dmA"/>
                             <constraint firstItem="Pc6-mG-Z37" firstAttribute="top" secondItem="N1N-3S-Mfs" secondAttribute="bottom" constant="32" id="WaB-2x-f1F"/>
-                            <constraint firstItem="oms-fF-ylB" firstAttribute="top" secondItem="Pc6-mG-Z37" secondAttribute="bottom" constant="87" id="adp-ld-qwm"/>
+                            <constraint firstItem="oms-fF-ylB" firstAttribute="top" secondItem="xQG-Ez-8EM" secondAttribute="bottom" constant="15" id="adp-ld-qwm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Okm-WY-gdF" secondAttribute="bottom" constant="20" id="ank-v0-Pcn"/>
                             <constraint firstItem="Okm-WY-gdF" firstAttribute="top" secondItem="xQG-Ez-8EM" secondAttribute="bottom" constant="15" id="cvN-XA-nDW"/>
                             <constraint firstItem="Pc6-mG-Z37" firstAttribute="trailing" secondItem="d8Y-Ug-ONE" secondAttribute="trailing" id="dhu-dX-g9M"/>
@@ -120,12 +124,14 @@
                             <constraint firstItem="xQG-Ez-8EM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="ecZ-Qa-tdF"/>
                             <constraint firstItem="d8Y-Ug-ONE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="fca-kZ-fvq"/>
                             <constraint firstItem="N1N-3S-Mfs" firstAttribute="trailing" secondItem="d8Y-Ug-ONE" secondAttribute="trailing" id="mgK-vJ-L6r"/>
-                            <constraint firstItem="xQG-Ez-8EM" firstAttribute="top" secondItem="Pc6-mG-Z37" secondAttribute="bottom" constant="32" id="nV2-x8-6vK"/>
+                            <constraint firstItem="9ms-cI-Iiz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ruk-M3-SSa"/>
+                            <constraint firstItem="xQG-Ez-8EM" firstAttribute="top" secondItem="9ms-cI-Iiz" secondAttribute="bottom" constant="32" id="yc3-rN-XEL"/>
                             <constraint firstItem="aHy-KZ-e0E" firstAttribute="centerX" secondItem="d8Y-Ug-ONE" secondAttribute="centerX" id="zOI-kO-Nyv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Profile" id="bJ0-LD-a9C"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="9ms-cI-Iiz" id="kKS-0v-kvP"/>
                         <outlet property="cancelButton" destination="xQG-Ez-8EM" id="duO-x4-F4q"/>
                         <outlet property="editButton" destination="oms-fF-ylB" id="YHj-X1-w2e"/>
                         <outlet property="fullNameTextField" destination="N1N-3S-Mfs" id="Sx2-YH-dkp"/>
