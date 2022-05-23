@@ -16,6 +16,9 @@ class ConversationListViewController: UIViewController {
     let users = User.mock
     let displayData = ConversationListDisplayDataParser()
     
+    // MARK: - Private Methods
+    var userProfileInfo: UserProfileInfo!
+    
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()

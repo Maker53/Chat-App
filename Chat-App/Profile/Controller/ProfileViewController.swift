@@ -12,7 +12,10 @@ enum State {
     case willEditing
     case hasChange
     case hasNotChange
+    case willSavingData
+    case didSavingData
     case didEditing
+    case cancelled
 }
 
 // MARK: - ProfileViewController
@@ -34,7 +37,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setInitialSettings()
         //TODO: Установить тему 
     }
@@ -43,6 +46,14 @@ class ProfileViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        StorageManager.shared.fetchViaGCD(from: Constants.userInfoNameFileForSave.rawValue) {
+            self.userProfileInfo = $0
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,7 +69,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed() {
-        setUIWithEditState(state: .didEditing)
+        setUIWithEditState(state: .cancelled)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -66,24 +77,20 @@ class ProfileViewController: UIViewController {
             name: fullNameTextField.text,
             description: userDescriptionTextField.text,
             imageData: profileImage.image?.pngData())
+        
+        setUIWithEditState(state: .willSavingData)
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         
         if sender.tag == 0 {
             // GCD
-            let privateSerialQueue = DispatchQueue(label: "storageManagerQueue", qos: .background)
-            let workItem = DispatchWorkItem { [weak self] in
-                guard let self = self else { return }
-                StorageManager.shared.save(self.userProfileInfo, with: "user_Data")
-            }
-            
-            privateSerialQueue.async(execute: workItem)
-            
-            workItem.notify(queue: .main) { [weak self] in
-                guard let self = self else { return }
-                self.activityIndicator.stopAnimating()
-                print("done!")
-            }
+            StorageManager.shared.saveViaGCD(
+                with: userProfileInfo,
+                and: Constants.userInfoNameFileForSave.rawValue) {
+                    self.activityIndicator.stopAnimating()
+                    self.setUIWithEditState(state: .didSavingData)
+                    self.presentSuccessSavingAlertController()
+                }
         } else {
             // Operations
         }
@@ -111,10 +118,24 @@ class ProfileViewController: UIViewController {
             if profileImage.image != nil {
                 initialsFullNameLabel.text = nil
             }
-        case .hasNotChange:
+        case .hasNotChange, .willSavingData:
             saveGCDButton.isEnabled = false
             saveOperationsButton.isEnabled = false
+        case .didSavingData:
+            saveGCDButton.isEnabled = true
+            saveOperationsButton.isEnabled = true
         case .didEditing:
+            fullNameTextField.isEnabled = false
+            userDescriptionTextField.isEnabled = false
+            
+            editButton.isHidden = false
+            cancelButton.isHidden = true
+            saveGCDButton.isHidden = true
+            saveOperationsButton.isHidden = true
+            
+            saveGCDButton.isEnabled = false
+            saveOperationsButton.isEnabled = false
+        case .cancelled:
             fullNameTextField.isEnabled = false
             userDescriptionTextField.isEnabled = false
             
@@ -129,8 +150,6 @@ class ProfileViewController: UIViewController {
             fullNameTextField.text = nil
             userDescriptionTextField.text = nil
             profileImage.image = nil
-            // TODO: Когда будут сохраняться данные пользователя не забыть здесь
-            // TODO: возвращать последние сохраненные данные
             initialsFullNameLabel.text = nil
         }
     }
@@ -145,6 +164,23 @@ extension ProfileViewController {
     private func setInitialSettings() {
         createCustomNavigationBar()
         navigationController?.navigationBar.addSubview(createCustomTitleView())
+        
+        if let userProfileInfo = userProfileInfo {
+            fullNameTextField.text = userProfileInfo.name
+            userDescriptionTextField.text = userProfileInfo.description
+            if let imageData = userProfileInfo.imageData {
+                profileImage.image = UIImage(data: imageData)
+            } else if let fullNameText = fullNameTextField.text {
+                let stringInput = fullNameText.components(separatedBy: " ").prefix(2)
+                var fullNameInitials = ""
+                
+                for string in stringInput {
+                    fullNameInitials += String(string.first ?? " ")
+                }
+                
+                initialsFullNameLabel.text = fullNameInitials
+            }
+        }
         
         fullNameTextField.delegate = self
         userDescriptionTextField.delegate = self

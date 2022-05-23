@@ -10,6 +10,7 @@
 		8521B80827D7C2F100D03E4A /* IncomingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8521B80727D7C2F100D03E4A /* IncomingMessageCell.xib */; };
 		8521B80A27D91B3A00D03E4A /* ConversationList+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8521B80927D91B3A00D03E4A /* ConversationList+UITableViewDelegate.swift */; };
 		8538FDA727E5BB2E003E79AB /* ConversationListDisplayDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538FDA627E5BB2E003E79AB /* ConversationListDisplayDataParser.swift */; };
+		85574E3A282FFB3D00607D52 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85574E39282FFB3C00607D52 /* Constants.swift */; };
 		857847CE27C12065005E176B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857847CD27C12065005E176B /* AppDelegate.swift */; };
 		857847D227C12065005E176B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857847D127C12065005E176B /* ProfileViewController.swift */; };
 		857847D527C12065005E176B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857847D327C12065005E176B /* Profile.storyboard */; };
@@ -43,6 +44,7 @@
 		8521B80727D7C2F100D03E4A /* IncomingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomingMessageCell.xib; sourceTree = "<group>"; };
 		8521B80927D91B3A00D03E4A /* ConversationList+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationList+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		8538FDA627E5BB2E003E79AB /* ConversationListDisplayDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListDisplayDataParser.swift; sourceTree = "<group>"; };
+		85574E39282FFB3C00607D52 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		857847CA27C12065005E176B /* Chat-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chat-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		857847CD27C12065005E176B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		857847D127C12065005E176B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		85F9D82427C267B700466578 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				85574E39282FFB3C00607D52 /* Constants.swift */,
 				857847D627C12068005E176B /* Assets.xcassets */,
 				857847DB27C12068005E176B /* Info.plist */,
 			);
@@ -421,6 +424,7 @@
 				85882B5127CDD4790081463E /* PHPicker.swift in Sources */,
 				85CC045927DDBB6600B9F8F0 /* SetupThemesViewController.swift in Sources */,
 				85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */,
+				85574E3A282FFB3D00607D52 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

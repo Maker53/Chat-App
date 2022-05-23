@@ -44,4 +44,16 @@ extension ProfileViewController {
         
         present(alertController, animated: true)
     }
+    
+    func presentSuccessSavingAlertController() {
+        let alertController = UIAlertController(title: "Data saved", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.setUIWithEditState(state: .didEditing)
+        }
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true)
+    }
 }

@@ -5,17 +5,47 @@
 //  Created by Станислав on 22.03.2022.
 //
 
-import UIKit
+import Foundation
 
 class StorageManager {
     // MARK: - Singleton
     static let shared = StorageManager()
     
+    // MARK: - Private Serial Queue
+    let privateSerialQueue = DispatchQueue(label: "storageManagerQueue", qos: .utility)
+    
     // MARK: - Private empty init
     private init() {}
     
     // MARK: - Save object
-    func save(_ object: UserProfileInfo, with fileName: String) {
+    func saveViaGCD(with object: UserProfileInfo, and fileName: String, notifyHandler completion: @escaping () -> ()) {
+        let workItem = DispatchWorkItem {
+            self.save(object, with: fileName)
+        }
+        
+        privateSerialQueue.async(execute: workItem)
+        
+        workItem.notify(queue: .main) {
+            completion()
+        }
+    }
+    
+    // MARK: - Fetch object
+    func fetchViaGCD(from fileName: String, completion: @escaping (UserProfileInfo?) -> ()) {
+        privateSerialQueue.async {
+            let object = self.fetchObject(from: fileName)
+            completion(object)
+        }
+    }
+    
+    // MARK: - Get Documents Directory
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    // TODO: Подумать, как можно проверять объект, чтобы не перезаписывать повторяющиеся данные
+    private func save(_ object: UserProfileInfo, with fileName: String) {
         let url = getDocumentsDirectory().appendingPathComponent(fileName)
         
         do {
@@ -32,8 +62,7 @@ class StorageManager {
         }
     }
     
-    // MARK: - Fetch object
-    func fetchObject(from fileName: String) -> UserProfileInfo? {
+    private func fetchObject(from fileName: String) -> UserProfileInfo? {
         let url = getDocumentsDirectory().appendingPathComponent(fileName)
         
         if let data = FileManager.default.contents(atPath: url.path) {
@@ -49,11 +78,5 @@ class StorageManager {
             print("No data at path \(url.path)")
         }
         return nil
-    }
-    
-    // MARK: - Get Documents Directory
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
 }
