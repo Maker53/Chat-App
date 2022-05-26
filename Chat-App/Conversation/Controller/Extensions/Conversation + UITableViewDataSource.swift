@@ -8,7 +8,6 @@
 import UIKit
 
 extension ConversationViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         messages.count
     }

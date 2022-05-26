@@ -8,10 +8,10 @@
 import UIKit
 
 extension ThemesViewController {
-    
     // MARK: - Setup Theme View Controller
     func setupThemeViewController() {
         view.backgroundColor = .systemBackground
+        navigationItem.hidesBackButton = true
         title = "Settings"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -26,21 +26,18 @@ extension ThemesViewController {
             incomingMessageColor: .systemGray4,
             backgroundColor: .systemBackground
         )
-        classicThemeButton.tag = 0
 
         dayThemeButton = createThemeButton(
             outgoingMessageColor: .systemBlue,
             incomingMessageColor: .systemGray5,
             backgroundColor: .systemBackground
         )
-        dayThemeButton.tag = 1
 
         nightThemeButton = createThemeButton(
             outgoingMessageColor: .systemGray,
             incomingMessageColor: .darkGray,
             backgroundColor: .black
         )
-        nightThemeButton.tag = 2
 
         let classicButtonLabel = createLabel(with: "Classic")
         let dayButtonLabel = createLabel(with: "Day")
@@ -49,6 +46,10 @@ extension ThemesViewController {
         let classicStackView = createStackView(with: classicThemeButton, and: classicButtonLabel)
         let dayStackView = createStackView(with: dayThemeButton, and: dayButtonLabel)
         let nightStackView = createStackView(with: nightThemeButton, and: nightButtonLabel)
+        
+        classicStackView.tag = 0
+        dayStackView.tag = 1
+        nightStackView.tag = 2
         
         let stackView = UIStackView(arrangedSubviews: [
             classicStackView, dayStackView, nightStackView
@@ -72,15 +73,13 @@ extension ThemesViewController {
     
     // MARK: - Create theme button
     private func createThemeButton(outgoingMessageColor: UIColor, incomingMessageColor: UIColor, backgroundColor: UIColor) -> UIButton {
-        
         let button: UIButton = {
             let button = UIButton()
             button.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 0.75)
             button.layer.cornerRadius = 15
             button.layer.borderWidth = 1
-            
-            button.addTarget(self, action: #selector(changeThemeButtonPressed), for: .touchUpInside)
-                        
+            button.isUserInteractionEnabled = false
+                                    
             return button
         }()
         
@@ -149,12 +148,8 @@ extension ThemesViewController {
         let label = UILabel()
         label.text = title
         label.textAlignment = .center
-        label.isUserInteractionEnabled = true
         let huggingPriority = label.contentHuggingPriority(for: .vertical) + 1
         label.setContentHuggingPriority(huggingPriority, for: .vertical)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(changeThemeButtonPressed))
-        label.addGestureRecognizer(tap)
         
         return label
     }
@@ -162,6 +157,10 @@ extension ThemesViewController {
     // MARK: - Create button with label stack view
     func createStackView(with button: UIButton, and label: UILabel) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: [button, label])
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(changeThemeButtonPressed))
+        stackView.addGestureRecognizer(tap)
+        stackView.isUserInteractionEnabled = true
         
         NSLayoutConstraint.activate([
             button.widthAnchor.constraint(equalTo: stackView.widthAnchor)

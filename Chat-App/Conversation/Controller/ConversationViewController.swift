@@ -8,7 +8,6 @@
 import UIKit
 
 class ConversationViewController: UIViewController {
-    
     // MARK: - UI
     lazy var messagesListTableView = UITableView(frame: .zero, style: .plain)
     
@@ -28,6 +27,7 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         
         setupConversationViewController()
+        //TODO: Установить тему 
         
         messagesListTableView.register(
             UINib(nibName: "SentMessageCell", bundle: nil),

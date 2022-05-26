@@ -8,9 +8,6 @@
 import Foundation
 
 class ConversationListDisplayDataParser {
-    
-    static let shared = ConversationListDisplayDataParser()
-    
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         
@@ -18,9 +15,7 @@ class ConversationListDisplayDataParser {
         
         return dateFormatter
     }()
-    
-    private init() {}
-    
+        
     func getDisplayData(from data: User) -> DisplayData {
         let name = data.fullname
         var message = data.messages.last?.message

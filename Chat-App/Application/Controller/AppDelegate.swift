@@ -16,8 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        window?.rootViewController = UINavigationController(rootViewController: ConversationListViewController())
+        let conversationListViewController = ConversationListViewController()
+        window?.rootViewController = UINavigationController(rootViewController: conversationListViewController)
         window?.makeKeyAndVisible()
+        
+        StorageManager.shared.fetchViaGCD(from: Constants.userInfoFileNameForSave) {
+            conversationListViewController.userProfileInfo = $0
+        }
         
         return true
     }

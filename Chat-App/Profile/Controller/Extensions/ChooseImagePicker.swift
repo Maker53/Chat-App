@@ -8,7 +8,6 @@
 import UIKit
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {
             let imagePicker = UIImagePickerController()
@@ -22,20 +21,16 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     // iOS 13.0
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // убрать с main потока
-        guard let image = info[.originalImage] as? UIImage else { return }
-        userProfileInfo.imageData = image.pngData()
-        
-        profileImage.image = image
-        
-        if !initialsFullNameLabel.isHidden {
-            initialsFullNameLabel.isHidden.toggle()
+        // TODO: убрать с main потока
+        if let image = info[.originalImage] as? UIImage {
+            
+            DispatchQueue.main.async {
+                self.profileImage.image = image
+                
+                self.setUIWithEditState(state: .willEditing)
+                self.setUIWithEditState(state: .hasChange)
+            }
         }
-        
-        saveGCDButton.isEnabled = true
-        saveOperationsButton.isEnabled = true
-        toggleButtonStateWhenEditingStartsAndEnds()
-        toggleTextFieldStateWhenEditingStartsAndEnds()
         
         dismiss(animated: true)
     }

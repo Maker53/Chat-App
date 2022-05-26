@@ -8,9 +8,7 @@
 import UIKit
 
 extension ProfileViewController {
-    
     func presentChooseImageAlertController() {
-        
         let photoLibraryIcon = UIImage(systemName: "photo")
         let cameraIcon = UIImage(systemName: "camera")
         
@@ -32,7 +30,7 @@ extension ProfileViewController {
         photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
         let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-                self.chooseImagePicker(source: .camera)
+            self.chooseImagePicker(source: .camera)
         }
         
         camera.setValue(cameraIcon, forKey: "image")
@@ -43,6 +41,18 @@ extension ProfileViewController {
         alertController.addAction(photo)
         alertController.addAction(camera)
         alertController.addAction(cancel)
+        
+        present(alertController, animated: true)
+    }
+    
+    func presentSuccessSavingAlertController() {
+        let alertController = UIAlertController(title: "Data saved", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.setUIWithEditState(state: .didEditing)
+        }
+        
+        alertController.addAction(okAction)
         
         present(alertController, animated: true)
     }

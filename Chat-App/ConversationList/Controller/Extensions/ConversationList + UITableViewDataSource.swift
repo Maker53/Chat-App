@@ -35,10 +35,10 @@ extension ConversationListViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             let user = users.filter { $0.isOnline }[indexPath.row]
-            conversationCell.configure(with: user)
+            conversationCell.configure(with: displayData.getDisplayData(from: user))
         } else {
             let user = users.filter { !$0.isOnline }[indexPath.row]
-            conversationCell.configure(with: user)
+            conversationCell.configure(with: displayData.getDisplayData(from: user))
         }
         
         return conversationCell

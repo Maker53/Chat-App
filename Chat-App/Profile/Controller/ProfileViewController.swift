@@ -7,8 +7,19 @@
 
 import UIKit
 
+// MARK: - State
+enum State {
+    case willEditing
+    case hasChange
+    case hasNotChange
+    case willSavingData
+    case didSavingData
+    case didEditing
+    case cancelled
+}
+
+// MARK: - ProfileViewController
 class ProfileViewController: UIViewController {
-    
     // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -18,21 +29,31 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var initialsFullNameLabel: UILabel!
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var userDescriptionTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Public Properties
-    var userProfileInfo = UserProfileInfo()
+    var userProfileInfo: UserProfileInfo!
      
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setInitialSettings()
+        //TODO: Установить тему 
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        StorageManager.shared.fetchViaGCD(from: Constants.userInfoFileNameForSave) {
+            self.userProfileInfo = $0
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -42,38 +63,50 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: - IB Actions
-    @IBAction func editImageButtonPressed() {
-        toggleTextFieldStateWhenEditingStartsAndEnds()
+    @IBAction func editButtonPressed() {
+        setUIWithEditState(state: .willEditing)
         fullNameTextField.becomeFirstResponder()
-        toggleButtonStateWhenEditingStartsAndEnds()
     }
     
     @IBAction func cancelButtonPressed() {
-        fullNameTextField.text = ""
-        userDescriptionTextField.text = ""
-        profileImage.image = nil
-        // Когда будут сохраняться данные пользователя не забыть здесь возвращать
-        // последние сохраненные данные
-        initialsFullNameLabel.text = ""
-    
-        if initialsFullNameLabel.isHidden {
-            initialsFullNameLabel.isHidden.toggle()
-        }
-        
-        toggleTextFieldStateWhenEditingStartsAndEnds()
-        toggleButtonStateWhenEditingStartsAndEnds()
+        setUIWithEditState(state: .cancelled)
     }
+    
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        userProfileInfo = UserProfileInfo(
+            name: fullNameTextField.text,
+            description: userDescriptionTextField.text,
+            imageData: profileImage.image?.pngData())
+        
+        setUIWithEditState(state: .willSavingData)
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        
         if sender.tag == 0 {
-            StorageManager.shared.save(userProfileInfo, with: "UserProfileInfo.json")
+            // GCD
+            StorageManager.shared.saveViaGCD(
+                with: userProfileInfo,
+                and: Constants.userInfoFileNameForSave) {
+                    self.activityIndicator.stopAnimating()
+                    self.setUIWithEditState(state: .didSavingData)
+                    self.presentSuccessSavingAlertController()
+                }
         } else {
-            guard let userProfile = StorageManager.shared.fetchObject(from: "UserProfileInfo.json") else { return }
-            userProfileInfo = userProfile
-            if let imageData = userProfileInfo.imageData {
-                profileImage.image = UIImage(data: imageData)
+            // Operations
+            let saveQueue = OperationQueue()
+            saveQueue.maxConcurrentOperationCount = 1
+            
+            let saveOperation = SaveUserInfoOperation(object: userProfileInfo, fileName: Constants.userInfoFileNameForSave)
+            
+            saveOperation.completionBlock = {
+                OperationQueue.main.addOperation {
+                    self.activityIndicator.stopAnimating()
+                    self.setUIWithEditState(state: .didSavingData)
+                    self.presentSuccessSavingAlertController()
+                }
             }
-            fullNameTextField.text = userProfileInfo.name
-            userDescriptionTextField.text = userProfileInfo.description
+            
+            saveQueue.addOperation(saveOperation)
         }
     }
     
@@ -82,35 +115,62 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func toggleTextFieldStateWhenEditingStartsAndEnds() {
-        fullNameTextField.isEnabled.toggle()
-        userDescriptionTextField.isEnabled.toggle()
-    }
-    
-    func toggleButtonStateWhenEditingStartsAndEnds() {
-        editButton.isHidden.toggle()
-        cancelButton.isHidden.toggle()
-        saveGCDButton.isHidden.toggle()
-        saveOperationsButton.isHidden.toggle()
-    }
-    
-    // MARK: - Private Methods
-    @objc private func editingChanged(_ sender: UITextField) {
-        guard
-            let fullNameText = fullNameTextField.text,
-            let descriptionText = userDescriptionTextField.text
-        else { return }
-        
-        if fullNameText.isEmpty, descriptionText.isEmpty {
+    func setUIWithEditState(state: State) {
+        switch state {
+        case .willEditing:
+            fullNameTextField.isEnabled = true
+            userDescriptionTextField.isEnabled = true
+            
+            editButton.isHidden = true
+            cancelButton.isHidden = false
+            saveGCDButton.isHidden = false
+            saveOperationsButton.isHidden = false
+        case .hasChange:
+            saveGCDButton.isEnabled = true
+            saveOperationsButton.isEnabled = true
+            
+            if profileImage.image != nil {
+                initialsFullNameLabel.text = nil
+            }
+        case .hasNotChange, .willSavingData:
             saveGCDButton.isEnabled = false
             saveOperationsButton.isEnabled = false
-            return
+        case .didSavingData:
+            saveGCDButton.isEnabled = true
+            saveOperationsButton.isEnabled = true
+        case .didEditing:
+            fullNameTextField.isEnabled = false
+            userDescriptionTextField.isEnabled = false
+            
+            editButton.isHidden = false
+            cancelButton.isHidden = true
+            saveGCDButton.isHidden = true
+            saveOperationsButton.isHidden = true
+            
+            saveGCDButton.isEnabled = false
+            saveOperationsButton.isEnabled = false
+        case .cancelled:
+            fullNameTextField.isEnabled = false
+            userDescriptionTextField.isEnabled = false
+            
+            editButton.isHidden = false
+            cancelButton.isHidden = true
+            saveGCDButton.isHidden = true
+            saveOperationsButton.isHidden = true
+            
+            saveGCDButton.isEnabled = false
+            saveOperationsButton.isEnabled = false
+            
+            fullNameTextField.text = nil
+            userDescriptionTextField.text = nil
+            profileImage.image = nil
+            initialsFullNameLabel.text = nil
         }
-        
-        saveGCDButton.isEnabled = true
-        saveOperationsButton.isEnabled = true
     }
-    
+}
+
+// MARK: - Private Methods
+extension ProfileViewController {
     @objc private func chooseImage() {
         presentChooseImageAlertController()
     }
@@ -118,6 +178,23 @@ class ProfileViewController: UIViewController {
     private func setInitialSettings() {
         createCustomNavigationBar()
         navigationController?.navigationBar.addSubview(createCustomTitleView())
+        
+        if let userProfileInfo = userProfileInfo {
+            fullNameTextField.text = userProfileInfo.name
+            userDescriptionTextField.text = userProfileInfo.description
+            if let imageData = userProfileInfo.imageData {
+                profileImage.image = UIImage(data: imageData)
+            } else if let fullNameText = fullNameTextField.text {
+                let stringInput = fullNameText.components(separatedBy: " ").prefix(2)
+                var fullNameInitials = ""
+                
+                for string in stringInput {
+                    fullNameInitials += String(string.first ?? " ")
+                }
+                
+                initialsFullNameLabel.text = fullNameInitials
+            }
+        }
         
         fullNameTextField.delegate = self
         userDescriptionTextField.delegate = self
@@ -139,10 +216,6 @@ class ProfileViewController: UIViewController {
         saveOperationsButton.tag = 1
         saveOperationsButton.isHidden = true
         saveOperationsButton.isEnabled = false
-        
-        [fullNameTextField, userDescriptionTextField].forEach {
-            $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        }
         
         profileImage.isUserInteractionEnabled = true
         let tapToProfileImage = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
