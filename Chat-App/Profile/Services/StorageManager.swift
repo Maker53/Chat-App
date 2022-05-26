@@ -45,7 +45,7 @@ class StorageManager {
     }
     
     // TODO: Подумать, как можно проверять объект, чтобы не перезаписывать повторяющиеся данные
-    private func save(_ object: UserProfileInfo, with fileName: String) {
+    fileprivate func save(_ object: UserProfileInfo, with fileName: String) {
         let url = getDocumentsDirectory().appendingPathComponent(fileName)
         
         do {
@@ -60,6 +60,7 @@ class StorageManager {
             // TODO: Либо убрать, либо сообщить пользователю о неудаче
             print(error.localizedDescription)
         }
+        print("storage - save!")
     }
     
     private func fetchObject(from fileName: String) -> UserProfileInfo? {
@@ -78,5 +79,86 @@ class StorageManager {
             print("No data at path \(url.path)")
         }
         return nil
+    }
+}
+
+// MARK: - Save User Info Operation
+class SaveUserInfoOperation: AsyncOperation {
+    private var object: UserProfileInfo
+    private var fileName: String
+    
+    init(object: UserProfileInfo, fileName: String) {
+        self.object = object
+        self.fileName = fileName
+        super.init()
+    }
+    
+    override func main() {
+        asyncSaveUserInfo(object: object, fileName: fileName)
+        state = .finished
+    }
+}
+
+// MARK: - Async Operation
+class AsyncOperation: Operation {
+    enum State: String {
+        case ready, executing, finished
+        
+        fileprivate var keyPath: String {
+            return "is" + rawValue.capitalized
+        }
+    }
+    
+    var state = State.ready {
+        willSet {
+            willChangeValue(forKey: newValue.keyPath)
+            willChangeValue(forKey: state.keyPath)
+        }
+        didSet {
+            didChangeValue(forKey: oldValue.keyPath)
+            didChangeValue(forKey: state.keyPath)
+        }
+    }
+    
+    func asyncSaveUserInfo(object: UserProfileInfo, fileName: String) {
+        let saveQueue = OperationQueue()
+        saveQueue.maxConcurrentOperationCount = 1
+        
+        saveQueue.addOperation {
+            StorageManager.shared.save(object, with: fileName)
+        }
+    }
+}
+
+extension AsyncOperation {
+    override var isReady: Bool {
+        return super.isReady && state == .ready
+    }
+    
+    override var isExecuting: Bool {
+        return state == .executing
+    }
+    
+    override var isFinished: Bool {
+        return state == .finished
+    }
+    
+    override var isAsynchronous: Bool {
+        return true
+    }
+    
+    override func start() {
+        if isCancelled {
+            state = .finished
+            return
+        }
+        
+        main()
+        state = .executing
+    }
+    
+    override func cancel() {
+        super.cancel()
+        state = .finished
     }
 }

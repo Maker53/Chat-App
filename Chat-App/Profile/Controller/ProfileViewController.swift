@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        StorageManager.shared.fetchViaGCD(from: Constants.userInfoNameFileForSave.rawValue) {
+        StorageManager.shared.fetchViaGCD(from: Constants.userInfoFileNameForSave) {
             self.userProfileInfo = $0
         }
     }
@@ -86,13 +86,27 @@ class ProfileViewController: UIViewController {
             // GCD
             StorageManager.shared.saveViaGCD(
                 with: userProfileInfo,
-                and: Constants.userInfoNameFileForSave.rawValue) {
+                and: Constants.userInfoFileNameForSave) {
                     self.activityIndicator.stopAnimating()
                     self.setUIWithEditState(state: .didSavingData)
                     self.presentSuccessSavingAlertController()
                 }
         } else {
             // Operations
+            let saveQueue = OperationQueue()
+            saveQueue.maxConcurrentOperationCount = 1
+            
+            let saveOperation = SaveUserInfoOperation(object: userProfileInfo, fileName: Constants.userInfoFileNameForSave)
+            
+            saveOperation.completionBlock = {
+                OperationQueue.main.addOperation {
+                    self.activityIndicator.stopAnimating()
+                    self.setUIWithEditState(state: .didSavingData)
+                    self.presentSuccessSavingAlertController()
+                }
+            }
+            
+            saveQueue.addOperation(saveOperation)
         }
     }
     

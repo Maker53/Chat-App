@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UINavigationController(rootViewController: conversationListViewController)
         window?.makeKeyAndVisible()
         
-        StorageManager.shared.fetchViaGCD(from: Constants.userInfoNameFileForSave.rawValue) {
+        StorageManager.shared.fetchViaGCD(from: Constants.userInfoFileNameForSave) {
             conversationListViewController.userProfileInfo = $0
         }
         
