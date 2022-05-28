@@ -31,7 +31,7 @@
 		85FDC99727D5F71100E57461 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */; };
 		85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99827D6566700E57461 /* ConversationListViewController.swift */; };
 		85FDC99E27D65B4400E57461 /* SetupConversationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99D27D65B4400E57461 /* SetupConversationTableView.swift */; };
-		85FDC9A227D661F600E57461 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9A127D661F600E57461 /* User.swift */; };
+		85FDC9A227D661F600E57461 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9A127D661F600E57461 /* Channel.swift */; };
 		85FDC9A427D6648300E57461 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9A327D6648300E57461 /* ConversationCell.swift */; };
 		85FDC9A927D6790400E57461 /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FDC9A827D6790400E57461 /* ConversationCell.xib */; };
 		85FDC9AD27D7A0C600E57461 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */; };
@@ -68,7 +68,7 @@
 		85FDC99627D5F71000E57461 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		85FDC99827D6566700E57461 /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		85FDC99D27D65B4400E57461 /* SetupConversationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupConversationTableView.swift; sourceTree = "<group>"; };
-		85FDC9A127D661F600E57461 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		85FDC9A127D661F600E57461 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		85FDC9A327D6648300E57461 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		85FDC9A827D6790400E57461 /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 		85FDC99F27D6615500E57461 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				85FDC9A127D661F600E57461 /* User.swift */,
+				85FDC9A127D661F600E57461 /* Channel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -433,7 +433,7 @@
 				85FDC9B427D7AFE200E57461 /* ConversationList + UITableViewDataSource.swift in Sources */,
 				85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */,
 				85FDC9B227D7A57500E57461 /* MessageCell.swift in Sources */,
-				85FDC9A227D661F600E57461 /* User.swift in Sources */,
+				85FDC9A227D661F600E57461 /* Channel.swift in Sources */,
 				8538FDA727E5BB2E003E79AB /* ConversationListDisplayDataParser.swift in Sources */,
 				85882B5127CDD4790081463E /* PHPicker.swift in Sources */,
 				85CC045927DDBB6600B9F8F0 /* SetupThemesViewController.swift in Sources */,
