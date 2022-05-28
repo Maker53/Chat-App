@@ -20,6 +20,8 @@
 		85882B4327CB87E90081463E /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4227CB87E80081463E /* AlertController.swift */; };
 		85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */; };
 		85882B5127CDD4790081463E /* PHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B5027CDD4770081463E /* PHPicker.swift */; };
+		85A548E628420643002BFEB1 /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A548E528420643002BFEB1 /* GoogleService-Info-2.plist */; };
+		85A548EB28420820002BFEB1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 85A548EA28420820002BFEB1 /* FirebaseFirestore */; };
 		85B7FF5527E60CC4000D33F6 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7FF5427E60CC3000D33F6 /* ThemeChanger.swift */; };
 		85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */; };
 		85CC045927DDBB6600B9F8F0 /* SetupThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045827DDBB6600B9F8F0 /* SetupThemesViewController.swift */; };
@@ -56,6 +58,7 @@
 		85882B4227CB87E80081463E /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseImagePicker.swift; sourceTree = "<group>"; };
 		85882B5027CDD4770081463E /* PHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPicker.swift; sourceTree = "<group>"; };
+		85A548E528420643002BFEB1 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		85B7FF5427E60CC3000D33F6 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		85CC045827DDBB6600B9F8F0 /* SetupThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupThemesViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85A548EB28420820002BFEB1 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +239,7 @@
 		85F9D82427C267B700466578 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				85A548E528420643002BFEB1 /* GoogleService-Info-2.plist */,
 				85574E39282FFB3C00607D52 /* Constants.swift */,
 				857847D627C12068005E176B /* Assets.xcassets */,
 				857847DB27C12068005E176B /* Info.plist */,
@@ -342,6 +347,9 @@
 			dependencies = (
 			);
 			name = "Chat-App";
+			packageProductDependencies = (
+				85A548EA28420820002BFEB1 /* FirebaseFirestore */,
+			);
 			productName = "Chat-App";
 			productReference = 857847CA27C12065005E176B /* Chat-App.app */;
 			productType = "com.apple.product-type.application";
@@ -370,6 +378,11 @@
 				Base,
 			);
 			mainGroup = 857847C127C12065005E176B;
+			packageReferences = (
+				85A548E72842066A002BFEB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				85A548E82842068E002BFEB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				85A548E928420820002BFEB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 857847CB27C12065005E176B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -386,6 +399,7 @@
 			files = (
 				857847E427C13E41005E176B /* .gitignore in Resources */,
 				8521B80827D7C2F100D03E4A /* IncomingMessageCell.xib in Resources */,
+				85A548E628420643002BFEB1 /* GoogleService-Info-2.plist in Resources */,
 				85FDC9B027D7A21200E57461 /* SentMessageCell.xib in Resources */,
 				857847DA27C12068005E176B /* LaunchScreen.storyboard in Resources */,
 				857847D727C12068005E176B /* Assets.xcassets in Resources */,
@@ -648,6 +662,41 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		85A548E72842066A002BFEB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		85A548E82842068E002BFEB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		85A548E928420820002BFEB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		85A548EA28420820002BFEB1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85A548E72842066A002BFEB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 857847C227C12065005E176B /* Project object */;
 }
