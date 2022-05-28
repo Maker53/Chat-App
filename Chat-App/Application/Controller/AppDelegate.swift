@@ -7,6 +7,7 @@
 
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        FirebaseApp.configure()
         
         let conversationListViewController = ConversationListViewController()
         window?.rootViewController = UINavigationController(rootViewController: conversationListViewController)
