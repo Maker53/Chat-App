@@ -10,6 +10,8 @@ import UIKit
 class ConversationViewController: UIViewController {
     // MARK: - UI
     lazy var messagesListTableView = UITableView(frame: .zero, style: .plain)
+    lazy var inputMessageTextField = UITextField()
+    lazy var sendMessageButton = UIButton()
     
     // MARK: - Public Properties
     var messages: [Message] = []
@@ -39,6 +41,6 @@ class ConversationViewController: UIViewController {
             forCellReuseIdentifier: MessageCell.identifierForIncomingCell
         )
         
-        messagesListTableView.dataSource = self
+        
     }
 }
