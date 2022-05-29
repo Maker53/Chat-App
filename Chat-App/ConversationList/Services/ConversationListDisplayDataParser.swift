@@ -16,17 +16,14 @@ class ConversationListDisplayDataParser {
         return dateFormatter
     }()
         
-    func getDisplayData(from data: User) -> DisplayData {
-        let name = data.fullname
-        var message = data.messages.last?.message
-        var date = data.messages.last?.date
-        let online = data.isOnline
-        var hasUnreadMessage = data.messages.last?.hasUnreadMessages ?? false
-        var dateString = ""
+    func getDisplayData(from data: Channel) -> DisplayData {
+        let name = data.name
+        var message = data.lastMessages
+        var date = data.lastActivity
+        var dateToString = ""
         
         if message == nil {
             date = nil
-            hasUnreadMessage = false
             message = "No messages yet"
         }
         
@@ -37,36 +34,17 @@ class ConversationListDisplayDataParser {
                 dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
             }
             
-            dateString = dateFormatter.string(from: date)
-        } else {
-            dateString = ""
+            dateToString = dateFormatter.string(from: date)
         }
         
-        let displayData = DisplayData(
-            name: name,
-            message: message,
-            date: dateString,
-            online: online,
-            hasUnreadMessages: hasUnreadMessage
-        )
+        let displayData = DisplayData(name: name, message: message, date: dateToString)
         
         return displayData
     }
 }
 
-class DisplayData {
-    
-    var name: String?
-    var message: String?
-    var date: String?
-    var online: Bool
-    var hasUnreadMessages: Bool
-    
-    init(name: String?, message: String?, date: String?, online: Bool, hasUnreadMessages: Bool) {
-        self.name = name
-        self.message = message
-        self.date = date
-        self.online = online
-        self.hasUnreadMessages = hasUnreadMessages
-    }
+struct DisplayData {
+    let name: String
+    let message: String?
+    let date: String?
 }

@@ -17,22 +17,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="323" height="71"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hu2-Br-3PR">
-                        <rect key="frame" x="16" y="8" width="225" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hu2-Br-3PR">
+                        <rect key="frame" x="16" y="8" width="205" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-a8-m90">
-                        <rect key="frame" x="257" y="8" width="50" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-a8-m90">
+                        <rect key="frame" x="237" y="8" width="70" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="2c5-9f-4vU"/>
+                            <constraint firstAttribute="width" constant="70" id="KPz-YI-tPE"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkV-gy-H0v">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="content" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkV-gy-H0v">
                         <rect key="frame" x="16" y="27" width="291" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -52,7 +52,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="fullNameLabel" destination="Hu2-Br-3PR" id="6g6-xQ-0hY"/>
+                <outlet property="conversationNameLabel" destination="Hu2-Br-3PR" id="6g6-xQ-0hY"/>
                 <outlet property="messageDateLabel" destination="9uV-a8-m90" id="2Kj-Ki-WDC"/>
                 <outlet property="messageTextLabel" destination="dkV-gy-H0v" id="twO-3m-3Tr"/>
                 <outlet property="view" destination="fbZ-dU-3GS" id="xwu-i5-AI4"/>
