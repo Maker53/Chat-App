@@ -18,5 +18,5 @@ struct Message {
     let content: String
     let created: Date
     let senderID: String
-    let senderName: Bool
+    let senderName: String
 }
