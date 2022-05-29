@@ -13,11 +13,15 @@ extension ConversationListViewController {
     func setupConversationListTableView() {
         view.addSubview(conversationListTableView)
         
-        title = "Tinkoff Chat"
+        title = "Channels"
+        
+        conversationListTableView.dataSource = self
+        conversationListTableView.delegate = self
         
         navigationItem.rightBarButtonItem = setupProfileBarButton()
         navigationItem.leftBarButtonItem = setupSettingsBarButton()
         
+        conversationListTableView.translatesAutoresizingMaskIntoConstraints = false
         conversationListTableView.rowHeight = UITableView.automaticDimension
         conversationListTableView.estimatedRowHeight = 52
         
@@ -27,8 +31,6 @@ extension ConversationListViewController {
             conversationListTableView.topAnchor.constraint(equalTo: view.topAnchor),
             conversationListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        conversationListTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     // MARK: - Setup Custom BarButtonItems
@@ -58,6 +60,7 @@ extension ConversationListViewController {
         return barItem
     }
     
+    // MARK: - Target Actions
     @objc private func profileButtonPressed() {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
