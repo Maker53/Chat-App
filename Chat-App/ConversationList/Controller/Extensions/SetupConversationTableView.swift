@@ -19,8 +19,14 @@ extension ConversationListViewController {
         conversationListTableView.dataSource = self
         conversationListTableView.delegate = self
         
-        navigationItem.rightBarButtonItems = [setupNewChannelBarButton(), setupProfileBarButton()]
-        navigationItem.leftBarButtonItem = setupSettingsBarButton()
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
+        let createChannelButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newChannelButtonPressed))
+        
+        editButton.tintColor = .systemGray
+        createChannelButton.tintColor = .systemGray
+        
+        navigationItem.rightBarButtonItems = [createChannelButton, setupProfileBarButton()]
+        navigationItem.leftBarButtonItems = [editButton, setupSettingsBarButton()]
         
         conversationListTableView.translatesAutoresizingMaskIntoConstraints = false
         conversationListTableView.rowHeight = UITableView.automaticDimension
@@ -61,14 +67,6 @@ extension ConversationListViewController {
         return barItem
     }
     
-    private func setupNewChannelBarButton() -> UIBarButtonItem {
-        let barButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newChannelButtonPressed))
-        
-        barButton.tintColor = .systemGray
-        
-        return barButton
-    }
-    
     // MARK: - Target Actions
     @objc private func profileButtonPressed() {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
@@ -87,22 +85,42 @@ extension ConversationListViewController {
     
     @objc private func newChannelButtonPressed() {
         let alert = UIAlertController(title: "Add new channel", message: nil, preferredStyle: .alert)
-        alert.addTextField()
-        alert.textFields?[0].placeholder = "Channel name"
-        
-        let createAction = UIAlertAction(title: "Create", style: .default) { _ in
-            // TODO: Add network service
-            if let channelName = alert.textFields?[0].text, !channelName.isEmpty {
-                self.reference.addDocument(data: ["name": channelName, "lastActivity": Timestamp(date: Date())])
-            } else {
-                self.reference.addDocument(data: ["name": "Empty", "lastActivity": Timestamp(date: Date())])
-            }
-        }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let createAction = UIAlertAction(title: "Create", style: .default) { _ in
+            // TODO: Add network service
+            self.reference.addDocument(data: ["name": alert.textFields![0].text!, "lastActivity": Timestamp(date: Date())])
+        }
+        
+        createAction.isEnabled = false
+        
+        alert.addTextField { textField in
+            textField.placeholder = "Channel name"
+            
+            NotificationCenter.default.addObserver(
+                forName: UITextField.textDidChangeNotification,
+                object: textField,
+                queue: OperationQueue.main)
+            { _ in
+                guard let inputText = textField.text else { return }
+                let textIsNotEmpty = !inputText.isEmpty
+                
+                createAction.isEnabled = textIsNotEmpty
+            }
+        }
         
         alert.addAction(createAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+    
+    @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
+        if !conversationListTableView.isEditing {
+            sender.title = "Done"
+            conversationListTableView.setEditing(true, animated: true)
+        } else {
+            sender.title = "Edit"
+            conversationListTableView.setEditing(false, animated: true)
+        }
     }
 }
