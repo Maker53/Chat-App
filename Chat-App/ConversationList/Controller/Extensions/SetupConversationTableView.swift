@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 extension ConversationListViewController {
     
@@ -18,7 +19,7 @@ extension ConversationListViewController {
         conversationListTableView.dataSource = self
         conversationListTableView.delegate = self
         
-        navigationItem.rightBarButtonItem = setupProfileBarButton()
+        navigationItem.rightBarButtonItems = [setupNewChannelBarButton(), setupProfileBarButton()]
         navigationItem.leftBarButtonItem = setupSettingsBarButton()
         
         conversationListTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,6 +61,14 @@ extension ConversationListViewController {
         return barItem
     }
     
+    private func setupNewChannelBarButton() -> UIBarButtonItem {
+        let barButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newChannelButtonPressed))
+        
+        barButton.tintColor = .systemGray
+        
+        return barButton
+    }
+    
     // MARK: - Target Actions
     @objc private func profileButtonPressed() {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
@@ -74,5 +83,26 @@ extension ConversationListViewController {
     @objc private func settingsButtonPressed() {
         let themesViewController = ThemesViewController()
         navigationController?.pushViewController(themesViewController, animated: true)
+    }
+    
+    @objc private func newChannelButtonPressed() {
+        let alert = UIAlertController(title: "Add new channel", message: nil, preferredStyle: .alert)
+        alert.addTextField()
+        alert.textFields?[0].placeholder = "Channel name"
+        
+        let createAction = UIAlertAction(title: "Create", style: .default) { _ in
+            // TODO: Add network service
+            if let channelName = alert.textFields?[0].text, !channelName.isEmpty {
+                self.reference.addDocument(data: ["name": channelName, "lastActivity": Timestamp(date: Date())])
+            } else {
+                self.reference.addDocument(data: ["name": "Empty", "lastActivity": Timestamp(date: Date())])
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(createAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 }
