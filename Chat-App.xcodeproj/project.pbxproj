@@ -19,6 +19,7 @@
 		857847DA27C12068005E176B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857847D827C12068005E176B /* LaunchScreen.storyboard */; };
 		857847E427C13E41005E176B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 857847E327C13E41005E176B /* .gitignore */; };
 		8585B868284DB2E9003EBBD8 /* Conversations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8585B866284DB2E9003EBBD8 /* Conversations.xcdatamodeld */; };
+		8585B86A284DB8B1003EBBD8 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B869284DB8B1003EBBD8 /* DataStoreManager.swift */; };
 		85882B4327CB87E90081463E /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4227CB87E80081463E /* AlertController.swift */; };
 		85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */; };
 		85882B5127CDD4790081463E /* PHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B5027CDD4770081463E /* PHPicker.swift */; };
@@ -59,6 +60,7 @@
 		857847DB27C12068005E176B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		857847E327C13E41005E176B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8585B867284DB2E9003EBBD8 /* Conversations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Conversations.xcdatamodel; sourceTree = "<group>"; };
+		8585B869284DB8B1003EBBD8 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataStoreManager.swift; path = ../../../../../Documents/DataStoreManager.swift; sourceTree = "<group>"; };
 		85882B4227CB87E80081463E /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseImagePicker.swift; sourceTree = "<group>"; };
 		85882B5027CDD4770081463E /* PHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPicker.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				85438E662844768C0093D9FB /* FirebaseService.swift */,
+				8585B869284DB8B1003EBBD8 /* DataStoreManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				85B7FF5527E60CC4000D33F6 /* ThemeChanger.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 				85FDC9B427D7AFE200E57461 /* ConversationList + UITableViewDataSource.swift in Sources */,
+				8585B86A284DB8B1003EBBD8 /* DataStoreManager.swift in Sources */,
 				85438E672844768C0093D9FB /* FirebaseService.swift in Sources */,
 				85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */,
 				85FDC9B227D7A57500E57461 /* MessageCell.swift in Sources */,
