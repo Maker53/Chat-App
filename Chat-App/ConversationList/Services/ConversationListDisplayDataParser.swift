@@ -15,27 +15,24 @@ class ConversationListDisplayDataParser {
         
         return dateFormatter
     }()
-        
+    
     func getDisplayData(from data: Channel) -> DisplayData {
         let name = data.name
         var message = data.lastMessages
-        var date = data.lastActivity
+        let date = data.lastActivity
         var dateToString = ""
         
         if message == nil {
-            date = nil
             message = "No messages yet"
         }
         
-        if let date = date {
-            if Calendar.current.isDateInToday(date) {
-                dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            } else {
-                dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
-            }
-            
-            dateToString = dateFormatter.string(from: date)
+        if Calendar.current.isDateInToday(date) {
+            dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
+        } else {
+            dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
         }
+        
+        dateToString = dateFormatter.string(from: date)
         
         let displayData = DisplayData(name: name, message: message, date: dateToString)
         

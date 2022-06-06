@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct Channel {
     let identifier: String
     let name: String
     let lastMessages: String?
-    let lastActivity: Date?
+    let lastActivity: Date
 }
 
 struct Message {
@@ -19,4 +20,13 @@ struct Message {
     let created: Date
     let senderID: String
     let senderName: String
+}
+
+extension Message {
+    var toDict: [String: Any] {
+        ["content": content,
+         "created": Timestamp(date: created),
+         "senderID": senderID,
+         "senderName": senderName]
+    }
 }

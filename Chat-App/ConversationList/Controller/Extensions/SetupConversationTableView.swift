@@ -88,8 +88,8 @@ extension ConversationListViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let createAction = UIAlertAction(title: "Create", style: .default) { _ in
-            // TODO: Add network service
-            self.reference.addDocument(data: ["name": alert.textFields![0].text!, "lastActivity": Timestamp(date: Date())])
+            let name = alert.textFields![0].text!
+            FirebaseService.shared.addChannel(withName: name)
         }
         
         createAction.isEnabled = false

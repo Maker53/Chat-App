@@ -14,6 +14,7 @@ class ConversationViewController: UIViewController {
     lazy var sendMessageButton = UIButton()
     
     // MARK: - Public Properties
+    var channelID: String!
     var messages: [Message] = []
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -41,6 +42,20 @@ class ConversationViewController: UIViewController {
             forCellReuseIdentifier: MessageCell.identifierForIncomingCell
         )
         
+        FirebaseService.shared.getMessages(byPath: channelID) { [weak self] messages in
+            guard let self = self else { return }
+            self.messages = messages
+            self.messagesListTableView.reloadData()
+        }
+    }
+}
+
+extension ConversationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        sendMessage()
+        textField.text = ""
         
+        return true
     }
 }

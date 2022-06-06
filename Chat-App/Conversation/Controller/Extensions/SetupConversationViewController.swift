@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 // MARK: - Setup Conversation View Controller
 extension ConversationViewController {
@@ -18,9 +19,24 @@ extension ConversationViewController {
         messagesListTableView.translatesAutoresizingMaskIntoConstraints = false
         messagesListTableView.separatorStyle = .none
         messagesListTableView.allowsSelection = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(touch))
+        messagesListTableView.addGestureRecognizer(tap)
         
         inputMessageTextField.borderStyle = .roundedRect
         inputMessageTextField.translatesAutoresizingMaskIntoConstraints = false
+        inputMessageTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: inputMessageTextField,
+            queue: OperationQueue.main)
+        { [weak self] _ in
+            guard let self = self else { return }
+            guard let inputText = self.inputMessageTextField.text else { return }
+            let textIsNotEmpty = !inputText.isEmpty
+            
+            self.sendMessageButton.isEnabled = textIsNotEmpty
+        }
         
         if let buttonImage = UIImage(systemName: "arrow.up") {
             sendMessageButton = .systemButton(with: buttonImage, target: self, action: #selector(sendMessage))
@@ -48,8 +64,14 @@ extension ConversationViewController {
         ])
     }
     
-    @objc private func sendMessage() {
+    @objc func sendMessage() {
+        guard let content = inputMessageTextField.text, !content.isEmpty else { return }
         
+        FirebaseService.shared.sendMessage(withContent: content, byPath: channelID)
+    }
+    
+    @objc private func touch() {
+        view.endEditing(true)
     }
 }
 

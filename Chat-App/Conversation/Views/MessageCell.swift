@@ -11,6 +11,7 @@ class MessageCell: UITableViewCell {
     // MARK: - IB Outlets
     @IBOutlet weak var incomingMessageBackground: UIView!
     @IBOutlet weak var sentMessageBackground: UIView!
+    @IBOutlet weak var incomingNameLabel: UILabel!
     @IBOutlet weak var incomingMessageTextLabel: UILabel!
     @IBOutlet weak var sentMessageTextLabel: UILabel!
     
@@ -18,11 +19,12 @@ class MessageCell: UITableViewCell {
     static let identifierForSentCell = "sentCell"
     static let identifierForIncomingCell = "incomingCell"
     
-    func configure(withIncomingMessage message: Message) {
-        if message.isIncomingMessage {
-            incomingMessageTextLabel?.text = message.message
+    func configure(withMessage message: Message) {
+        if message.senderID == Constants.myID {
+            sentMessageTextLabel.text = message.content
         } else {
-            sentMessageTextLabel.text = message.message
+            incomingMessageTextLabel.text = message.content
+            incomingNameLabel.text = message.senderName
         }
     }
 }
