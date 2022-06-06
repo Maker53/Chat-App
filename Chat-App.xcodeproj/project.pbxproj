@@ -18,6 +18,7 @@
 		857847D727C12068005E176B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857847D627C12068005E176B /* Assets.xcassets */; };
 		857847DA27C12068005E176B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857847D827C12068005E176B /* LaunchScreen.storyboard */; };
 		857847E427C13E41005E176B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 857847E327C13E41005E176B /* .gitignore */; };
+		8585B868284DB2E9003EBBD8 /* Conversations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8585B866284DB2E9003EBBD8 /* Conversations.xcdatamodeld */; };
 		85882B4327CB87E90081463E /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4227CB87E80081463E /* AlertController.swift */; };
 		85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */; };
 		85882B5127CDD4790081463E /* PHPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85882B5027CDD4770081463E /* PHPicker.swift */; };
@@ -57,6 +58,7 @@
 		857847D927C12068005E176B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		857847DB27C12068005E176B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		857847E327C13E41005E176B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8585B867284DB2E9003EBBD8 /* Conversations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Conversations.xcdatamodel; sourceTree = "<group>"; };
 		85882B4227CB87E80081463E /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		85882B4E27CBE7C50081463E /* ChooseImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseImagePicker.swift; sourceTree = "<group>"; };
 		85882B5027CDD4770081463E /* PHPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPicker.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				85574E39282FFB3C00607D52 /* Constants.swift */,
 				857847D627C12068005E176B /* Assets.xcassets */,
 				857847DB27C12068005E176B /* Info.plist */,
+				8585B866284DB2E9003EBBD8 /* Conversations.xcdatamodeld */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				85FDC99E27D65B4400E57461 /* SetupConversationTableView.swift in Sources */,
 				85882B4F27CBE7C50081463E /* ChooseImagePicker.swift in Sources */,
 				857847D227C12065005E176B /* ProfileViewController.swift in Sources */,
+				8585B868284DB2E9003EBBD8 /* Conversations.xcdatamodeld in Sources */,
 				85882B4327CB87E90081463E /* AlertController.swift in Sources */,
 				85B7FF5527E60CC4000D33F6 /* ThemeChanger.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
@@ -709,6 +713,19 @@
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		8585B866284DB2E9003EBBD8 /* Conversations.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8585B867284DB2E9003EBBD8 /* Conversations.xcdatamodel */,
+			);
+			currentVersion = 8585B867284DB2E9003EBBD8 /* Conversations.xcdatamodel */;
+			path = Conversations.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 857847C227C12065005E176B /* Project object */;
 }
