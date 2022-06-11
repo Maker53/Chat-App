@@ -14,9 +14,9 @@ class FirebaseService {
     // MARK: - Private Methods
     private lazy var channelsReference = Firestore.firestore().collection("channels")
     private var userName: String {
-        var name = ""
+        var name = "Test name"
         
-        StorageManager.shared.fetchViaGCD(from: Constants.userInfoFileNameForSave) { name = $0?.name ?? "" }
+//        StorageManager.shared.fetchViaGCD(from: Constants.userInfoFileNameForSave) { name = $0?.name ?? "" }
         
         return name
     }
@@ -92,7 +92,7 @@ class FirebaseService {
         let message = Message(content: content, created: Date(), senderID: id, senderName: userName)
         
         channelsReference.document(path).collection("messages").addDocument(data: message.toDict)
-        channelsReference.document(path).updateData(["lastMessage": content])
+        channelsReference.document(path).updateData(["lastMessage": content, "lastActivity": Timestamp(date: Date())])
     }
     
     func addChannel(withName name: String) {

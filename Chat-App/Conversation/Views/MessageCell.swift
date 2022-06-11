@@ -14,17 +14,21 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var incomingNameLabel: UILabel!
     @IBOutlet weak var incomingMessageTextLabel: UILabel!
     @IBOutlet weak var sentMessageTextLabel: UILabel!
+    @IBOutlet weak var timeSentMessage: UILabel!
+    @IBOutlet weak var incomingTimeMesage: UILabel!
     
     // MARK: - Public Properties
     static let identifierForSentCell = "sentCell"
     static let identifierForIncomingCell = "incomingCell"
     
-    func configure(withMessage message: Message) {
-        if message.senderID == Constants.myID {
-            sentMessageTextLabel.text = message.content
+    func configure(withDisplayData data: DisplayConversationData) {
+        if data.senderID == Constants.myID {
+            sentMessageTextLabel.text = data.message
+            timeSentMessage.text = data.date
         } else {
-            incomingMessageTextLabel.text = message.content
-            incomingNameLabel.text = message.senderName
+            incomingMessageTextLabel.text = data.message
+            incomingNameLabel.text = data.name
+            incomingTimeMesage.text = data.date
         }
     }
 }

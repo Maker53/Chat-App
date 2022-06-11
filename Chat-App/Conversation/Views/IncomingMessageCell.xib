@@ -21,13 +21,22 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pam-Uz-sjD">
                                 <rect key="frame" x="8" y="3" width="294.5" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="DRU-09-LgU"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dc-ey-nuf">
-                                <rect key="frame" x="8" y="24" width="294.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dc-ey-nuf">
+                                <rect key="frame" x="8" y="24" width="294.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faq-OW-KEU">
+                                <rect key="frame" x="275.5" y="46.5" width="30" height="6.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -37,10 +46,12 @@
                             <constraint firstItem="Pam-Uz-sjD" firstAttribute="top" secondItem="0Hx-Y7-fcn" secondAttribute="top" constant="3" id="CNH-LF-e5l"/>
                             <constraint firstAttribute="trailing" secondItem="4Dc-ey-nuf" secondAttribute="trailing" constant="8" id="FBy-ip-07W"/>
                             <constraint firstItem="4Dc-ey-nuf" firstAttribute="leading" secondItem="0Hx-Y7-fcn" secondAttribute="leading" constant="8" id="G1k-7v-ywD"/>
-                            <constraint firstAttribute="bottom" secondItem="4Dc-ey-nuf" secondAttribute="bottom" constant="8" id="YEY-VX-ZrF"/>
+                            <constraint firstItem="faq-OW-KEU" firstAttribute="top" secondItem="4Dc-ey-nuf" secondAttribute="bottom" constant="3" id="YEY-VX-ZrF"/>
                             <constraint firstAttribute="trailing" secondItem="Pam-Uz-sjD" secondAttribute="trailing" constant="8" id="Yap-gn-ZuR"/>
+                            <constraint firstAttribute="bottom" secondItem="faq-OW-KEU" secondAttribute="bottom" constant="3" id="bZl-cJ-COk"/>
                             <constraint firstItem="4Dc-ey-nuf" firstAttribute="top" secondItem="Pam-Uz-sjD" secondAttribute="bottom" constant="5" id="cYG-5d-8tf"/>
                             <constraint firstItem="Pam-Uz-sjD" firstAttribute="leading" secondItem="0Hx-Y7-fcn" secondAttribute="leading" constant="8" id="rs4-XT-F7b"/>
+                            <constraint firstAttribute="trailing" secondItem="faq-OW-KEU" secondAttribute="trailing" constant="5" id="wJc-8P-5YG"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -60,6 +71,7 @@
                 <outlet property="incomingMessageBackground" destination="0Hx-Y7-fcn" id="Lhm-JX-cIW"/>
                 <outlet property="incomingMessageTextLabel" destination="4Dc-ey-nuf" id="vup-Rh-cQw"/>
                 <outlet property="incomingNameLabel" destination="Pam-Uz-sjD" id="Fgz-aF-yd7"/>
+                <outlet property="incomingTimeMesage" destination="faq-OW-KEU" id="K1d-8K-ns3"/>
             </connections>
             <point key="canvasLocation" x="166.66666666666669" y="86.383928571428569"/>
         </tableViewCell>

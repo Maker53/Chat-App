@@ -19,9 +19,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P88-7c-Pu5">
                         <rect key="frame" x="87.5" y="16" width="310.5" height="56"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iha-hJ-f0P">
-                                <rect key="frame" x="8" y="8" width="294.5" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iha-hJ-f0P">
+                                <rect key="frame" x="8" y="8" width="294.5" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lr-5f-f8Z">
+                                <rect key="frame" x="275.5" y="37" width="30" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -29,8 +35,10 @@
                         <color key="backgroundColor" red="0.86163407560000005" green="0.96885460619999997" blue="0.77038562300000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Iha-hJ-f0P" firstAttribute="top" secondItem="P88-7c-Pu5" secondAttribute="top" constant="8" id="1PN-Nw-Mc9"/>
+                            <constraint firstAttribute="bottom" secondItem="3Lr-5f-f8Z" secondAttribute="bottom" constant="3" id="AmA-M4-4Me"/>
                             <constraint firstItem="Iha-hJ-f0P" firstAttribute="leading" secondItem="P88-7c-Pu5" secondAttribute="leading" constant="8" id="AyD-HE-dl5"/>
-                            <constraint firstAttribute="bottom" secondItem="Iha-hJ-f0P" secondAttribute="bottom" constant="8" id="CBl-y6-ZVC"/>
+                            <constraint firstItem="3Lr-5f-f8Z" firstAttribute="top" secondItem="Iha-hJ-f0P" secondAttribute="bottom" constant="3" id="CBl-y6-ZVC"/>
+                            <constraint firstAttribute="trailing" secondItem="3Lr-5f-f8Z" secondAttribute="trailing" constant="5" id="cM8-aW-x0n"/>
                             <constraint firstAttribute="trailing" secondItem="Iha-hJ-f0P" secondAttribute="trailing" constant="8" id="jfP-0k-uaL"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -50,6 +58,7 @@
             <connections>
                 <outlet property="sentMessageBackground" destination="P88-7c-Pu5" id="AHZ-lI-6ON"/>
                 <outlet property="sentMessageTextLabel" destination="Iha-hJ-f0P" id="8N0-ha-CNw"/>
+                <outlet property="timeSentMessage" destination="3Lr-5f-f8Z" id="y7T-jQ-sNe"/>
             </connections>
             <point key="canvasLocation" x="166.66666666666669" y="86.383928571428569"/>
         </tableViewCell>

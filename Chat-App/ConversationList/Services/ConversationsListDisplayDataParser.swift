@@ -20,7 +20,7 @@ class ConversationsListDisplayDataParser {
         let name = data.name
         var message = data.lastMessages
         let date = data.lastActivity
-        var dateToString: String
+        let stringDate: String
         
         if message == nil {
             message = "No messages yet"
@@ -32,9 +32,9 @@ class ConversationsListDisplayDataParser {
             dateFormatter.setLocalizedDateFormatFromTemplate("dd MMM")
         }
         
-        dateToString = dateFormatter.string(from: date)
+        stringDate = dateFormatter.string(from: date)
         
-        let displayData = DisplayData(name: name, message: message, date: dateToString)
+        let displayData = DisplayData(name: name, message: message, date: stringDate)
         
         return displayData
     }

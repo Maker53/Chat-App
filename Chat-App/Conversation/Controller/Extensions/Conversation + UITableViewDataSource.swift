@@ -14,6 +14,7 @@ extension ConversationViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
+        let displayDataParser = ConversationDisplayDataParser()
         
         if message.senderID == Constants.myID {
             let sentCell = tableView.dequeueReusableCell(
@@ -22,8 +23,9 @@ extension ConversationViewController: UITableViewDataSource {
             )
             
             guard let messageCell = sentCell as? MessageCell else { return sentCell }
+            let displayData = displayDataParser.getDisplayData(from: message)
             
-            messageCell.configure(withMessage: message)
+            messageCell.configure(withDisplayData: displayData)
             
             return messageCell
         } else {
@@ -33,8 +35,9 @@ extension ConversationViewController: UITableViewDataSource {
             )
             
             guard let messageCell = incomingCell as? MessageCell else { return incomingCell }
+            let displayData = displayDataParser.getDisplayData(from: message)
             
-            messageCell.configure(withMessage: message)
+            messageCell.configure(withDisplayData: displayData)
             
             return messageCell
         }
