@@ -9,12 +9,12 @@ import UIKit
 
 class ConversationCell: UITableViewCell {
     // MARK: - IB Outlets
-    @IBOutlet weak var view: UIView!
-    @IBOutlet weak var conversationNameLabel: UILabel?
-    @IBOutlet weak var messageTextLabel: UILabel?
-    @IBOutlet weak var messageDateLabel: UILabel?
+    @IBOutlet private weak var view: UIView!
+    @IBOutlet private weak var conversationNameLabel: UILabel?
+    @IBOutlet private weak var messageTextLabel: UILabel?
+    @IBOutlet private weak var messageDateLabel: UILabel?
     
-    // MARK: - Public Properties
+    // MARK: - Cell Identifier
     static let identifier = String(describing: ConversationCell.self)
     
     // MARK: - Public Methods

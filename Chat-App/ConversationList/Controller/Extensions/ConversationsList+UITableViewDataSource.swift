@@ -1,5 +1,5 @@
 //
-//  ConversationList + UITableViewDataSource.swift
+//  ConversationsList+UITableViewDataSource.swift
 //  Chat-App
 //
 //  Created by Станислав on 08.03.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension ConversationListViewController: UITableViewDataSource {
+extension ConversationsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         channels.count
     }
@@ -20,7 +20,7 @@ extension ConversationListViewController: UITableViewDataSource {
         
         guard let conversationCell = cell as? ConversationCell else { return cell }
         let channel = channels[indexPath.row]
-        let displayData = ConversationListDisplayDataParser().getDisplayData(from: channel)
+        let displayData = ConversationsListDisplayDataParser().getDisplayData(from: channel)
         
         conversationCell.configure(with: displayData)
         

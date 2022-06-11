@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        let conversationListViewController = ConversationListViewController()
+        let conversationListViewController = ConversationsListViewController()
         window?.rootViewController = UINavigationController(rootViewController: conversationListViewController)
         window?.makeKeyAndVisible()
         
