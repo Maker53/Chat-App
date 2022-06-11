@@ -29,12 +29,8 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
                 if let image = object as? UIImage {
-                    
                     DispatchQueue.main.async {
-                        self.profileImage.image = image
-                        
-                        self.setUIWithEditState(state: .willEditing)
-                        self.setUIWithEditState(state: .hasChange)
+                        self.mainView?.userImageView.image = image
                     }
                 }
             }

@@ -15,7 +15,6 @@ class ConversationListViewController: UIViewController {
     // MARK: - Public Properties
     let displayData = ConversationListDisplayDataParser()
     var channels: [Channel] = []
-    var userProfileInfo: UserProfileInfo!
     
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -33,5 +32,9 @@ class ConversationListViewController: UIViewController {
             self.channels = channels
             self.conversationListTableView.reloadData()
         }
+        
+//        DataStoreManager.shared.save { context in
+//            DBChannel(context: context)
+//        }
     }
 }

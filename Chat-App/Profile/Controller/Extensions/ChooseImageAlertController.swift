@@ -1,5 +1,5 @@
 //
-//  AlertController.swift
+//  ChooseImageAlertController.swift.swift
 //  Chat-App
 //
 //  Created by Станислав on 27.02.2022.
@@ -47,10 +47,7 @@ extension ProfileViewController {
     
     func presentSuccessSavingAlertController() {
         let alertController = UIAlertController(title: "Data saved", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.setUIWithEditState(state: .didEditing)
-        }
+        let okAction = UIAlertAction(title: "Ok", style: .default)
         
         alertController.addAction(okAction)
         

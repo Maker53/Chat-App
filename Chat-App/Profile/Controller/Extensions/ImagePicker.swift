@@ -1,5 +1,5 @@
 //
-//  ChooseImagePicker.swift
+//  ImagePicker.swift.swift
 //  Chat-App
 //
 //  Created by Станислав on 27.02.2022.
@@ -21,14 +21,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     // iOS 13.0
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // TODO: убрать с main потока
-        if let image = info[.originalImage] as? UIImage {
-            
-            DispatchQueue.main.async {
-                self.profileImage.image = image
-                
-                self.setUIWithEditState(state: .willEditing)
-                self.setUIWithEditState(state: .hasChange)
+        DispatchQueue.global().async {
+            if let image = info[.originalImage] as? UIImage {
+                DispatchQueue.main.async {
+                    self.mainView?.userImageView.image = image
+                }
             }
         }
         

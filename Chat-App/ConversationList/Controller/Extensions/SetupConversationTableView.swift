@@ -69,11 +69,7 @@ extension ConversationListViewController {
     
     // MARK: - Target Actions
     @objc private func profileButtonPressed() {
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC")
-        guard let profileViewController = viewController as? ProfileViewController else { return }
-        profileViewController.userProfileInfo = self.userProfileInfo
-        
+        let profileViewController = ProfileViewController()
         let navigationController = UINavigationController(rootViewController: profileViewController)
         present(navigationController, animated: true)
     }
