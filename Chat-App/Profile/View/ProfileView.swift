@@ -16,7 +16,8 @@ class ProfileView: UIView {
     // MARK: - Visual Components
     lazy var userImageView: UIImageView = {
        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
+        view.layer.masksToBounds = true
         view.backgroundColor = .systemYellow
         view.translatesAutoresizingMaskIntoConstraints = false
         

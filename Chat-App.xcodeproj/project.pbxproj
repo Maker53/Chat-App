@@ -18,7 +18,6 @@
 		857847DA27C12068005E176B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857847D827C12068005E176B /* LaunchScreen.storyboard */; };
 		857847E427C13E41005E176B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 857847E327C13E41005E176B /* .gitignore */; };
 		8585B868284DB2E9003EBBD8 /* Conversations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8585B866284DB2E9003EBBD8 /* Conversations.xcdatamodeld */; };
-		8585B86A284DB8B1003EBBD8 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B869284DB8B1003EBBD8 /* DataStoreManager.swift */; };
 		8585B86C285106CC003EBBD8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B86B285106CC003EBBD8 /* ProfileView.swift */; };
 		8585B86E2851AC90003EBBD8 /* ProfileViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B86D2851AC90003EBBD8 /* ProfileViewDelegate.swift */; };
 		8585B8702851B6E2003EBBD8 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8585B86F2851B6E1003EBBD8 /* UIViewController+HideKeyboard.swift */; };
@@ -60,7 +59,6 @@
 		857847DB27C12068005E176B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		857847E327C13E41005E176B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8585B867284DB2E9003EBBD8 /* Conversations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Conversations.xcdatamodel; sourceTree = "<group>"; };
-		8585B869284DB8B1003EBBD8 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataStoreManager.swift; path = ../../../../../Documents/DataStoreManager.swift; sourceTree = "<group>"; };
 		8585B86B285106CC003EBBD8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		8585B86D2851AC90003EBBD8 /* ProfileViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewDelegate.swift; sourceTree = "<group>"; };
 		8585B86F2851B6E1003EBBD8 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				85438E662844768C0093D9FB /* FirebaseService.swift */,
-				8585B869284DB8B1003EBBD8 /* DataStoreManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -452,7 +449,6 @@
 				85B7FF5527E60CC4000D33F6 /* ThemeChanger.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 				85FDC9B427D7AFE200E57461 /* ConversationList + UITableViewDataSource.swift in Sources */,
-				8585B86A284DB8B1003EBBD8 /* DataStoreManager.swift in Sources */,
 				85438E672844768C0093D9FB /* FirebaseService.swift in Sources */,
 				85FDC99927D6566700E57461 /* ConversationListViewController.swift in Sources */,
 				85FDC9B227D7A57500E57461 /* MessageCell.swift in Sources */,
@@ -611,7 +607,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -641,7 +637,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
