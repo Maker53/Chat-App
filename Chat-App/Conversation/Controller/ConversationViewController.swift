@@ -8,15 +8,16 @@
 import UIKit
 
 class ConversationViewController: UIViewController {
-    // MARK: - UI
-    lazy var messagesListTableView = UITableView(frame: .zero, style: .plain)
-    lazy var inputMessageTextField = UITextField()
-    lazy var sendMessageButton = UIButton()
+    // MARK: - Visual Components
+    var mainView: ConversationView? {
+        view as? ConversationView
+    }
     
     // MARK: - Public Properties
+    lazy var displayDataParser = ConversationDisplayDataParser()
     var channelID: String!
-    var messages: [Message] = []
-    let dateFormatter: DateFormatter = {
+    var messages: [Message]?
+    lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         
         dateFormatter.locale = Locale(identifier: "en_RU")
@@ -26,34 +27,32 @@ class ConversationViewController: UIViewController {
     }()
     
     // MARK: - Override Methods
+    override func loadView() {
+        super.loadView()
+        
+        view = ConversationView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupConversationViewController()
-        //TODO: Установить тему 
+        mainView?.tableView.dataSource = self
         
-        messagesListTableView.register(
-            UINib(nibName: "SentMessageCell", bundle: nil),
-            forCellReuseIdentifier: MessageCell.identifierForSentCell
-        )
-        
-        messagesListTableView.register(
-            UINib(nibName: "IncomingMessageCell", bundle: nil),
-            forCellReuseIdentifier: MessageCell.identifierForIncomingCell
-        )
+        hideKeyboardWhenTappedAround()        
         
         FirebaseService.shared.getMessages(byPath: channelID) { [weak self] messages in
             guard let self = self else { return }
             self.messages = messages
-            self.messagesListTableView.reloadData()
+            self.mainView?.tableView.reloadData()
         }
     }
 }
 
+// TODO: Убрать этот метод и в ConversationView создать протокол и здесь его реализовать
 extension ConversationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        sendMessage()
+//        sendMessage()
         textField.text = ""
         
         return true

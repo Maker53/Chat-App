@@ -16,6 +16,7 @@ class ProfileView: UIView {
     // MARK: - Visual Components
     lazy var userImageView: UIImageView = {
        let view = UIImageView()
+        
         view.contentMode = .scaleAspectFill
         view.layer.masksToBounds = true
         view.backgroundColor = .systemYellow
@@ -26,6 +27,7 @@ class ProfileView: UIView {
     
     lazy var editImageButton: UIButton = {
         let button = UIButton(type: .system)
+        
         button.setTitle("Edit", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +37,7 @@ class ProfileView: UIView {
     
     lazy var userNameTextField: UITextField = {
        let field = UITextField()
+        
         field.font = .systemFont(ofSize: 24, weight: .bold)
         field.placeholder = "Full name"
         field.clearButtonMode = .whileEditing
@@ -46,6 +49,7 @@ class ProfileView: UIView {
     
     lazy var descriptionTextView: UITextView = {
        let textView = UITextView()
+        
         textView.font = .systemFont(ofSize: 16)
         textView.textAlignment = .center
         textView.text = "About me"
@@ -56,6 +60,7 @@ class ProfileView: UIView {
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
+        
         indicator.style = .large
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -65,6 +70,7 @@ class ProfileView: UIView {
     
     lazy var editButton: UIButton = {
         let button = UIButton(type: .system)
+        
         button.setTitle("Edit", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
         button.layer.cornerRadius = 10
@@ -76,6 +82,7 @@ class ProfileView: UIView {
     
     lazy var gcdButton: UIButton = {
         let button = UIButton(type: .system)
+        
         button.setTitle("Save GCD", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
         button.layer.cornerRadius = 10
@@ -87,6 +94,7 @@ class ProfileView: UIView {
     
     lazy var operationButton: UIButton = {
         let button = UIButton(type: .system)
+        
         button.setTitle("Save Operation", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
         button.layer.cornerRadius = 10
@@ -98,6 +106,7 @@ class ProfileView: UIView {
     
     lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
+        
         button.setTitle("Cancel", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
         button.layer.cornerRadius = 10
@@ -116,16 +125,7 @@ class ProfileView: UIView {
         
         backgroundColor = .systemBackground
         
-        addSubview(userImageView)
-        addSubview(editImageButton)
-        addSubview(userNameTextField)
-        addSubview(descriptionTextView)
-        descriptionTextView.addSubview(activityIndicator)
-        addSubview(editButton)
-        addSubview(gcdButton)
-        addSubview(operationButton)
-        addSubview(cancelButton)
-        
+        addSubviews()
         addTargets()
         setupConstraints()
     }
@@ -135,6 +135,18 @@ class ProfileView: UIView {
     }
     
     // MARK: - Private Methods
+    private func addSubviews() {
+        addSubview(userImageView)
+        addSubview(editImageButton)
+        addSubview(userNameTextField)
+        addSubview(descriptionTextView)
+        descriptionTextView.addSubview(activityIndicator)
+        addSubview(editButton)
+        addSubview(gcdButton)
+        addSubview(operationButton)
+        addSubview(cancelButton)
+    }
+    
     private func addTargets() {
         editImageButton.addTarget(self, action: #selector(editImageButtonAction), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)

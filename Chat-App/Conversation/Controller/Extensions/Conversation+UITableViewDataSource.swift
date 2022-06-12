@@ -1,5 +1,5 @@
 //
-//  Conversation + UITableViewDataSource.swift.swift
+//  Conversation+UITableViewDataSource.swift.swift
 //  Chat-App
 //
 //  Created by Станислав on 08.03.2022.
@@ -9,12 +9,12 @@ import UIKit
 
 extension ConversationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messages.count
+        messages?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let messages = messages else { return UITableViewCell() }
         let message = messages[indexPath.row]
-        let displayDataParser = ConversationDisplayDataParser()
         
         if message.senderID == Constants.myID {
             let sentCell = tableView.dequeueReusableCell(
