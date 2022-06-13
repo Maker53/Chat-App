@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController {
         
         setupNavigationBar()
         hideKeyboardWhenTappedAround()
+        updateTheme()
     }
     
     override func viewDidLayoutSubviews() {
@@ -45,5 +46,17 @@ extension ProfileViewController {
     // MARK: - Target Actions Methods
     @objc private func closeProfileViewAction() {
         dismiss(animated: true)
+    }
+}
+
+extension ProfileViewController: ThemeServiceDelegate {
+    func updateTheme() {
+        let themeDesign = ThemeService().getCurrentThemeDesign()
+        
+        mainView?.backgroundColor = themeDesign.backgroundColor
+        mainView?.cancelButton.backgroundColor = themeDesign.buttonBackgroundColor
+        mainView?.editButton.backgroundColor = themeDesign.buttonBackgroundColor
+        mainView?.gcdButton.backgroundColor = themeDesign.buttonBackgroundColor
+        mainView?.operationButton.backgroundColor = themeDesign.buttonBackgroundColor
     }
 }

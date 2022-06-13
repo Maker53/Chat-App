@@ -14,6 +14,7 @@ extension ConversationsListViewController: UITableViewDelegate {
         
         let conversationVC = ConversationViewController()
         conversationVC.channelID = channels[indexPath.row].identifier
+        conversationVC.title = channels[indexPath.row].name
         
         navigationController?.pushViewController(conversationVC, animated: true)
     }

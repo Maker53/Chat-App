@@ -9,8 +9,8 @@ import UIKit
 
 class ConversationView: UIView {
     // MARK: - Visual Components
-    var backgroundViewBottomConstraint: NSLayoutConstraint?
-    var messageTextViewHeightConstraint: NSLayoutConstraint?
+    private var backgroundViewBottomConstraint: NSLayoutConstraint?
+    private var messageTextViewHeightConstraint: NSLayoutConstraint?
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -21,8 +21,8 @@ class ConversationView: UIView {
         tableView.allowsSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(
-            UINib(nibName: "SentMessageCell", bundle: nil),
-            forCellReuseIdentifier: MessageCell.identifierForSentCell
+            UINib(nibName: "OutgoingMessageCell", bundle: nil),
+            forCellReuseIdentifier: MessageCell.identifierForOutgoingCell
         )
         tableView.register(
             UINib(nibName: "IncomingMessageCell", bundle: nil),
@@ -37,6 +37,8 @@ class ConversationView: UIView {
         
         textView.isScrollEnabled = false
         textView.font = .systemFont(ofSize: 18)
+        textView.layer.borderWidth = 0.5
+        textView.layer.borderColor = UIColor.systemGray3.cgColor
         textView.layer.cornerRadius = 10
         textView.showsHorizontalScrollIndicator = false
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +109,7 @@ extension ConversationView {
         let tableViewConstraints = [
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: backgroundView.topAnchor)
         ]
         

@@ -39,7 +39,9 @@ class ProfileView: UIView {
        let field = UITextField()
         
         field.font = .systemFont(ofSize: 24, weight: .bold)
-        field.placeholder = "Full name"
+        field.attributedPlaceholder = NSAttributedString(
+            string: "Full name",
+            attributes: [.foregroundColor: UIColor.systemGray2])
         field.clearButtonMode = .whileEditing
         field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -122,8 +124,6 @@ class ProfileView: UIView {
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .systemBackground
         
         addSubviews()
         addTargets()

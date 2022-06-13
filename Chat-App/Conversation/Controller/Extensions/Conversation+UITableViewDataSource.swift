@@ -17,12 +17,12 @@ extension ConversationViewController: UITableViewDataSource {
         let message = messages[indexPath.row]
         
         if message.senderID == Constants.myID {
-            let sentCell = tableView.dequeueReusableCell(
-                withIdentifier: MessageCell.identifierForSentCell,
+            let outgoingCell = tableView.dequeueReusableCell(
+                withIdentifier: MessageCell.identifierForOutgoingCell,
                 for: indexPath
             )
             
-            guard let messageCell = sentCell as? MessageCell else { return sentCell }
+            guard let messageCell = outgoingCell as? MessageCell else { return outgoingCell }
             let displayData = displayDataParser.getDisplayData(from: message)
             
             messageCell.configure(withDisplayData: displayData)

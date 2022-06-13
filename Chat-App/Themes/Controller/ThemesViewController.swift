@@ -8,80 +8,71 @@
 import UIKit
 
 class ThemesViewController: UIViewController {
+    // MARK: - Visual Components
+    var mainView: ThemesView? {
+        view as? ThemesView
+    }
+    
     // MARK: - Public Properties
-    lazy var classicThemeButton = UIButton()
-    lazy var dayThemeButton = UIButton()
-    lazy var nightThemeButton = UIButton()
+    var onComplition: (() -> Void)?
+    
+    // MARK: - Private Properties
+    private let themeService = ThemeService()
     
     // MARK: - Override Methods
+    override func loadView() {
+        super.loadView()
+        
+        view = ThemesView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupThemeViewController()
-        setTheme()
-    }
-    
-    // MARK: - Buttons Actions
-    @objc func changeThemeButtonPressed(_ sender: Any) {
-        switch Theme.current {
-        case .day: dayThemeButton.selectedState = false
-        case .night: nightThemeButton.selectedState = false
-        default: classicThemeButton.selectedState = false
-        }
+        mainView?.delegate = self
         
-        if let tapGestureRecognizer = sender as? UITapGestureRecognizer {
-            guard let stackView = tapGestureRecognizer.view as? UIStackView else { return }
-            
-            switch stackView.tag {
-            case 1:
-                dayThemeButton.selectedState = true
-                Theme.day.save()
-            case 2:
-                nightThemeButton.selectedState = true
-                Theme.night.save()
-            default:
-                classicThemeButton.selectedState = true
-                Theme.classic.save()
-            }
-            
-            setTheme()
-        }
-    }
-    
-    @objc func cancelBarButtonPressed() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    private func setTheme() {
-        switch Theme.current {
-        case .day:
-            view.backgroundColor = .blue
-            if !dayThemeButton.selectedState {
-                dayThemeButton.selectedState = true
-            }
-        case .night:
-            view.backgroundColor = .systemGray
-            if !nightThemeButton.selectedState {
-                nightThemeButton.selectedState = true
-            }
-        default:
-            view.backgroundColor = .systemBackground
-            if !classicThemeButton.selectedState {
-                classicThemeButton.selectedState = true
-            }
-        }
+        setupNavigationBar()
+        updateTheme()
     }
 }
 
-// MARK: - Extension for UIButton
-extension UIButton {
-    var selectedState: Bool {
-        get { layer.borderWidth == 3 ? true : false }
-        set {
-            layer.borderWidth = newValue ? 3 : 1
-            layer.borderColor = newValue
-                ? CGColor(red: 4/255, green: 51/255, blue: 255/255, alpha: 1)
-                : CGColor(red: 255, green: 255, blue: 255, alpha: 0.75)
-        }
+// MARK: - Target Actions
+extension ThemesViewController {
+    @objc private func cancelBarButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - Private Methods
+extension ThemesViewController {
+    private func setupNavigationBar() {
+        title = "Settings"
+        navigationItem.hidesBackButton = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(cancelBarButtonPressed)
+        )
+    }
+}
+
+// MARK: - Themes View Delegate
+extension ThemesViewController: ThemesViewDelegate {
+    func themeViewTapped() {
+        updateTheme()
+        onComplition?()
+    }
+}
+
+// MARK: - Theme Service Delegate
+extension ThemesViewController: ThemeServiceDelegate {
+    func updateTheme() {
+        let themeDesign = themeService.getCurrentThemeDesign()
+        
+        mainView?.backgroundColor = themeDesign.backgroundColor
+        mainView?.classicLabel.textColor = themeDesign.labelColor
+        mainView?.dayLabel.textColor = themeDesign.labelColor
+        mainView?.nightLabel.textColor = themeDesign.labelColor
     }
 }

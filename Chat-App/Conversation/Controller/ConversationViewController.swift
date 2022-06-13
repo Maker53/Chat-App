@@ -38,7 +38,8 @@ class ConversationViewController: UIViewController {
         
         mainView?.tableView.dataSource = self
         
-        hideKeyboardWhenTappedAround()        
+        hideKeyboardWhenTappedAround()
+        updateTheme()
         
         FirebaseService.shared.getMessages(byPath: channelID) { [weak self] messages in
             guard let self = self else { return }
@@ -56,5 +57,14 @@ extension ConversationViewController: UITextFieldDelegate {
         textField.text = ""
         
         return true
+    }
+}
+
+extension ConversationViewController: ThemeServiceDelegate {
+    func updateTheme() {
+        let themeDesign = ThemeService().getCurrentThemeDesign()
+        
+        mainView?.backgroundColor = themeDesign.backgroundColor
+        mainView?.backgroundView.backgroundColor = themeDesign.backgroundColor
     }
 }

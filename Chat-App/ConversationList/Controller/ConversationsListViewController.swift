@@ -32,6 +32,7 @@ class ConversationsListViewController: UIViewController {
         mainView?.tableView.dataSource = self
         
         setupNavigationItems()
+        updateTheme()
         
         FirebaseService.shared.getChannels { [unowned self] channels in
             self.channels = channels
@@ -72,12 +73,22 @@ extension ConversationsListViewController {
     
     @objc private func themeButtonPressed() {
         let themesViewController = ThemesViewController()
+        
+        themesViewController.onComplition = { [unowned self] in
+            self.updateTheme()
+        }
+        
         navigationController?.pushViewController(themesViewController, animated: true)
     }
     
     @objc private func profileButtonPressed() {
         let profileViewController = ProfileViewController()
         let navigationController = UINavigationController(rootViewController: profileViewController)
+        
+        // TODO: Подгружать имя пользователя и отображать в заголовке страницы
+        profileViewController.title = "Profile"
+        navigationController.navigationBar.prefersLargeTitles = true
+        
         present(navigationController, animated: true)
     }
     
@@ -110,5 +121,24 @@ extension ConversationsListViewController {
         alert.addAction(createAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+}
+
+extension ConversationsListViewController: ThemeServiceDelegate {
+    func updateTheme() {
+        let themeDesign = ThemeService().getCurrentThemeDesign()
+                
+        navigationController?.navigationBar.barTintColor = themeDesign.navigationBarColor
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: themeDesign.titleColor]
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: themeDesign.titleColor]
+        
+        UITableView.appearance().backgroundColor = themeDesign.backgroundColor
+        UITableViewCell.appearance().backgroundColor = themeDesign.backgroundColor
+        
+        UILabel.appearance().textColor = themeDesign.labelColor
+        
+        UITextView.appearance().textColor = themeDesign.labelColor
+        UITextView.appearance().backgroundColor = themeDesign.backgroundColor
     }
 }
