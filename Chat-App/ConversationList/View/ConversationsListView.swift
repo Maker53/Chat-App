@@ -9,7 +9,7 @@ import UIKit
 
 class ConversationsListView: UIView {
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        let tableView = UITableView(frame: UIScreen.main.bounds, style: .plain)
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 52
@@ -25,8 +25,6 @@ class ConversationsListView: UIView {
         super.init(frame: frame)
         
         addSubview(tableView)
-        
-        tableView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     required init?(coder: NSCoder) {
