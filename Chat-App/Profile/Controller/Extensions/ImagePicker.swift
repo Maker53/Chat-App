@@ -21,10 +21,12 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     // iOS 13.0
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
             if let image = info[.originalImage] as? UIImage {
                 DispatchQueue.main.async {
-                    self.mainView?.userImageView.image = image
+                    self?.mainView?.initialsLabel.text = nil
+                    self?.mainView?.userImageView.image = image
+                    self?.setUIWithEditState(.hasChange)
                 }
             }
         }

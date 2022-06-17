@@ -8,6 +8,6 @@
 import UIKit
 
 enum Constants {
-    static let userInfoFileNameForSave = "user_Data"
     static let myID = UIDevice.current.identifierForVendor?.uuidString
+    static let userProfileFileName = "userProfile"
 }

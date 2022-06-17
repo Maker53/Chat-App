@@ -12,7 +12,32 @@ extension ProfileViewController: ProfileViewDelegate {
         presentChooseImageAlertController()
     }
     
+    func editButtonAction() {
+        setUIWithEditState(.willEditing)
+    }
+    
+    func saveGCDButtonAction() {
+        mainView?.activityIndicator.startAnimating()
+        dataManager = GCDManager()
+        updateProfileData()
+        saveData()
+    }
+    
+    func saveOperationButtonAction() {
+        mainView?.activityIndicator.startAnimating()
+        dataManager = OperationsManager()
+        updateProfileData()
+        saveData()
+    }
+    
     func cancelButtonAction() {
-        
+        setUIWithEditState(.cancelled)
+    }
+    
+    private func updateProfileData() {
+        userProfileInfo = UserProfileInfo(
+            name: mainView?.userNameTextField.text,
+            description: mainView?.descriptionTextView.text,
+            imageData: mainView?.userImageView.image?.pngData())
     }
 }

@@ -12,6 +12,10 @@ class ProfileViewController: UIViewController {
     var mainView: ProfileView? {
         view as? ProfileView
     }
+    
+    // MARK: - Public Properties
+    var userProfileInfo: UserProfileInfo!
+    var dataManager: MultithreadingManager = GCDManager()
      
     // MARK: - View Lifecycle Methods
     override func loadView() {
@@ -21,11 +25,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainView?.delegate = self
-        
+        fetchData()
         setupNavigationBar()
         hideKeyboardWhenTappedAround()
         updateTheme()
+        
+        mainView?.delegate = self
+        mainView?.userNameTextField.delegate = self
+        mainView?.descriptionTextView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -33,6 +40,47 @@ class ProfileViewController: UIViewController {
         
         guard let width = mainView?.userImageView.bounds.width else { return }
         mainView?.userImageView.layer.cornerRadius = width / 2
+    }
+    
+    // MARK: - Public Methods
+    func saveData() {
+        dataManager.saveData(userProfileInfo) { [weak self] isSaved in
+            self?.mainView?.activityIndicator.stopAnimating()
+            
+            if isSaved {
+                self?.setUIWithEditState(.didSaving)
+                UIAlertController().presentSuccessSavingAlert()
+            } else {
+                UIAlertController().presentSaveErrorAlert()
+            }
+        }
+    }
+    
+    func setupFields() {
+        if let description = userProfileInfo?.description, !description.isBlank {
+            mainView?.descriptionTextView.text = userProfileInfo?.description
+        }
+        
+        if let userImageData = userProfileInfo?.imageData {
+            mainView?.userImageView.image = UIImage(data: userImageData)
+        }
+        
+        mainView?.userNameTextField.text = userProfileInfo?.name
+    }
+    
+    func isDataChange() -> Bool {
+        if mainView?.userNameTextField.text != userProfileInfo.name
+            || mainView?.descriptionTextView.text != userProfileInfo.description {
+            return true
+        }
+        
+        if let data = userProfileInfo.imageData,
+           let image = mainView?.userImageView.image,
+           image.isEqual(UIImage(data: data)) {
+            return true
+        }
+        
+        return false
     }
 }
 
@@ -43,12 +91,20 @@ extension ProfileViewController {
         navigationItem.rightBarButtonItem = closeButton
     }
     
+    private func fetchData() {
+        dataManager.fetchData { [weak self] profile in
+            self?.userProfileInfo = profile
+            self?.setupFields()
+        }
+    }
+    
     // MARK: - Target Actions Methods
     @objc private func closeProfileViewAction() {
         dismiss(animated: true)
     }
 }
 
+// MARK: - Theme Service Delegate
 extension ProfileViewController: ThemeServiceDelegate {
     func updateTheme() {
         let themeDesign = ThemeService().getCurrentThemeDesign()

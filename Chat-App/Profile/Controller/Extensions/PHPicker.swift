@@ -27,10 +27,12 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         
         for result in results {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
-                        self.mainView?.userImageView.image = image
+                        self?.mainView?.initialsLabel.text = nil
+                        self?.mainView?.userImageView.image = image
+                        self?.setUIWithEditState(.hasChange)
                     }
                 }
             }

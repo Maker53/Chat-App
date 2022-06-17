@@ -14,7 +14,7 @@ protocol ProfileViewDelegate: AnyObject {
     func saveOperationButtonAction()
     func cancelButtonAction()
 }
-
+// TODO: Добавить скролл вью и скролить при открытии клавиатуры, чтобы было видно что пишешь
 class ProfileView: UIView {
     // MARK: - Visual Components
     lazy var userImageView: UIImageView = {
@@ -28,11 +28,21 @@ class ProfileView: UIView {
         return view
     }()
     
+    lazy var initialsLabel: UILabel = {
+       let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 60, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     lazy var editImageButton: UIButton = {
         let button = UIButton(type: .system)
         
         button.setTitle("Edit", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -46,6 +56,7 @@ class ProfileView: UIView {
             string: "Full name",
             attributes: [.foregroundColor: UIColor.systemGray2])
         field.textAlignment = .center
+        field.isEnabled = false
         field.translatesAutoresizingMaskIntoConstraints = false
         
         return field
@@ -54,9 +65,10 @@ class ProfileView: UIView {
     lazy var descriptionTextView: UITextView = {
        let textView = UITextView()
         
+        textView.text = "About me"
         textView.font = .systemFont(ofSize: 16)
         textView.textAlignment = .center
-        textView.text = "About me"
+        textView.isEditable = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         return textView
@@ -91,6 +103,7 @@ class ProfileView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemGray5
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -103,6 +116,7 @@ class ProfileView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemGray5
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -115,6 +129,7 @@ class ProfileView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemGray5
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -141,6 +156,7 @@ class ProfileView: UIView {
 extension ProfileView {
     private func addSubviews() {
         addSubview(userImageView)
+        userImageView.addSubview(initialsLabel)
         addSubview(editImageButton)
         addSubview(userNameTextField)
         addSubview(descriptionTextView)
@@ -165,6 +181,9 @@ extension ProfileView {
             userImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             userImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 2 / 3),
             userImageView.heightAnchor.constraint(equalTo: userImageView.widthAnchor),
+            
+            initialsLabel.centerXAnchor.constraint(equalTo: userImageView.centerXAnchor),
+            initialsLabel.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor),
             
             editImageButton.centerXAnchor.constraint(equalTo: userImageView.rightAnchor),
             editImageButton.centerYAnchor.constraint(equalTo: userImageView.bottomAnchor),
