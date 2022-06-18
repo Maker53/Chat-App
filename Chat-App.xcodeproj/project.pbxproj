@@ -42,6 +42,8 @@
 		85B57A2E28584C9000DE0852 /* ProfileViewController+UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B57A2D28584C9000DE0852 /* ProfileViewController+UITextViewDelegate.swift */; };
 		85B7FF5527E60CC4000D33F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7FF5427E60CC3000D33F6 /* Theme.swift */; };
 		85BF5A5C285DCC9900F24CC8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 85BF5A5A285DCC9900F24CC8 /* .swiftlint.yml */; };
+		85BF5A5E285DE04C00F24CC8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BF5A5D285DE04C00F24CC8 /* Message.swift */; };
+		85BF5A60285E031F00F24CC8 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BF5A5F285E031F00F24CC8 /* UITableView+Scroll.swift */; };
 		85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */; };
 		85D61D482859988D001C1ACC /* JSONSerialization+JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D61D472859988D001C1ACC /* JSONSerialization+JSONObject.swift */; };
 		85D61D4A285A48AE001C1ACC /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D61D49285A48AE001C1ACC /* GCDManager.swift */; };
@@ -100,6 +102,8 @@
 		85B57A2D28584C9000DE0852 /* ProfileViewController+UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UITextViewDelegate.swift"; sourceTree = "<group>"; };
 		85B7FF5427E60CC3000D33F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		85BF5A5A285DCC9900F24CC8 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		85BF5A5D285DE04C00F24CC8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		85BF5A5F285E031F00F24CC8 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		85D61D472859988D001C1ACC /* JSONSerialization+JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+JSONObject.swift"; sourceTree = "<group>"; };
 		85D61D49285A48AE001C1ACC /* GCDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				85FDC9A127D661F600E57461 /* Channel.swift */,
+				85BF5A5D285DE04C00F24CC8 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 		85FDC9AA27D7A09B00E57461 /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
+				8598B0A82854AE110083B18A /* Services */,
 				85FDC9AE27D7A1A200E57461 /* Views */,
 				85FDC9AB27D7A0B500E57461 /* Controller */,
 			);
@@ -419,7 +425,6 @@
 			children = (
 				85FDC9AC27D7A0C600E57461 /* ConversationViewController.swift */,
 				85FDC9B527D7B09500E57461 /* Extensions */,
-				8598B0A82854AE110083B18A /* Services */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 			children = (
 				85FDC9B927D7B1C200E57461 /* Conversation+UITableViewDataSource.swift */,
 				853D11F12855DFE90075EA48 /* String+isBlank.swift */,
+				85BF5A5F285E031F00F24CC8 /* UITableView+Scroll.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 				85E18B7027E9872400D6FE83 /* UserProfileInfo.swift in Sources */,
 				85E18B7327EA2AEE00D6FE83 /* StorageManager.swift in Sources */,
 				85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */,
+				85BF5A5E285DE04C00F24CC8 /* Message.swift in Sources */,
 				8598B0AA2854AE280083B18A /* ConversationDataParser.swift in Sources */,
 				85FDC99527D5302D00E57461 /* TextFieldDelegate.swift in Sources */,
 				85FDC9AD27D7A0C600E57461 /* ConversationViewController.swift in Sources */,
@@ -634,6 +641,7 @@
 				85882B5127CDD4790081463E /* PHPicker.swift in Sources */,
 				85574E3A282FFB3D00607D52 /* Constants.swift in Sources */,
 				8585B86E2851AC90003EBBD8 /* ProfileViewDelegate.swift in Sources */,
+				85BF5A60285E031F00F24CC8 /* UITableView+Scroll.swift in Sources */,
 				853D11EE2855BB6F0075EA48 /* ConversationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

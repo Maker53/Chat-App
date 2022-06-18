@@ -12,20 +12,14 @@ struct Channel {
     let name: String
     let lastMessages: String?
     let lastActivity: Date
-}
-
-struct Message {
-    let content: String
-    let created: Date
-    let senderID: String
-    let senderName: String
-}
-
-extension Message {
-    var toDict: [String: Any] {
-        ["content": content,
-         "created": Timestamp(date: created),
-         "senderID": senderID,
-         "senderName": senderName]
+    
+    init?(identifier: String, data: [String: Any]) {
+        self.identifier = identifier
+        
+        guard let name = data["name"] as? String else { return nil }
+        self.name = name
+        self.lastMessages = data["lastMessage"] as? String
+        guard let date = data["lastActivity"] as? Timestamp else { return nil }
+        self.lastActivity = date.dateValue()
     }
 }

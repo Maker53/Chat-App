@@ -116,6 +116,7 @@ extension ProfileViewController: ThemeServiceDelegate {
         let themeDesign = ThemeService().getCurrentThemeDesign()
         
         mainView?.backgroundColor = themeDesign.backgroundColor
+        mainView?.userNameTextField.textColor = themeDesign.labelColor
         mainView?.cancelButton.backgroundColor = themeDesign.buttonBackgroundColor
         mainView?.editButton.backgroundColor = themeDesign.buttonBackgroundColor
         mainView?.gcdButton.backgroundColor = themeDesign.buttonBackgroundColor

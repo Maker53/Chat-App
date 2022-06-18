@@ -16,13 +16,13 @@ class ConversationViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    lazy var displayDataParser = ConversationDisplayDataParser()
     var channelID: String!
     var messages: [Message]?
+    lazy var displayDataParser = ConversationDisplayDataParser()
     lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         
-        dateFormatter.locale = Locale(identifier: "en_RU")
+        dateFormatter.locale = Locale(identifier: "en_EN")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd_MM HH_mm")
         
         return dateFormatter
@@ -38,26 +38,31 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         
         mainView?.tableView.dataSource = self
+        mainView?.delegate = self
         
+        fetchMessages()
         hideKeyboardWhenTappedAround()
         updateTheme()
-        
+    }
+}
+
+// MARK: - Firebase Methods
+
+extension ConversationViewController {
+    private func fetchMessages() {
         FirebaseService.shared.getMessages(byPath: channelID) { [weak self] messages in
-            guard let self = self else { return }
-            self.messages = messages
-            self.mainView?.tableView.reloadData()
+            self?.messages = messages
+            self?.mainView?.tableView.reloadData()
+            self?.mainView?.tableView.scrollToBottom(isAnimated: false)
         }
     }
 }
 
-// TODO Убрать этот метод и в ConversationView создать протокол и здесь его реализовать
-extension ConversationViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-//        sendMessage()
-        textField.text = ""
-        
-        return true
+// MARK: - ConversationViewDelegate
+
+extension ConversationViewController: ConversationViewDelegate {
+    func sendMessage(_ content: String) {
+        FirebaseService.shared.sendMessage(withContent: content, byPath: channelID)
     }
 }
 

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ConversationViewDelegate: AnyObject {
+    func sendMessage(_ content: String)
+}
+
 class ConversationView: UIView {
     // MARK: - Visual Components
     
@@ -66,6 +70,10 @@ class ConversationView: UIView {
         
         return view
     }()
+    
+    // MARK: - Public Properties
+    
+    weak var delegate: ConversationViewDelegate!
     
     // MARK: - Private Properties
     
@@ -195,6 +203,9 @@ extension ConversationView {
 
 extension ConversationView {
     @objc private func sendButtonTapped() {
-        
+        delegate.sendMessage(messageTextView.text)
+        messageTextView.text = ""
+        isOversized = false
+        textViewDidChange(messageTextView)
     }
 }

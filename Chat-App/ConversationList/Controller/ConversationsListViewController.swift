@@ -34,12 +34,20 @@ class ConversationsListViewController: UIViewController {
         mainView?.tableView.delegate = self
         mainView?.tableView.dataSource = self
         
+        fetchChannels()
         setupNavigationItems()
         updateTheme()
-        
+    }
+}
+
+// MARK: - Firebase Methods
+
+extension ConversationsListViewController {
+    private func fetchChannels() {
         FirebaseService.shared.getChannels { [unowned self] channels in
             self.channels = channels
             self.mainView?.tableView.reloadData()
+            self.mainView?.tableView.scrollToTop(isAnimated: false)
         }
     }
 }
@@ -87,11 +95,11 @@ extension ConversationsListViewController {
     }
     
     @objc private func profileButtonPressed() {
+        let userName = StorageManager.fetchObjectFromFile().name
         let profileViewController = ProfileViewController()
         let navigationController = UINavigationController(rootViewController: profileViewController)
         
-        // TODO Подгружать имя пользователя и отображать в заголовке страницы
-        profileViewController.title = "Profile"
+        profileViewController.title = userName
         navigationController.navigationBar.prefersLargeTitles = true
         
         present(navigationController, animated: true)
