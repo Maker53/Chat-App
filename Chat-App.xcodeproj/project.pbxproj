@@ -41,6 +41,7 @@
 		85B57A2C2857B60400DE0852 /* ProfileViewController+UIStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B57A2B2857B60400DE0852 /* ProfileViewController+UIStates.swift */; };
 		85B57A2E28584C9000DE0852 /* ProfileViewController+UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B57A2D28584C9000DE0852 /* ProfileViewController+UITextViewDelegate.swift */; };
 		85B7FF5527E60CC4000D33F6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B7FF5427E60CC3000D33F6 /* Theme.swift */; };
+		85BF5A5C285DCC9900F24CC8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 85BF5A5A285DCC9900F24CC8 /* .swiftlint.yml */; };
 		85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */; };
 		85D61D482859988D001C1ACC /* JSONSerialization+JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D61D472859988D001C1ACC /* JSONSerialization+JSONObject.swift */; };
 		85D61D4A285A48AE001C1ACC /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D61D49285A48AE001C1ACC /* GCDManager.swift */; };
@@ -98,6 +99,7 @@
 		85B57A2B2857B60400DE0852 /* ProfileViewController+UIStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UIStates.swift"; sourceTree = "<group>"; };
 		85B57A2D28584C9000DE0852 /* ProfileViewController+UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UITextViewDelegate.swift"; sourceTree = "<group>"; };
 		85B7FF5427E60CC3000D33F6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		85BF5A5A285DCC9900F24CC8 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		85D61D472859988D001C1ACC /* JSONSerialization+JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+JSONObject.swift"; sourceTree = "<group>"; };
 		85D61D49285A48AE001C1ACC /* GCDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				857847CC27C12065005E176B /* Chat-App */,
+				85BF5A5A285DCC9900F24CC8 /* .swiftlint.yml */,
 				857847E327C13E41005E176B /* .gitignore */,
 				857847CB27C12065005E176B /* Products */,
 				A36B31BD1E280C2EA01AA9BA /* Pods */,
@@ -511,6 +514,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85BF5A5C285DCC9900F24CC8 /* .swiftlint.yml in Resources */,
 				857847E427C13E41005E176B /* .gitignore in Resources */,
 				8521B80827D7C2F100D03E4A /* IncomingMessageCell.xib in Resources */,
 				85FDC9B027D7A21200E57461 /* OutgoingMessageCell.xib in Resources */,
