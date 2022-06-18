@@ -18,6 +18,7 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var incomingTimeMesage: UILabel!
     
     // MARK: - Public Properties
+    
     static let identifierForOutgoingCell = "outgoingCell"
     static let identifierForIncomingCell = "incomingCell"
     

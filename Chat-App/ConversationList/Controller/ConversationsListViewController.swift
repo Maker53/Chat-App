@@ -10,15 +10,18 @@ import FirebaseFirestore
 
 class ConversationsListViewController: UIViewController {
     // MARK: - UI
+    
     private var mainView: ConversationsListView? {
         view as? ConversationsListView
     }
     
     // MARK: - Public Properties
+    
     let displayData = ConversationsListDisplayDataParser()
     var channels: [Channel] = []
     
     // MARK: - Override Methods
+    
     override func loadView() {
         view = ConversationsListView()
     }
@@ -42,6 +45,7 @@ class ConversationsListViewController: UIViewController {
 }
 
 // MARK: - Private Methods
+
 extension ConversationsListViewController {
     private func setupNavigationItems() {
         let themeImage = UIImage(systemName: "paintbrush")
@@ -57,6 +61,7 @@ extension ConversationsListViewController {
     }
     
     // MARK: - Target Actions
+    
     @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
         guard let mainView = mainView else { return }
         
@@ -85,7 +90,7 @@ extension ConversationsListViewController {
         let profileViewController = ProfileViewController()
         let navigationController = UINavigationController(rootViewController: profileViewController)
         
-        // TODO: Подгружать имя пользователя и отображать в заголовке страницы
+        // TODO Подгружать имя пользователя и отображать в заголовке страницы
         profileViewController.title = "Profile"
         navigationController.navigationBar.prefersLargeTitles = true
         
@@ -97,8 +102,9 @@ extension ConversationsListViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let createAction = UIAlertAction(title: "Create", style: .default) { _ in
-            let name = alert.textFields![0].text!
-            FirebaseService.shared.addChannel(withName: name)
+            if let channelName = alert.textFields?.first?.text {
+                FirebaseService.shared.addChannel(withName: channelName)
+            }
         }
         
         createAction.isEnabled = false
@@ -109,13 +115,12 @@ extension ConversationsListViewController {
             NotificationCenter.default.addObserver(
                 forName: UITextField.textDidChangeNotification,
                 object: textField,
-                queue: OperationQueue.main)
-            { _ in
-                guard let inputText = textField.text else { return }
-                let textIsNotEmpty = !inputText.isEmpty
-                
-                createAction.isEnabled = textIsNotEmpty
-            }
+                queue: OperationQueue.main) { _ in
+                    guard let inputText = textField.text else { return }
+                    let textIsNotEmpty = !inputText.isEmpty
+                    
+                    createAction.isEnabled = textIsNotEmpty
+                }
         }
         
         alert.addAction(createAction)
@@ -123,6 +128,8 @@ extension ConversationsListViewController {
         present(alert, animated: true)
     }
 }
+
+// MARK: - ThemeServiceDelegate
 
 extension ConversationsListViewController: ThemeServiceDelegate {
     func updateTheme() {

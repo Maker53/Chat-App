@@ -9,11 +9,13 @@ import UIKit
 
 class ConversationViewController: UIViewController {
     // MARK: - Visual Components
+    
     var mainView: ConversationView? {
         view as? ConversationView
     }
     
     // MARK: - Public Properties
+    
     lazy var displayDataParser = ConversationDisplayDataParser()
     var channelID: String!
     var messages: [Message]?
@@ -27,9 +29,8 @@ class ConversationViewController: UIViewController {
     }()
     
     // MARK: - Override Methods
-    override func loadView() {
-        super.loadView()
-        
+    
+    override func loadView() {        
         view = ConversationView()
     }
     
@@ -49,7 +50,7 @@ class ConversationViewController: UIViewController {
     }
 }
 
-// TODO: Убрать этот метод и в ConversationView создать протокол и здесь его реализовать
+// TODO Убрать этот метод и в ConversationView создать протокол и здесь его реализовать
 extension ConversationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

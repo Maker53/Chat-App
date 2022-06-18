@@ -13,6 +13,7 @@ protocol ThemesViewDelegate: AnyObject {
 
 class ThemesView: UIView {
     // MARK: - Visual Components
+    
     lazy var classicThemeView: UIView = {
         let theme = ClassicTheme()
         let view = createThemeView(
@@ -83,13 +84,16 @@ class ThemesView: UIView {
     }()
     
     // MARK: - Public Properties
+    
     weak var delegate: ThemesViewDelegate!
     
     // MARK: - Private Properties
+    
     var currentThemeView: UIView?
     let themeService = ThemeService()
     
     // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -105,6 +109,7 @@ class ThemesView: UIView {
 }
 
 // MARK: - Target Actions
+
 extension ThemesView {
     @objc private func classicViewTapped() {
         setViewBorder(classicThemeView)
@@ -126,6 +131,7 @@ extension ThemesView {
 }
 
 // MARK: - Private Methods
+
 extension ThemesView {
     private func setViewBorder(_ view: UIView) {
         currentThemeView?.isBorderVisible = false

@@ -9,6 +9,7 @@ import UIKit
 
 class ConversationView: UIView {
     // MARK: - Visual Components
+    
     private var backgroundViewBottomConstraint: NSLayoutConstraint?
     private var messageTextViewHeightConstraint: NSLayoutConstraint?
     
@@ -67,15 +68,17 @@ class ConversationView: UIView {
     }()
     
     // MARK: - Private Properties
+    
     private var maxTextViewHeight = UIScreen.main.bounds.width / 4
     private var isOversized = false {
         didSet {
             messageTextView.isScrollEnabled = isOversized
-            // TODO: scroll table view to bottom
+            // TODO scroll table view to bottom
         }
     }
     
     // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -95,6 +98,7 @@ class ConversationView: UIView {
 }
 
 // MARK: - Private Methods
+
 extension ConversationView {
     private func addSubviews() {
         addSubview(tableView)
@@ -156,6 +160,7 @@ extension ConversationView {
 }
 
 // MARK: - UITextViewDelegate
+
 extension ConversationView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.contentSize.height < maxTextViewHeight {
@@ -173,6 +178,7 @@ extension ConversationView: UITextViewDelegate {
 }
 
 // MARK: - Keyboard Notifications
+
 extension ConversationView {
     @objc private func keyboardNotification(notification: Notification) {
         guard let userInfo = notification.userInfo else { return }
@@ -186,6 +192,7 @@ extension ConversationView {
 }
 
 // MARK: - Button Action
+
 extension ConversationView {
     @objc private func sendButtonTapped() {
         

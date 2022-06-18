@@ -14,9 +14,10 @@ protocol ProfileViewDelegate: AnyObject {
     func saveOperationButtonAction()
     func cancelButtonAction()
 }
-// TODO: Добавить скролл вью и скролить при открытии клавиатуры, чтобы было видно что пишешь
+// TODO Добавить скролл вью и скролить при открытии клавиатуры, чтобы было видно что пишешь
 class ProfileView: UIView {
     // MARK: - Visual Components
+    
     lazy var userImageView: UIImageView = {
        let view = UIImageView()
         
@@ -136,9 +137,11 @@ class ProfileView: UIView {
     }()
     
     // MARK: - Public Properties
+    
     weak var delegate: ProfileViewDelegate!
     
     // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -153,6 +156,7 @@ class ProfileView: UIView {
 }
 
 // MARK: - Private Methods
+
 extension ProfileView {
     private func addSubviews() {
         addSubview(userImageView)
@@ -220,6 +224,7 @@ extension ProfileView {
     }
     
     // MARK: - Target Actions
+    
     @objc private func editImageButtonAction() {
         delegate.editImageButtonAction()
     }

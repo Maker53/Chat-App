@@ -8,7 +8,7 @@
 import Foundation
 
 extension JSONSerialization {
-    static func fetchObject<T:Decodable>(withFileName fileName: String, type: T.Type) throws -> T? {
+    static func fetchObject<T: Decodable>(withFileName fileName: String, type: T.Type) throws -> T? {
         let fileManager = FileManager.default
         let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
         if let path = urls.first {

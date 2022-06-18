@@ -15,9 +15,11 @@ class ConversationCell: UITableViewCell {
     @IBOutlet private weak var messageDateLabel: UILabel?
     
     // MARK: - Cell Identifier
+    
     static let identifier = String(describing: ConversationCell.self)
     
     // MARK: - Public Methods
+    
     func configure(with displayData: DisplayData) {
         conversationNameLabel?.text = displayData.name
         messageTextLabel?.text = displayData.message

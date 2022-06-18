@@ -9,12 +9,14 @@ import FirebaseFirestore
 
 class FirebaseService {
     // MARK: - Singletone
+    
     static let shared = FirebaseService()
     
     // MARK: - Private Methods
+    
     private lazy var channelsReference = Firestore.firestore().collection("channels")
     private var userName: String {
-        var name = "Test name"
+        let name = "Test name"
         
 //        StorageManager.shared.fetchViaGCD(from: Constants.userInfoFileNameForSave) { name = $0?.name ?? "" }
         
@@ -22,15 +24,17 @@ class FirebaseService {
     }
     
     // MARK: - Private initialiser
+    
     private init() {}
     
     // MARK: - Public Methods
-    func getChannels(completion: @escaping ([Channel]) -> ()) {
+    
+    func getChannels(completion: @escaping ([Channel]) -> Void) {
         var channels: [Channel] = []
         
         channelsReference.addSnapshotListener { snapshot, error in
             guard error == nil else {
-                // TODO: add alert?
+                // TODO add alert?
                 print(error?.localizedDescription)
                 return
             }
@@ -57,13 +61,13 @@ class FirebaseService {
         }
     }
     
-    func getMessages(byPath path: String, completion: @escaping ([Message]) -> ()) {
+    func getMessages(byPath path: String, completion: @escaping ([Message]) -> Void) {
         let messagesReference = channelsReference.document(path).collection("messages")
         var messages: [Message] = []
         
         messagesReference.addSnapshotListener { snapshot, error in
             guard error == nil else {
-                // TODO: add alert?
+                // TODO add alert?
                 print(error?.localizedDescription)
                 return
             }

@@ -9,15 +9,18 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     // MARK: - Visual Components
+    
     var mainView: ProfileView? {
         view as? ProfileView
     }
     
     // MARK: - Public Properties
+    
     var userProfileInfo: UserProfileInfo!
     var dataManager: MultithreadingManager = GCDManager()
      
     // MARK: - View Lifecycle Methods
+    
     override func loadView() {
         view = ProfileView()
     }
@@ -43,6 +46,7 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: - Public Methods
+    
     func saveData() {
         dataManager.saveData(userProfileInfo) { [weak self] isSaved in
             self?.mainView?.activityIndicator.stopAnimating()
@@ -85,6 +89,7 @@ class ProfileViewController: UIViewController {
 }
 
 // MARK: - Private Methods
+
 extension ProfileViewController {
     private func setupNavigationBar() {
         let closeButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeProfileViewAction))
@@ -105,6 +110,7 @@ extension ProfileViewController {
 }
 
 // MARK: - Theme Service Delegate
+
 extension ProfileViewController: ThemeServiceDelegate {
     func updateTheme() {
         let themeDesign = ThemeService().getCurrentThemeDesign()

@@ -9,20 +9,22 @@ import UIKit
 
 class ThemesViewController: UIViewController {
     // MARK: - Visual Components
+    
     var mainView: ThemesView? {
         view as? ThemesView
     }
     
     // MARK: - Public Properties
+    
     var onComplition: (() -> Void)?
     
     // MARK: - Private Properties
+    
     private let themeService = ThemeService()
     
     // MARK: - Override Methods
+    
     override func loadView() {
-        super.loadView()
-        
         view = ThemesView()
     }
     
@@ -37,6 +39,7 @@ class ThemesViewController: UIViewController {
 }
 
 // MARK: - Target Actions
+
 extension ThemesViewController {
     @objc private func cancelBarButtonPressed() {
         navigationController?.popViewController(animated: true)
@@ -44,6 +47,7 @@ extension ThemesViewController {
 }
 
 // MARK: - Private Methods
+
 extension ThemesViewController {
     private func setupNavigationBar() {
         title = "Settings"
@@ -58,6 +62,7 @@ extension ThemesViewController {
 }
 
 // MARK: - Themes View Delegate
+
 extension ThemesViewController: ThemesViewDelegate {
     func themeViewTapped() {
         updateTheme()
@@ -66,6 +71,7 @@ extension ThemesViewController: ThemesViewDelegate {
 }
 
 // MARK: - Theme Service Delegate
+
 extension ThemesViewController: ThemeServiceDelegate {
     func updateTheme() {
         let themeDesign = themeService.getCurrentThemeDesign()
