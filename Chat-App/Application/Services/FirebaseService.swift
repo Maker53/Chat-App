@@ -27,9 +27,9 @@ class FirebaseService {
     
     func getChannels(completion: @escaping ([Channel]) -> Void) {
         channelsReference.addSnapshotListener { snapshot, error in
-            guard error == nil else {
+            if let error = error {
                 // TODO add alert?
-                print(error?.localizedDescription)
+                print(error.localizedDescription)
                 return
             }
             
@@ -45,17 +45,18 @@ class FirebaseService {
             
             channels.sort { $0.lastActivity > $1.lastActivity }
             
+            CoreDataStack.shared.saveChannels(channels)
             completion(channels)
         }
     }
     
-    func getMessages(byPath path: String, completion: @escaping ([Message]) -> Void) {
-        let messagesReference = channelsReference.document(path).collection(Constants.messagesCollectionPath)
+    func getMessages(fromChannel channel: Channel, completion: @escaping ([Message]) -> Void) {
+        let messagesReference = channelsReference.document(channel.identifier).collection(Constants.messagesCollectionPath)
         
         messagesReference.addSnapshotListener { snapshot, error in
-            guard error == nil else {
+            if let error = error {
                 // TODO add alert?
-                print(error?.localizedDescription)
+                print(error.localizedDescription)
                 return
             }
             
@@ -67,6 +68,8 @@ class FirebaseService {
             }
             
             messages.sort { $0.created < $1.created }
+            
+            CoreDataStack.shared.saveMessages(messages, fromChannel: channel)
             completion(messages)
         }
     }

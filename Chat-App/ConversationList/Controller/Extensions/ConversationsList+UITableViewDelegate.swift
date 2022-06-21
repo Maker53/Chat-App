@@ -13,7 +13,7 @@ extension ConversationsListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let conversationVC = ConversationViewController()
-        conversationVC.channelID = channels[indexPath.row].identifier
+        conversationVC.channel = channels[indexPath.row]
         conversationVC.title = channels[indexPath.row].name
         
         navigationController?.pushViewController(conversationVC, animated: true)

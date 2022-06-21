@@ -18,7 +18,7 @@ class ConversationsListDisplayDataParser {
     
     func getDisplayData(from data: Channel) -> DisplayData {
         let name = data.name
-        var message = data.lastMessages
+        var message = data.lastMessage
         let date = data.lastActivity
         let stringDate: String
         

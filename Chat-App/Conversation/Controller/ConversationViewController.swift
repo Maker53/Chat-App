@@ -16,7 +16,7 @@ class ConversationViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    var channelID: String!
+    var channel: Channel!
     var messages: [Message]?
     lazy var displayDataParser = ConversationDisplayDataParser()
     lazy var dateFormatter: DateFormatter = {
@@ -40,21 +40,32 @@ class ConversationViewController: UIViewController {
         mainView?.tableView.dataSource = self
         mainView?.delegate = self
         
+        fetchMessagesFromDB()
         fetchMessages()
         hideKeyboardWhenTappedAround()
         updateTheme()
     }
 }
 
-// MARK: - Firebase Methods
+// MARK: - Database Methods
 
 extension ConversationViewController {
     private func fetchMessages() {
-        FirebaseService.shared.getMessages(byPath: channelID) { [weak self] messages in
+        FirebaseService.shared.getMessages(fromChannel: channel) { [weak self] messages in
+            if messages.isEmpty {
+                return
+            }
+            
             self?.messages = messages
             self?.mainView?.tableView.reloadData()
             self?.mainView?.tableView.scrollToBottom(isAnimated: false)
         }
+    }
+    
+    private func fetchMessagesFromDB() {
+        messages = CoreDataStack.shared.fetchMessages(formChannel: channel)
+        mainView?.tableView.reloadData()
+        mainView?.tableView.scrollToBottom()
     }
 }
 
@@ -62,7 +73,7 @@ extension ConversationViewController {
 
 extension ConversationViewController: ConversationViewDelegate {
     func sendMessage(_ content: String) {
-        FirebaseService.shared.sendMessage(withContent: content, byPath: channelID)
+        FirebaseService.shared.sendMessage(withContent: content, byPath: channel.identifier)
     }
 }
 

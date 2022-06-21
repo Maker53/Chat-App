@@ -34,21 +34,32 @@ class ConversationsListViewController: UIViewController {
         mainView?.tableView.delegate = self
         mainView?.tableView.dataSource = self
         
+        fetchChannelsFromDB()
         fetchChannels()
         setupNavigationItems()
         updateTheme()
     }
 }
 
-// MARK: - Firebase Methods
+// MARK: - Database Methods
 
 extension ConversationsListViewController {
     private func fetchChannels() {
         FirebaseService.shared.getChannels { [unowned self] channels in
+            if channels.isEmpty {
+                return
+            }
+            
             self.channels = channels
             self.mainView?.tableView.reloadData()
             self.mainView?.tableView.scrollToTop(isAnimated: false)
         }
+    }
+    
+    private func fetchChannelsFromDB() {
+        channels = CoreDataStack.shared.fetchChannels()
+        mainView?.tableView.reloadData()
+        mainView?.tableView.scrollToTop()
     }
 }
 

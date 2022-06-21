@@ -15,6 +15,13 @@ struct Message {
 }
 
 extension Message {
+    init(dbModel: MessageDB) {
+        self.content = dbModel.content ?? ""
+        self.created = dbModel.created ?? Date()
+        self.senderID = dbModel.senderID ?? ""
+        self.senderName = dbModel.senderName ?? ""
+    }
+    
     init?(data: [String: Any]) {
         guard let senderID = data["senderID"] as? String else { return nil }
         guard let senderName = data["senderName"] as? String else { return nil }
