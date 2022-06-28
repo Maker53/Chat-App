@@ -12,16 +12,7 @@ extension ProfileViewController: UITextFieldDelegate {
         guard let fullName = mainView?.userNameTextField.text else { return }
         guard let mainView = mainView else { return }
 
-        let stringInput = fullName.components(separatedBy: " ").prefix(2)
-        var fullNameInitials = ""
-
-        for string in stringInput {
-            fullNameInitials += String(string.first ?? " ")
-        }
-        
-        if mainView.userImageView.image == nil {
-            mainView.initialsLabel.text = fullNameInitials
-        }
+        setupInitialsLabel(fullName: fullName)
         
         if isDataChange() {
             setUIWithEditState(.hasChange)

@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import CoreData
 
 class ConversationsListViewController: UIViewController {
+    
     // MARK: - UI
     
     private var mainView: ConversationsListView? {
@@ -18,7 +19,28 @@ class ConversationsListViewController: UIViewController {
     // MARK: - Public Properties
     
     let displayData = ConversationsListDisplayDataParser()
-    var channels: [Channel] = []
+    lazy var fetchController: NSFetchedResultsController<ChannelDB> = {
+        let context = CoreDataService.shared.coreDataStack.readContext
+        let fetchRequest = ChannelDB.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: #keyPath(ChannelDB.lastActivity), ascending: false)
+        ]
+        
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                    managedObjectContext: context,
+                                                    sectionNameKeyPath: nil,
+                                                    cacheName: nil)
+        
+        controller.delegate = self
+        
+        do {
+            try controller.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return controller
+    }()
     
     // MARK: - Override Methods
     
@@ -34,32 +56,9 @@ class ConversationsListViewController: UIViewController {
         mainView?.tableView.delegate = self
         mainView?.tableView.dataSource = self
         
-        fetchChannelsFromDB()
-        fetchChannels()
+        FirebaseService.shared.getChannels()
         setupNavigationItems()
         updateTheme()
-    }
-}
-
-// MARK: - Database Methods
-
-extension ConversationsListViewController {
-    private func fetchChannels() {
-        FirebaseService.shared.getChannels { [unowned self] channels in
-            if channels.isEmpty {
-                return
-            }
-            
-            self.channels = channels
-            self.mainView?.tableView.reloadData()
-            self.mainView?.tableView.scrollToTop(isAnimated: false)
-        }
-    }
-    
-    private func fetchChannelsFromDB() {
-        channels = CoreDataStack.shared.fetchChannels()
-        mainView?.tableView.reloadData()
-        mainView?.tableView.scrollToTop()
     }
 }
 
@@ -148,9 +147,52 @@ extension ConversationsListViewController {
     }
 }
 
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        mainView?.tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        mainView?.tableView.endUpdates()
+    }
+    
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any, at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?
+    ) {
+        
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath else { return }
+            
+            mainView?.tableView.insertRows(at: [newIndexPath], with: .automatic)
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            
+            mainView?.tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .move:
+            guard let newIndexPath = newIndexPath else { return }
+            guard let indexPath = indexPath else { return }
+            
+            mainView?.tableView.moveRow(at: indexPath, to: newIndexPath)
+        case .update:
+            guard let indexPath = indexPath else { return }
+            
+            mainView?.tableView.reloadRows(at: [indexPath], with: .automatic)
+        @unknown default:
+            return
+        }
+    }
+}
+
 // MARK: - ThemeServiceDelegate
 
 extension ConversationsListViewController: ThemeServiceDelegate {
+    
     func updateTheme() {
         let themeDesign = ThemeService().getCurrentThemeDesign()
                 

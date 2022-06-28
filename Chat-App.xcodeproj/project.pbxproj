@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		668805B2A7D1403445F7613E /* Pods_Chat_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB783A576B03AF3CE3C50AC /* Pods_Chat_App.framework */; };
-		850DB6D12860368E0088543D /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DB6D02860368E0088543D /* CoreDataService.swift */; };
+		850DB6D12860368E0088543D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DB6D02860368E0088543D /* CoreDataStack.swift */; };
 		850DB6D42860378B0088543D /* Conversations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 850DB6D22860378B0088543D /* Conversations.xcdatamodeld */; };
-		850DB6D62861743B0088543D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DB6D52861743B0088543D /* CoreDataStack.swift */; };
+		850DB6D62861743B0088543D /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DB6D52861743B0088543D /* CoreDataService.swift */; };
 		8521B80827D7C2F100D03E4A /* IncomingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8521B80727D7C2F100D03E4A /* IncomingMessageCell.xib */; };
 		8521B80A27D91B3A00D03E4A /* ConversationsList+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8521B80927D91B3A00D03E4A /* ConversationsList+UITableViewDelegate.swift */; };
 		8538FDA727E5BB2E003E79AB /* ConversationsListDisplayDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538FDA627E5BB2E003E79AB /* ConversationsListDisplayDataParser.swift */; };
@@ -68,9 +68,9 @@
 
 /* Begin PBXFileReference section */
 		26B7AB1BFB460DAAC15F5B00 /* Pods-Chat-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat-App.debug.xcconfig"; path = "Target Support Files/Pods-Chat-App/Pods-Chat-App.debug.xcconfig"; sourceTree = "<group>"; };
-		850DB6D02860368E0088543D /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		850DB6D02860368E0088543D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		850DB6D32860378B0088543D /* Conversations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Conversations.xcdatamodel; sourceTree = "<group>"; };
-		850DB6D52861743B0088543D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		850DB6D52861743B0088543D /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		8521B80727D7C2F100D03E4A /* IncomingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomingMessageCell.xib; sourceTree = "<group>"; };
 		8521B80927D91B3A00D03E4A /* ConversationsList+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationsList+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		8538FDA627E5BB2E003E79AB /* ConversationsListDisplayDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListDisplayDataParser.swift; sourceTree = "<group>"; };
@@ -330,8 +330,8 @@
 		85BF5A61285F070D00F24CC8 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				850DB6D02860368E0088543D /* CoreDataService.swift */,
-				850DB6D52861743B0088543D /* CoreDataStack.swift */,
+				850DB6D02860368E0088543D /* CoreDataStack.swift */,
+				850DB6D52861743B0088543D /* CoreDataService.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -650,14 +650,14 @@
 				853D11F22855DFE90075EA48 /* String+isBlank.swift in Sources */,
 				85FDC9B227D7A57500E57461 /* MessageCell.swift in Sources */,
 				8585B8702851B6E2003EBBD8 /* UIViewController+HideKeyboard.swift in Sources */,
-				850DB6D62861743B0088543D /* CoreDataStack.swift in Sources */,
+				850DB6D62861743B0088543D /* CoreDataService.swift in Sources */,
 				85FDC9A227D661F600E57461 /* Channel.swift in Sources */,
 				8538FDA727E5BB2E003E79AB /* ConversationsListDisplayDataParser.swift in Sources */,
 				85882B5127CDD4790081463E /* PHPicker.swift in Sources */,
 				85574E3A282FFB3D00607D52 /* Constants.swift in Sources */,
 				8585B86E2851AC90003EBBD8 /* ProfileViewDelegate.swift in Sources */,
 				85BF5A60285E031F00F24CC8 /* UITableView+Scroll.swift in Sources */,
-				850DB6D12860368E0088543D /* CoreDataService.swift in Sources */,
+				850DB6D12860368E0088543D /* CoreDataStack.swift in Sources */,
 				853D11EE2855BB6F0075EA48 /* ConversationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 import FirebaseFirestore
 
 class FirebaseService {
+    
     // MARK: - Singletone
     
     static let shared = FirebaseService()
@@ -25,7 +26,7 @@ class FirebaseService {
     
     // MARK: - Public Methods
     
-    func getChannels(completion: @escaping ([Channel]) -> Void) {
+    func getChannels() {
         channelsReference.addSnapshotListener { snapshot, error in
             if let error = error {
                 // TODO add alert?
@@ -33,24 +34,23 @@ class FirebaseService {
                 return
             }
             
-            var channels: [Channel] = []
-            
-            snapshot?.documents.forEach {
-                let identifier = $0.documentID
-                let data = $0.data()
+            snapshot?.documentChanges.forEach { documentChange in
+                let document = documentChange.document
+                let identifier = document.documentID
+                let data = document.data()
                 guard let channel = Channel(identifier: identifier, data: data) else { return }
                 
-                channels.append(channel)
+                switch documentChange.type {
+                case .added, .modified:
+                    CoreDataService.shared.insertOrUpdateChannel(channel)
+                case .removed:
+                    CoreDataService.shared.deleteChannel(channel)
+                }
             }
-            
-            channels.sort { $0.lastActivity > $1.lastActivity }
-            
-            CoreDataStack.shared.saveChannels(channels)
-            completion(channels)
         }
     }
     
-    func getMessages(fromChannel channel: Channel, completion: @escaping ([Message]) -> Void) {
+    func getMessages(fromChannel channel: Channel) {
         let messagesReference = channelsReference.document(channel.identifier).collection(Constants.messagesCollectionPath)
         
         messagesReference.addSnapshotListener { snapshot, error in
@@ -62,22 +62,23 @@ class FirebaseService {
             
             var messages: [Message] = []
             
-            snapshot?.documents.forEach {
-                guard let message = Message(data: $0.data()) else { return }
-                messages.append(message)
+            snapshot?.documentChanges.forEach {
+                let document = $0.document
+                guard let message = Message(identifier: document.documentID, data: document.data()) else { return }
+                
+                if $0.type == .added {
+                    messages.append(message)
+                }
             }
             
-            messages.sort { $0.created < $1.created }
-            
-            CoreDataStack.shared.saveMessages(messages, fromChannel: channel)
-            completion(messages)
+            CoreDataService.shared.insertMessages(messages, toChannel: channel)
         }
     }
     
     func sendMessage(withContent content: String, byPath path: String) {
         guard let id = Constants.myID else { return }
         let documentsReference = channelsReference.document(path)
-        let message = Message(content: content, created: Date(), senderID: id, senderName: userName)
+        let message = Message(content: content, created: Date(), senderID: id, senderName: userName, identifier: "firebase_generates")
         
         documentsReference.collection(Constants.messagesCollectionPath).addDocument(data: message.toDict)
         documentsReference.updateData(["lastMessage": content, "lastActivity": Timestamp(date: Date())])

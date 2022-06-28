@@ -9,12 +9,12 @@ import UIKit
 
 extension ConversationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messages?.count ?? 0
+        fetchController.sections?[section].numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let messages = messages else { return UITableViewCell() }
-        let message = messages[indexPath.row]
+        let messageDB = fetchController.object(at: indexPath)
+        guard let message = Message(dbModel: messageDB) else { return UITableViewCell() }
         
         if message.senderID == Constants.myID {
             let outgoingCell = tableView.dequeueReusableCell(

@@ -2,88 +2,96 @@
 //  CoreDataStack.swift
 //  Chat-App
 //
-//  Created by Станислав on 21.06.2022.
+//  Created by Станислав on 20.06.2022.
 //
 
 import CoreData
 
 class CoreDataStack {
-    static let shared = CoreDataStack()
-    let service = CoreDataService()
     
-    private init() {}
+    lazy var writeContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        context.parent = readContext
+        
+        return context
+    }()
     
-    func fetchChannels() -> [Channel] {
-        let dbChannels: [ChannelDB] = service.fetchData()
-        var channels: [Channel] = []
-        
-        dbChannels.forEach {
-            let channel = Channel(dbModel: $0)
-            channels.append(channel)
-        }
-        
-        channels.sort { $0.lastActivity > $1.lastActivity }
-        
-        return channels
-    }
+    lazy var readContext = persistentContainer.viewContext
     
-    func fetchMessages(formChannel channel: Channel) -> [Message] {
-        guard let dbChannel = fetchDBChannel(channel: channel) else { return [] }
-        guard let dbMessages = dbChannel.messages?.allObjects as? [MessageDB] else { return [] }
-        var messages: [Message] = []
-        
-        dbMessages.forEach {
-            let message = Message(dbModel: $0)
-            messages.append(message)
-        }
-        
-        messages.sort { $0.created < $1.created }
-        
-        return messages
-    }
-    
-    func saveChannels(_ channels: [Channel]) {
-        service.peformSave { context in
-            channels.forEach { channel in
-                let dbChannel = ChannelDB(context: context)
-                
-                dbChannel.identifier = channel.identifier
-                dbChannel.name = channel.name
-                dbChannel.lastActivity = channel.lastActivity
-                dbChannel.lastMessage = channel.lastMessage
+    private let persistentContainer: NSPersistentContainer = {
+       let container = NSPersistentContainer(name: "Conversations")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                print(error.localizedDescription)
             }
         }
+        
+        return container
+    }()
+    
+    func fetchData<T: NSManagedObject>(withPredicate predicate: NSPredicate? = nil, inContext userContext: NSManagedObjectContext? = nil) -> [T] {
+        let fetchRequest = T.fetchRequest()
+        var context = readContext
+        
+        if let predicate = predicate {
+            fetchRequest.predicate = predicate
+        }
+        
+        if let userContext = userContext {
+            context = userContext
+        }
+        
+        guard let data = try? context.fetch(fetchRequest) as? [T] else { return [] }
+        
+        return data
     }
     
-    func saveMessages(_ messages: [Message], fromChannel channel: Channel) {
-        service.peformSave { context in
-            let dbChannel = ChannelDB(context: context)
+    func performSave(_ block: @escaping (NSManagedObjectContext) -> Void) {
+        writeContext.performAndWait {
+            block(writeContext)
             
-            dbChannel.identifier = channel.identifier
-            dbChannel.name = channel.name
-            dbChannel.lastMessage = channel.lastMessage
-            dbChannel.lastActivity = channel.lastActivity
-            
-            var dbMessages: [MessageDB] = []
-            
-            messages.forEach { message in
-                let dbMessage = MessageDB(context: context)
-                
-                dbMessage.content = message.content
-                dbMessage.created = message.created
-                dbMessage.senderID = message.senderID
-                dbMessage.senderName = message.senderName
-                
-                dbMessages.append(dbMessage)
-                dbChannel.addToMessages(dbMessage)
+            if writeContext.hasChanges {
+                do {
+                    try performSave(in: writeContext)
+                } catch {
+                    writeContext.rollback()
+                    print(error.localizedDescription)
+                }
             }
+            
+            writeContext.reset()
         }
     }
     
-    private func fetchDBChannel(channel: Channel) -> ChannelDB? {
-        let dbChannels: [ChannelDB] = service.fetchData()
-        guard let dbChannel = dbChannels.filter({ $0.identifier == channel.identifier }).first else { return nil }
+    func deleteData<T: NSManagedObject>(_ data: T) {
+        performSave { context in
+            context.delete(data)
+        }
+    }
+    
+    // TODO remove this func
+    
+    func deleteALl() {
+        let storeContainer =
+            persistentContainer.persistentStoreCoordinator
+
+        // Delete each existing persistent store
+        for store in storeContainer.persistentStores {
+            guard let url = store.url else { return }
+            try? storeContainer.destroyPersistentStore(
+                at: url,
+                ofType: store.type,
+                options: nil
+            )
+        }
+    }
+    
+    private func performSave(in context: NSManagedObjectContext) throws {
+        try context.save()
         
-        return dbChannel
+        if let parent = context.parent {
+            try performSave(in: parent)
+        }
     }
 }

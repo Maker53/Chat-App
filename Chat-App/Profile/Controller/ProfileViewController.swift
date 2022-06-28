@@ -67,9 +67,13 @@ class ProfileViewController: UIViewController {
         
         if let userImageData = userProfileInfo?.imageData {
             mainView?.userImageView.image = UIImage(data: userImageData)
+            mainView?.initialsLabel.text = ""
         }
         
-        mainView?.userNameTextField.text = userProfileInfo?.name
+        let fullName = userProfileInfo.name
+        
+        mainView?.userNameTextField.text = fullName
+        setupInitialsLabel(fullName: fullName)
     }
     
     func isDataChange() -> Bool {
@@ -85,6 +89,20 @@ class ProfileViewController: UIViewController {
         }
         
         return false
+    }
+    
+    func setupInitialsLabel(fullName: String?) {
+        guard let fullName = fullName else { return }
+        let stringInput = fullName.components(separatedBy: " ").prefix(2)
+        var fullNameInitials = ""
+        
+        for string in stringInput {
+            fullNameInitials += String(string.first ?? " ")
+        }
+        
+        if mainView?.userImageView.image == nil {
+            mainView?.initialsLabel.text = fullNameInitials
+        }
     }
 }
 

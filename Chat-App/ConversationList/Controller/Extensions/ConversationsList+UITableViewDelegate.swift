@@ -13,15 +13,20 @@ extension ConversationsListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let conversationVC = ConversationViewController()
-        conversationVC.channel = channels[indexPath.row]
-        conversationVC.title = channels[indexPath.row].name
+        let channelDB = fetchController.object(at: indexPath)
+        guard let channel = Channel(dbModel: channelDB) else { return }
+        
+        conversationVC.channel = channel
+        conversationVC.title = channel.name
         
         navigationController?.pushViewController(conversationVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let path = channels[indexPath.row].identifier
+            let channelDB = fetchController.object(at: indexPath)
+            guard let channel = Channel(dbModel: channelDB) else { return }
+            let path = channel.identifier
             
             FirebaseService.shared.deleteChannel(byPath: path)
         }

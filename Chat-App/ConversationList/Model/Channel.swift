@@ -15,9 +15,12 @@ struct Channel {
 }
 
 extension Channel {
-    init (dbModel: ChannelDB) {
-        self.identifier = dbModel.identifier ?? ""
-        self.name = dbModel.name ?? ""
+    init?(dbModel: ChannelDB) {
+        guard let identifier = dbModel.identifier else { return nil }
+        guard let name = dbModel.name else { return nil }
+        
+        self.identifier = identifier
+        self.name = name
         self.lastMessage = dbModel.lastMessage
         self.lastActivity = dbModel.lastActivity ?? Date()
     }

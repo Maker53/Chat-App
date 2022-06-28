@@ -12,17 +12,25 @@ struct Message {
     let created: Date
     let senderID: String
     let senderName: String
+    let identifier: String
 }
 
 extension Message {
-    init(dbModel: MessageDB) {
-        self.content = dbModel.content ?? ""
-        self.created = dbModel.created ?? Date()
-        self.senderID = dbModel.senderID ?? ""
-        self.senderName = dbModel.senderName ?? ""
+    init?(dbModel: MessageDB) {
+        guard let content = dbModel.content else { return nil }
+        guard let created = dbModel.created else { return nil }
+        guard let senderID = dbModel.senderID else { return nil }
+        guard let senderName = dbModel.senderName else { return nil }
+        guard let identifier = dbModel.identifier else { return nil }
+        
+        self.content = content
+        self.created = created
+        self.senderID = senderID
+        self.senderName = senderName
+        self.identifier = identifier
     }
     
-    init?(data: [String: Any]) {
+    init?(identifier: String, data: [String: Any]) {
         guard let senderID = data["senderID"] as? String else { return nil }
         guard let senderName = data["senderName"] as? String else { return nil }
         guard let content = data["content"] as? String else { return nil }
@@ -32,6 +40,7 @@ extension Message {
         self.created = date.dateValue()
         self.senderID = senderID
         self.senderName = senderName
+        self.identifier = identifier
     }
     
     var toDict: [String: Any] {
