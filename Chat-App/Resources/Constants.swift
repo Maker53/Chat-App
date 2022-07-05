@@ -14,4 +14,5 @@ enum Constants {
     static let messagesCollectionPath = "messages"
     static let persistentContainerName = "Conversations"
     static let messageIdentifier = "Firebase_generates"
+    static let collectionViewCellIdentifier = "profileImagePickerCell"
 }

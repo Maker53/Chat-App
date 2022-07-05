@@ -306,6 +306,7 @@
 				85C0CE5A2870865800CA7D77 /* ConversationsList */,
 				85C0CE6328708E0700CA7D77 /* Converssation */,
 				85C0CE6528708F1900CA7D77 /* Profile */,
+				85F93BA12874321300547749 /* ProfileImagePicker */,
 				8521B80B27DDB8BE00D03E4A /* Themes */,
 			);
 			path = Presentation;
@@ -764,6 +765,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F93BA32874324B00547749 /* ProfileImagePickerViewController.swift in Sources */,
 				85C0CE972871B17C00CA7D77 /* StorageService.swift in Sources */,
 				85C0CE602870886F00CA7D77 /* ConversationsListTableViewDataSource.swift in Sources */,
 				85783A69285F6DD800340174 /* SaveUserInfoOperation.swift in Sources */,
@@ -797,6 +799,7 @@
 				85B57A2C2857B60400DE0852 /* ProfileViewController+UIStates.swift in Sources */,
 				85C0CE9C2871D32300CA7D77 /* FetchControllerService.swift in Sources */,
 				853D11FF28561DAF0075EA48 /* NightTheme.swift in Sources */,
+				85F93BAB287436D400547749 /* ProfileImagePickerCollectionViewDelegate.swift in Sources */,
 				85882B4F27CBE7C50081463E /* ProfileViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				85C0CE992871B18D00CA7D77 /* StorageServiceImplementation.swift in Sources */,
 				85C0CE8F2871B02800CA7D77 /* OperationService.swift in Sources */,
@@ -806,6 +809,7 @@
 				8585B86C285106CC003EBBD8 /* ProfileView.swift in Sources */,
 				853D11F92856179B0075EA48 /* ThemeDesign.swift in Sources */,
 				853D11FB28561B320075EA48 /* ClassicTheme.swift in Sources */,
+				85F93BA72874333F00547749 /* ProfileImagePickerView.swift in Sources */,
 				85C0CE792871918200CA7D77 /* CoreDataStackImplementation.swift in Sources */,
 				85B7FF5527E60CC4000D33F6 /* Theme.swift in Sources */,
 				85C0CE622870887800CA7D77 /* ConversationsListTableViewDelegate.swift in Sources */,
@@ -831,6 +835,7 @@
 				85C0CE7C2871947300CA7D77 /* CoreDataService.swift in Sources */,
 				85BF5A60285E031F00F24CC8 /* UITableView+Scroll.swift in Sources */,
 				853D11EE2855BB6F0075EA48 /* ConversationView.swift in Sources */,
+				85F93BA92874365800547749 /* ProfileImagePickerCollectionViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
