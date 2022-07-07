@@ -75,6 +75,23 @@
 		85C0CEAF2871E41F00CA7D77 /* ConversationDisplayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C0CEAE2871E41F00CA7D77 /* ConversationDisplayData.swift */; };
 		85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */; };
 		85E18B7027E9872400D6FE83 /* UserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E18B6F27E9872400D6FE83 /* UserProfileInfo.swift */; };
+		85E1A4542874AB9B0075F16D /* RequestSenderImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A4532874AB9B0075F16D /* RequestSenderImplementation.swift */; };
+		85E1A45628758DAC0075F16D /* ConfigFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A45528758DAC0075F16D /* ConfigFactory.swift */; };
+		85E1A45828758E660075F16D /* ImageListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A45728758E660075F16D /* ImageListRequest.swift */; };
+		85E1A45C2875CD7C0075F16D /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A45B2875CD7C0075F16D /* ImageParser.swift */; };
+		85E1A45E2875CDC60075F16D /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A45D2875CDC60075F16D /* ImageRequest.swift */; };
+		85E1A4602876C9860075F16D /* ProfileImagePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A45F2876C9860075F16D /* ProfileImagePickerViewCell.swift */; };
+		85E1A4622876E8B50075F16D /* LoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1A4612876E8B50075F16D /* LoadingReusableView.swift */; };
+		85F93B9E287430E300547749 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93B9D287430E300547749 /* Request.swift */; };
+		85F93BA02874311B00547749 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93B9F2874311B00547749 /* Parser.swift */; };
+		85F93BA32874324B00547749 /* ProfileImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BA22874324B00547749 /* ProfileImagePickerViewController.swift */; };
+		85F93BA72874333F00547749 /* ProfileImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BA62874333F00547749 /* ProfileImagePickerView.swift */; };
+		85F93BA92874365800547749 /* ProfileImagePickerCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BA82874365800547749 /* ProfileImagePickerCollectionViewDataSource.swift */; };
+		85F93BAB287436D400547749 /* ProfileImagePickerCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BAA287436D400547749 /* ProfileImagePickerCollectionViewDelegate.swift */; };
+		85F93BAD287472DC00547749 /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BAC287472DC00547749 /* RequestConfig.swift */; };
+		85F93BAF287473B000547749 /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BAE287473B000547749 /* RequestSender.swift */; };
+		85F93BB22874A08200547749 /* ImageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BB12874A08200547749 /* ImageList.swift */; };
+		85F93BB42874A2E500547749 /* ImageListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F93BB32874A2E500547749 /* ImageListParser.swift */; };
 		85FDC99527D5302D00E57461 /* ProfileViewController+TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99427D5302D00E57461 /* ProfileViewController+TextFieldDelegate.swift */; };
 		85FDC99927D6566700E57461 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC99827D6566700E57461 /* ConversationsListViewController.swift */; };
 		85FDC9A227D661F600E57461 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FDC9A127D661F600E57461 /* Channel.swift */; };
@@ -156,6 +173,23 @@
 		85CC045227DDB95600B9F8F0 /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		85D61D4B285AE562001C1ACC /* SaveUserInfoOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserInfoOperation.swift; sourceTree = "<group>"; };
 		85E18B6F27E9872400D6FE83 /* UserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileInfo.swift; sourceTree = "<group>"; };
+		85E1A4532874AB9B0075F16D /* RequestSenderImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSenderImplementation.swift; sourceTree = "<group>"; };
+		85E1A45528758DAC0075F16D /* ConfigFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFactory.swift; sourceTree = "<group>"; };
+		85E1A45728758E660075F16D /* ImageListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListRequest.swift; sourceTree = "<group>"; };
+		85E1A45B2875CD7C0075F16D /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
+		85E1A45D2875CDC60075F16D /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		85E1A45F2876C9860075F16D /* ProfileImagePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewCell.swift; sourceTree = "<group>"; };
+		85E1A4612876E8B50075F16D /* LoadingReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReusableView.swift; sourceTree = "<group>"; };
+		85F93B9D287430E300547749 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		85F93B9F2874311B00547749 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		85F93BA22874324B00547749 /* ProfileImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewController.swift; sourceTree = "<group>"; };
+		85F93BA62874333F00547749 /* ProfileImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerView.swift; sourceTree = "<group>"; };
+		85F93BA82874365800547749 /* ProfileImagePickerCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		85F93BAA287436D400547749 /* ProfileImagePickerCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		85F93BAC287472DC00547749 /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
+		85F93BAE287473B000547749 /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		85F93BB12874A08200547749 /* ImageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageList.swift; sourceTree = "<group>"; };
+		85F93BB32874A2E500547749 /* ImageListParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListParser.swift; sourceTree = "<group>"; };
 		85FDC99427D5302D00E57461 /* ProfileViewController+TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+TextFieldDelegate.swift"; sourceTree = "<group>"; };
 		85FDC99827D6566700E57461 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		85FDC9A127D661F600E57461 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -407,6 +441,7 @@
 				85C0CE6E2871808800CA7D77 /* FirebaseService */,
 				85C0CE752871915E00CA7D77 /* CoreDataStack */,
 				85C0CE952871B16C00CA7D77 /* StorageService */,
+				85F93B9C287430CA00547749 /* NetworkService */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -424,6 +459,7 @@
 				85C0CE9F2871DE5800CA7D77 /* ThemeService */,
 				85C0CEA42871E24000CA7D77 /* ConversationsListDisplayDataService */,
 				85C0CEA92871E3D300CA7D77 /* ConversationDisplayDataService */,
+				85F93BB02874A04D00547749 /* NetworkService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -567,6 +603,76 @@
 				853D11FE28561DAF0075EA48 /* NightTheme.swift */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		85E1A45928758E6E0075F16D /* ImageList */ = {
+			isa = PBXGroup;
+			children = (
+				85F93BB12874A08200547749 /* ImageList.swift */,
+				85F93BB32874A2E500547749 /* ImageListParser.swift */,
+				85E1A45728758E660075F16D /* ImageListRequest.swift */,
+			);
+			path = ImageList;
+			sourceTree = "<group>";
+		};
+		85E1A45A2875CD680075F16D /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				85E1A45B2875CD7C0075F16D /* ImageParser.swift */,
+				85E1A45D2875CDC60075F16D /* ImageRequest.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		85F93B9C287430CA00547749 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				85F93B9D287430E300547749 /* Request.swift */,
+				85F93B9F2874311B00547749 /* Parser.swift */,
+				85F93BAC287472DC00547749 /* RequestConfig.swift */,
+				85F93BAE287473B000547749 /* RequestSender.swift */,
+				85E1A4532874AB9B0075F16D /* RequestSenderImplementation.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		85F93BA12874321300547749 /* ProfileImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				85F93BA52874332B00547749 /* View */,
+				85F93BA42874332100547749 /* Controller */,
+			);
+			path = ProfileImagePicker;
+			sourceTree = "<group>";
+		};
+		85F93BA42874332100547749 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				85F93BA22874324B00547749 /* ProfileImagePickerViewController.swift */,
+				85F93BA82874365800547749 /* ProfileImagePickerCollectionViewDataSource.swift */,
+				85F93BAA287436D400547749 /* ProfileImagePickerCollectionViewDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		85F93BA52874332B00547749 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				85F93BA62874333F00547749 /* ProfileImagePickerView.swift */,
+				85E1A45F2876C9860075F16D /* ProfileImagePickerViewCell.swift */,
+				85E1A4612876E8B50075F16D /* LoadingReusableView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		85F93BB02874A04D00547749 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				85E1A45528758DAC0075F16D /* ConfigFactory.swift */,
+				85E1A45928758E6E0075F16D /* ImageList */,
+				85E1A45A2875CD680075F16D /* Image */,
+			);
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 		85F9D82427C267B700466578 /* Resources */ = {
@@ -766,6 +872,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				85F93BA32874324B00547749 /* ProfileImagePickerViewController.swift in Sources */,
+				85F93BB22874A08200547749 /* ImageList.swift in Sources */,
+				85F93BB42874A2E500547749 /* ImageListParser.swift in Sources */,
+				85F93BAD287472DC00547749 /* RequestConfig.swift in Sources */,
 				85C0CE972871B17C00CA7D77 /* StorageService.swift in Sources */,
 				85C0CE602870886F00CA7D77 /* ConversationsListTableViewDataSource.swift in Sources */,
 				85783A69285F6DD800340174 /* SaveUserInfoOperation.swift in Sources */,
@@ -781,14 +890,18 @@
 				85C0CE8D2871AF5500CA7D77 /* GCDService.swift in Sources */,
 				8573E24F285C42E10076ED5C /* UIAlertController+CustomAlerts.swift in Sources */,
 				85C0CEAF2871E41F00CA7D77 /* ConversationDisplayData.swift in Sources */,
+				85F93BAF287473B000547749 /* RequestSender.swift in Sources */,
 				853D12012856514B0075EA48 /* UIView+isBorderVisible.swift in Sources */,
 				85B57A2E28584C9000DE0852 /* ProfileViewController+UITextViewDelegate.swift in Sources */,
 				85E18B7027E9872400D6FE83 /* UserProfileInfo.swift in Sources */,
 				85C0CE6D28717CAE00CA7D77 /* ChannelFirebaseServiceImplementation.swift in Sources */,
 				85CC045327DDB95600B9F8F0 /* ThemesViewController.swift in Sources */,
+				85E1A45828758E660075F16D /* ImageListRequest.swift in Sources */,
 				85C0CEAD2871E40800CA7D77 /* ConversationDisplayDataService.swift in Sources */,
 				85C0CE9E2871D33B00CA7D77 /* FetchControllerServiceImplementation.swift in Sources */,
+				85E1A4622876E8B50075F16D /* LoadingReusableView.swift in Sources */,
 				85BF5A5E285DE04C00F24CC8 /* Message.swift in Sources */,
+				85E1A4542874AB9B0075F16D /* RequestSenderImplementation.swift in Sources */,
 				85C0CE8028719C7400CA7D77 /* ServiceAssembly.swift in Sources */,
 				85C0CE8328719E9C00CA7D77 /* MessageFirebaseService.swift in Sources */,
 				85FDC99527D5302D00E57461 /* ProfileViewController+TextFieldDelegate.swift in Sources */,
@@ -799,6 +912,7 @@
 				85B57A2C2857B60400DE0852 /* ProfileViewController+UIStates.swift in Sources */,
 				85C0CE9C2871D32300CA7D77 /* FetchControllerService.swift in Sources */,
 				853D11FF28561DAF0075EA48 /* NightTheme.swift in Sources */,
+				85E1A4602876C9860075F16D /* ProfileImagePickerViewCell.swift in Sources */,
 				85F93BAB287436D400547749 /* ProfileImagePickerCollectionViewDelegate.swift in Sources */,
 				85882B4F27CBE7C50081463E /* ProfileViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				85C0CE992871B18D00CA7D77 /* StorageServiceImplementation.swift in Sources */,
@@ -808,14 +922,18 @@
 				857847D227C12065005E176B /* ProfileViewController.swift in Sources */,
 				8585B86C285106CC003EBBD8 /* ProfileView.swift in Sources */,
 				853D11F92856179B0075EA48 /* ThemeDesign.swift in Sources */,
+				85E1A45E2875CDC60075F16D /* ImageRequest.swift in Sources */,
+				85F93B9E287430E300547749 /* Request.swift in Sources */,
 				853D11FB28561B320075EA48 /* ClassicTheme.swift in Sources */,
 				85F93BA72874333F00547749 /* ProfileImagePickerView.swift in Sources */,
 				85C0CE792871918200CA7D77 /* CoreDataStackImplementation.swift in Sources */,
+				85F93BA02874311B00547749 /* Parser.swift in Sources */,
 				85B7FF5527E60CC4000D33F6 /* Theme.swift in Sources */,
 				85C0CE622870887800CA7D77 /* ConversationsListTableViewDelegate.swift in Sources */,
 				857847CE27C12065005E176B /* AppDelegate.swift in Sources */,
 				85FDC99927D6566700E57461 /* ConversationsListViewController.swift in Sources */,
 				853D11F22855DFE90075EA48 /* String+isBlank.swift in Sources */,
+				85E1A45C2875CD7C0075F16D /* ImageParser.swift in Sources */,
 				85C0CE72287180AF00CA7D77 /* FirebaseServiceImplementation.swift in Sources */,
 				85C0CEA82871E2A900CA7D77 /* ConversationsListDisplayDataService.swift in Sources */,
 				85FDC9B227D7A57500E57461 /* MessageCell.swift in Sources */,
@@ -828,6 +946,7 @@
 				85C0CE7E2871948A00CA7D77 /* CoreDataServiceImplementation.swift in Sources */,
 				85C0CEAB2871E3F400CA7D77 /* ConversationDisplayDataServiceImplementation.swift in Sources */,
 				85882B5127CDD4790081463E /* ProfileViewController+PHPickerViewControllerDelegate.swift in Sources */,
+				85E1A45628758DAC0075F16D /* ConfigFactory.swift in Sources */,
 				85574E3A282FFB3D00607D52 /* Constants.swift in Sources */,
 				85C0CE702871809E00CA7D77 /* FirebaseService.swift in Sources */,
 				8585B86E2851AC90003EBBD8 /* ProfileViewController+ProfileViewDelegate.swift in Sources */,

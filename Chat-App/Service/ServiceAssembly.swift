@@ -46,4 +46,8 @@ class ServiceAssembly {
     static var conversationDisplayDataService: ConversationDisplayDataService {
         ConversationDisplayDataServiceImplementation()
     }
+    
+    static var networkConfigFactory: ConfigFactory {
+        ConfigFactory()
+    }
 }

@@ -129,6 +129,7 @@ class ProfileViewController: UIViewController {
     func presentChooseImageAlertController() {
         let photoLibraryIcon = UIImage(systemName: "photo")
         let cameraIcon = UIImage(systemName: "camera")
+        let imagePickerIcon = UIImage(systemName: "network")
         
         let alertController = UIAlertController(
             title: nil,
@@ -136,7 +137,7 @@ class ProfileViewController: UIViewController {
             preferredStyle: .actionSheet
         )
         
-        let photo = UIAlertAction(title: "Photo", style: .default) { _ in
+        let photoAction = UIAlertAction(title: "Photo", style: .default) { [unowned self] _ in
             if #available(iOS 14, *) {
                 self.choosePHPicker()
             } else {
@@ -144,21 +145,29 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        photo.setValue(photoLibraryIcon, forKey: "image")
-        photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+        photoAction.setValue(photoLibraryIcon, forKey: "image")
+        photoAction.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
-        let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { [unowned self] _ in
             self.chooseImagePicker(source: .camera)
         }
         
-        camera.setValue(cameraIcon, forKey: "image")
-        camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+        cameraAction.setValue(cameraIcon, forKey: "image")
+        cameraAction.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let imagePickerAction = UIAlertAction(title: "Download", style: .default) { [unowned self] _ in
+            self.showImagePickerController()
+        }
         
-        alertController.addAction(photo)
-        alertController.addAction(camera)
-        alertController.addAction(cancel)
+        imagePickerAction.setValue(imagePickerIcon, forKey: "image")
+        imagePickerAction.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(photoAction)
+        alertController.addAction(cameraAction)
+        alertController.addAction(imagePickerAction)
+        alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
     }
@@ -178,6 +187,19 @@ extension ProfileViewController {
             self?.userProfileInfo = profile
             self?.setupFields()
         }
+    }
+    
+    private func showImagePickerController() {
+        let imagePickerController = ProfileImagePickerViewController()
+        
+        imagePickerController.onCompletion = { [unowned self] image in
+            self.mainView?.userImageView.image = image
+            self.mainView?.initialsLabel.text = nil
+            self.mainView?.userImageView.image = image
+            self.setUIWithEditState(.hasChange)
+        }
+        
+        present(imagePickerController, animated: true)
     }
     
     private func updateTheme() {

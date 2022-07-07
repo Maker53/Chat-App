@@ -9,4 +9,5 @@ class CoreAssembly {
     static var firebaseService: FirebaseService = FirebaseServiceImplementation()
     static var coreDataStack: CoreDataStack = CoreDataStackImplementation.shared
     static var storageService: StorageService = StorageServiceImplementation()
+    static var requestService: RequestSender = RequestSenderImplementation()
 }
