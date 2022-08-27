@@ -76,23 +76,6 @@ class CoreDataStackImplementation: CoreDataStack {
         }
     }
     
-    // TODO remove this func
-    
-    func deleteALl() {
-        let storeContainer =
-            persistentContainer.persistentStoreCoordinator
-
-        // Delete each existing persistent store
-        for store in storeContainer.persistentStores {
-            guard let url = store.url else { return }
-            try? storeContainer.destroyPersistentStore(
-                at: url,
-                ofType: store.type,
-                options: nil
-            )
-        }
-    }
-    
     // MARK: - Private Methods
     
     private func performSave(in context: NSManagedObjectContext) throws {

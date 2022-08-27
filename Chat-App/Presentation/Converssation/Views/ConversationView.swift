@@ -16,9 +16,6 @@ class ConversationView: UIView {
     
     // MARK: - Visual Components
     
-    private var backgroundViewBottomConstraint: NSLayoutConstraint?
-    private var messageTextViewHeightConstraint: NSLayoutConstraint?
-    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         
@@ -73,6 +70,9 @@ class ConversationView: UIView {
         return view
     }()
     
+    private var backgroundViewBottomConstraint: NSLayoutConstraint?
+    private var messageTextViewHeightConstraint: NSLayoutConstraint?
+    
     // MARK: - Public Properties
     
     weak var delegate: ConversationViewDelegate!
@@ -83,7 +83,6 @@ class ConversationView: UIView {
     private var isOversized = false {
         didSet {
             messageTextView.isScrollEnabled = isOversized
-            // TODO scroll table view to bottom
         }
     }
     

@@ -7,8 +7,6 @@
 
 import Foundation
 
-// TODO Посмотреть про http и urlRequest и сделать запрос через свойства, а не напрямую стрингом
-
 class ImageListRequest: Request {
     
     var urlRequest: URLRequest? = {

@@ -7,47 +7,15 @@
 
 class ServiceAssembly {
     
-    static var coreDataService: CoreDataService {
-        CoreDataServiceImplementation()
-    }
-    
-    static var channelFirebaseService: ChannelFirebaseService {
-        ChannelFirebaseServiceImplementation()
-    }
-    
-    static var messageFirebaseService: MessageFirebaseService {
-        MessageFirebaseServiceImplementation()
-    }
-    
-    static var profileDataService: ProfileDataService {
-        ProfileDataServiceImplementation()
-    }
-    
-    static var gcdService: MultithreadingService {
-        GCDService()
-    }
-    
-    static var operationService: MultithreadingService {
-        OperationService()
-    }
-    
-    static var fetchControllerService: FetchControllerService {
-        FetchControllerServiceImplementation()
-    }
-    
-    static var themeService: ThemeService {
-        ThemeServiceImplementation()
-    }
-    
-    static var conversationsListDisplayDataService: ConversationsListDisplayDataService {
-        ConversationsListDisplayDataServiceImplementation()
-    }
-    
-    static var conversationDisplayDataService: ConversationDisplayDataService {
-        ConversationDisplayDataServiceImplementation()
-    }
-    
-    static var networkConfigFactory: ConfigFactory {
-        ConfigFactory()
-    }
+    static let coreDataService: CoreDataService = CoreDataServiceImplementation()
+    static let channelFirebaseService: ChannelFirebaseService = ChannelFirebaseServiceImplementation()
+    static let messageFirebaseService: MessageFirebaseService = MessageFirebaseServiceImplementation()
+    static let profileDataService: ProfileDataService = ProfileDataServiceImplementation()
+    static let gcdService: MultithreadingService = GCDService()
+    static let operationService: MultithreadingService = OperationService()
+    static let fetchControllerService: FetchControllerService = FetchControllerServiceImplementation()
+    static let themeService: ThemeService = ThemeServiceImplementation()
+    static let conversationsListDisplayDataService: ConversationsListDisplayDataService = ConversationsListDisplayDataServiceImplementation()
+    static let conversationDisplayDataService: ConversationDisplayDataService = ConversationDisplayDataServiceImplementation()
+    static let networkConfigFactory: ConfigFactory = ConfigFactory()
 }

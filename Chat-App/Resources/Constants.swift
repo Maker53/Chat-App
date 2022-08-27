@@ -8,6 +8,7 @@
 import UIKit
 
 enum Constants {
+    
     static let myID = UIDevice.current.identifierForVendor?.uuidString
     static let userProfileFileName = "userProfile"
     static let channelsCollectionPath = "channels"

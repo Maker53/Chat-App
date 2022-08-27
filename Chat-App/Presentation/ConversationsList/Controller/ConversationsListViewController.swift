@@ -179,6 +179,7 @@ extension ConversationsListViewController {
 // MARK: - ConversationsListTableViewNavigation
 
 extension ConversationsListViewController: ConversationsListTableViewNavigation {
+    
     func pushViewController(_ controller: UIViewController) {
         navigationController?.pushViewController(controller, animated: true)
     }
